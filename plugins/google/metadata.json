@@ -1,0 +1,9 @@
+{
+    "KPlugin": {
+        "Icon": "im-google",
+        "Name": "Google",
+        "Description": "Google Stuff"
+    },
+    "X-KOnlineAccounts-SetupModule": "org.kde.konlineaccounts.google",
+    "X-KOnlineAccounts-Provides": ["google"]
+}

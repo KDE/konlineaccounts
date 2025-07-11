@@ -1,0 +1,33 @@
+{
+    "id": "org.kde.konlineaccountsdemo",
+    "branch": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "6.9",
+    "sdk": "org.kde.Sdk",
+    "command": "demo",
+    "tags": [
+        "nightly"
+    ],
+    "finish-args": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--talk-name=org.kde.KOnlineAccounts"
+    ],
+    "modules": [
+        {
+            "name": "demo",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}

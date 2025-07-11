@@ -1,0 +1,9 @@
+{
+    "KPlugin": {
+        "Icon": "kaccounts-nextcloud",
+        "Name": "Nextcloud",
+        "Description": "Files, Contacts, Calendars, and stuff"
+    },
+    "X-KOnlineAccounts-SetupModule": "org.kde.konlineaccounts.nextcloud",
+    "X-KOnlineAccounts-Provides": ["nextcloud", "caldav", "carddav"]
+}

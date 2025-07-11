@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_kaccounts",
+        "Description": "Configure your internet accounts such as Google, Live, Owncloud",
+        "FormFactors": [
+            "desktop",
+            "handset",
+            "tablet",
+            "mediacenter"
+        ],
+        "Icon": "preferences-online-accounts",
+        "Name": "Online Accounts (New)"
+    },
+    "X-KDE-Keywords": "network,google,live,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
+    "X-KDE-System-Settings-Parent-Category": "network",
+    "X-KDE-Weight": 20
+}
