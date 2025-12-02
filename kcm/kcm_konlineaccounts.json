@@ -9,7 +9,7 @@
             "mediacenter"
         ],
         "Icon": "preferences-online-accounts",
-        "Name": "Online Accounts (New)"
+        "Name": "Online Accounts"
     },
     "X-KDE-Keywords": "network,google,live,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
     "X-KDE-System-Settings-Parent-Category": "network",
