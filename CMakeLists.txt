@@ -5,12 +5,9 @@ cmake_minimum_required(VERSION 3.30)
 
 project(konlineaccounts LANGUAGES CXX VERSION 0.1.0)
 
-find_package(ECM 6.10.0 REQUIRED)
+find_package(ECM 6.19.0 REQUIRED)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -20,7 +17,7 @@ include(KDEGitCommitHooks)
 include(ECMQmlModule)
 include(ECMGenerateExportHeader)
 
-find_package(Qt6 REQUIRED COMPONENTS Core DBus NetworkAuth WebEngineCore WebEngineQuick)
+find_package(Qt6 6.10 REQUIRED COMPONENTS Core DBus NetworkAuth WebEngineCore WebEngineQuick)
 
 find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n KCMUtils KIO DBusAddons Crash)
 
