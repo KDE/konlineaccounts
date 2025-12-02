@@ -24,7 +24,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core DBus NetworkAuth WebEngineCore WebEngi
 
 find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n KCMUtils KIO DBusAddons Crash)
 
-find_package(KPim6Akonadi REQUIRED)
 find_package(KPim6GAPI REQUIRED)
 
 find_package(QCoro6 REQUIRED COMPONENTS Core Network)
