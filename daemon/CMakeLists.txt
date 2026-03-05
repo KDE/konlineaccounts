@@ -10,3 +10,4 @@ target_sources(konlineaccountsd PRIVATE main.cpp accountsmanager.cpp accountsman
 target_link_libraries(konlineaccountsd PRIVATE Qt::Core Qt::DBus Qt::Widgets KF6::CoreAddons KF6::ConfigCore KF6::KIOGui KF6::WindowSystem KF6::I18n KF6::I18nQml KF6::DBusAddons KF6::Crash accounts)
 
 install(TARGETS konlineaccountsd DESTINATION ${KDE_INSTALL_BINDIR})
+install(FILES org.kde.konlineaccountsd.desktop DESTINATION ${KDE_INSTALL_APPDIR})

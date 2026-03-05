@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Nicolas Fella <nicolas.fella@gmx.de>
+# SPDX-License-Identifier: CC0-1.0
+[Desktop Entry]
+Name=Online Accounts
+Exec=konlineaccountsd
+Icon=preferences-online-accounts
+Type=Application
+NoDisplay=true
