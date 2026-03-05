@@ -17,6 +17,8 @@ import org.kde.konlineaccounts.daemon
 ApplicationWindow {
     id: root
 
+    title: i18nc("@title:window", "Online Accounts")
+
     width: 500
     height: 500
     visible: true
