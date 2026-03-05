@@ -23,6 +23,7 @@
 #include <KService>
 #include <KSharedConfig>
 #include <KWaylandExtras>
+#include <KWindowSystem>
 
 #include "accessmanager.h"
 #include "account.h"
@@ -114,7 +115,7 @@ QList<QDBusObjectPath> AccountsManager::accounts() const
     return result;
 }
 
-void AccountsManager::requestAccount(const QStringList &types)
+void AccountsManager::requestAccount(const QStringList &types, const QString &windowHandle)
 {
     QQmlApplicationEngine *engine = new QQmlApplicationEngine;
 
@@ -138,6 +139,9 @@ void AccountsManager::requestAccount(const QStringList &types)
     engine->loadFromModule("org.kde.konlineaccounts.daemon", "Main");
 
     m_window = qobject_cast<QWindow *>(engine->rootObjects()[0]);
+    Q_ASSERT(m_window);
+
+    KWindowSystem::setMainWindow(m_window, windowHandle);
 }
 
 void AccountsManager::requestAccountCreation(const QStringList &type)

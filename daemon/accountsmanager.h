@@ -37,7 +37,7 @@ public:
 
     QList<QDBusObjectPath> accounts() const;
 
-    Q_SCRIPTABLE void requestAccount(const QStringList &types);
+    Q_SCRIPTABLE void requestAccount(const QStringList &types, const QString &windowHandle);
 
     Q_INVOKABLE void accountSelected(const QString &callerId, const QString &name);
     Q_INVOKABLE void requestAccountCreation(const QStringList &types);
