@@ -12,3 +12,11 @@ target_link_libraries(kcm_konlineaccounts PRIVATE
     KF6::Service
     accounts
 )
+
+ecm_qt_declare_logging_category(kcm_konlineaccounts
+    HEADER debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_KCM
+    CATEGORY_NAME konlineaccounts.kcm
+    DESCRIPTION "KOnlineAccounts KCM"
+    EXPORT KOnlineAccounts
+)

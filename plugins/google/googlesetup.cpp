@@ -14,6 +14,8 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include "debug.h"
+
 using namespace Qt::Literals;
 
 QList<QUrl> googleScopes()
@@ -59,7 +61,7 @@ void GoogleSetup::slotAuthJobFinished(KGAPI2::Job *job)
     m_account = authJob->account();
 
     if (authJob->error() != KGAPI2::NoError) {
-        qWarning() << "error!" << authJob->error() << authJob->errorString();
+        qCWarning(LOG_KONLINEACCOUNTS_GOOGLE) << "error!" << authJob->error() << authJob->errorString();
         m_builder->fail(authJob->errorString());
         return;
     }

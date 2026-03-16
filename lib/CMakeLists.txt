@@ -20,4 +20,12 @@ target_sources(accounts PRIVATE account.cpp #[[accountsmodel.cpp accountsfilterm
 
 target_link_libraries(accounts PUBLIC Qt::Core Qt::Gui Qt::DBus Qt::Quick KF6::ConfigCore KF6::CoreAddons KF6::WindowSystem)
 
+ecm_qt_declare_logging_category(accounts
+    HEADER debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_LIB
+    CATEGORY_NAME konlineaccounts.library
+    DESCRIPTION "KOnlineAccounts Library"
+    EXPORT KOnlineAccounts
+)
+
 install(TARGETS accounts ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

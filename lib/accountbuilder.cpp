@@ -14,6 +14,8 @@
 #include <KConfigGroup>
 #include <KWaylandExtras>
 
+#include "debug.h"
+
 using namespace Qt::StringLiterals;
 
 AccountBuilder::AccountBuilder(const QString &providerId)
@@ -48,7 +50,7 @@ void AccountBuilder::finish()
                                                               u"sendAccountCreationFinished"_s);
             msg.setArguments({m_id, token});
             QDBusReply<void> r = QDBusConnection::sessionBus().call(msg);
-            qWarning() << "reply" << r.error();
+            qCWarning(LOG_KONLINEACCOUNTS_LIB) << "reply" << r.error();
         },
         Qt::SingleShotConnection);
 

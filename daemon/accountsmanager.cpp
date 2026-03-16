@@ -27,6 +27,7 @@
 
 #include "accessmanager.h"
 #include "account.h"
+#include "debug.h"
 #include "propertiesadaptor.h"
 
 using namespace Qt::Literals;
@@ -108,7 +109,7 @@ QList<QDBusObjectPath> AccountsManager::accounts() const
         if (account->hasAccess(callerId())) {
             result << QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id);
         } else {
-            qWarning() << callerId() << "is not allowed to read this account";
+            qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << callerId() << "is not allowed to read this account";
         }
     }
 
@@ -128,7 +129,7 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
     const KService::Ptr app = KService::serviceByDesktopName(appId);
 
     if (!app) {
-        qWarning() << "Could not find service" << appId;
+        qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << "Could not find service" << appId;
     }
 
     engine->rootContext()->setContextProperty(u"_manager"_s, this);

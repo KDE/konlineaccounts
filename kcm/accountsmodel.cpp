@@ -14,6 +14,8 @@
 #include <QDBusMessage>
 #include <QDBusReply>
 
+#include "debug.h"
+
 using namespace Qt::Literals;
 
 AccountsModel::AccountsModel(QObject *parent)
@@ -46,7 +48,7 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qWarning() << "r" << reply.error();
+        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
 
         return reply.value().toString();
     }
@@ -62,7 +64,7 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qWarning() << "r" << reply.error();
+        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
 
         return reply.value().toStringList();
     }
@@ -75,7 +77,7 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qWarning() << "r" << reply.error();
+        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
 
         return reply.value().toString();
     }
@@ -101,7 +103,7 @@ void AccountsModel::removeAccount(const QString &id)
 
     QDBusReply<void> reply = QDBusConnection::sessionBus().call(msg);
 
-    qWarning() << "r" << reply.error();
+    qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
 
     endRemoveRows();
 }

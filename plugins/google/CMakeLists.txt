@@ -11,3 +11,11 @@ ecm_add_qml_module(googlesetup URI "org.kde.konlineaccounts.google" QML_FILES Ma
 target_sources(googlesetup PRIVATE googlesetup.cpp)
 target_link_libraries(googlesetup PRIVATE QCoro::Network KF6::I18n KPim6::GAPICore accounts)
 ecm_finalize_qml_module(googlesetup)
+
+ecm_qt_declare_logging_category(googlesetup
+    HEADER debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_GOOGLE
+    CATEGORY_NAME konlineaccounts.google
+    DESCRIPTION "KOnlineAccounts Google"
+    EXPORT KOnlineAccounts
+)
