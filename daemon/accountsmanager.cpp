@@ -188,17 +188,10 @@ void AccountsManager::accountSelected(const QString &callerId, const QString &id
     m_accounts[id]->grantAccess(callerId);
     m_accounts[id]->config().sync();
 
-    KWaylandExtras::requestXdgActivationToken(m_window, KWaylandExtras::lastInputSerial(m_window), QString());
-
-    connect(
-        KWaylandExtras::self(),
-        &KWaylandExtras::xdgActivationTokenArrived,
-        this,
-        [this, id](int /*serial*/, const QString &token) {
-            // TODO emit targeted signal
-            Q_EMIT accountAccessGranted(QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id), token);
-        },
-        Qt::SingleShotConnection);
+    KWaylandExtras::xdgActivationToken(m_window, KWaylandExtras::lastInputSerial(m_window), QString()).then(this, [this, id](const QString &token) {
+        // TODO emit targeted signal
+        Q_EMIT accountAccessGranted(QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id), token);
+    });
 
     m_window->close();
 }
