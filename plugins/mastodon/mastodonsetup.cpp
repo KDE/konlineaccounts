@@ -43,7 +43,7 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     auto handler = new QOAuthHttpServerReplyHandler(1234, this);
 
-    handler->setCallbackText(u"We're done here :)"_s);
+    handler->setCallbackText(i18n("Authentication completed, return to System Settings"));
 
     connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [this](QAbstractOAuth::Error /*error*/, const QString &errorString) {
         qCWarning(LOG_KONLINEACCOUNTS_MASTODON) << "Mastodon OAuth callback error" << errorString;
@@ -53,10 +53,9 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
     // register
     const QUrl regUrl = QUrl(instanceUrl + u"/api/v1/apps");
     const QJsonObject obj{
-        {QStringLiteral("client_name"), u"Not KAccounts"_s},
+        {QStringLiteral("client_name"), i18n("KDE Online Accounts")},
         {QStringLiteral("redirect_uris"), u"http://localhost:1234"_s},
         {QStringLiteral("scopes"), QStringLiteral("read write follow")},
-        // {QStringLiteral("website"), website},
     };
     const QJsonDocument doc(obj);
 
