@@ -2,7 +2,7 @@
     "KPlugin": {
         "Icon": "im-google",
         "Name": "Google",
-        "Description": "Google Stuff"
+        "Description": "Access Google Services"
     },
     "X-KOnlineAccounts-SetupModule": "org.kde.konlineaccounts.google",
     "X-KOnlineAccounts-Provides": ["google"]

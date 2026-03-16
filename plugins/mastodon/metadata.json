@@ -2,7 +2,7 @@
     "KPlugin": {
         "Icon": "mastodon_microblog",
         "Name": "Mastodon",
-        "Description": "Toooot"
+        "Description": "Access Mastodon"
     },
     "X-KOnlineAccounts-SetupModule": "org.kde.konlineaccounts.mastodon",
     "X-KOnlineAccounts-Provides": ["mastodon"]
