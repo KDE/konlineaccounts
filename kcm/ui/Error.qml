@@ -22,11 +22,11 @@ ColumnLayout {
     required property string message
 
     Controls.Label {
-        text: "failed " + message
+        text: i18n("Setup failed: %1", message)
     }
 
     Controls.Button {
-        text: "Whatever"
+        text: i18n("Ok")
 
         Layout.alignment: Qt.AlignRight
 
