@@ -70,7 +70,8 @@ KCM.ScrollViewKCM {
             width: ListView.view.width
 
             onClicked: kcm.push("Account.qml", {
-                accountId: id
+                accountId: id,
+                accountName: name,
             })
         }
     }

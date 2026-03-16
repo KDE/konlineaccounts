@@ -21,11 +21,17 @@ KCM.ScrollViewKCM {
 
     required property string accountId
 
+    required property string accountName
+
+    title: accountName
+
     header: Controls.Label {
-        text: "Apps with access"
+        text: i18n("These applications are authorized to use %1:", root.accountName)
     }
 
     view: ListView {
+        id: appsList
+
         model: AuthorizedAppsModel {
             accountId: root.accountId
         }
@@ -37,6 +43,13 @@ KCM.ScrollViewKCM {
             text: name
             icon.name: iconName
             width: ListView.view.width
+        }
+
+        Kirigami.PlaceholderMessage {
+            anchors.centerIn: parent
+            width: parent.width - Kirigami.Units.largeSpacing * 2
+            text: i18n("No applications are authorized to use %1", root.accountName)
+            visible: appsList.count === 0
         }
     }
 }

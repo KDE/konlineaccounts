@@ -25,11 +25,13 @@ ColumnLayout {
     property list<string> apps
 
     Controls.Label {
-        text: "How about you give access to these apps?"
+        text: i18n("Give access to relevant apps:")
         leftPadding: Kirigami.Units.largeSpacing
     }
 
     ListView {
+        id: suggestedAppsList
+
         Layout.fillWidth: true
         Layout.fillHeight: true
 
@@ -57,14 +59,19 @@ ColumnLayout {
                         root.apps.splice(idx, 1);
                     }
                 }
-
-                console.warn("apps", root.apps);
             }
+        }
+
+        Kirigami.PlaceholderMessage {
+            anchors.centerIn: parent
+            width: parent.width - Kirigami.Units.largeSpacing * 2
+            text: i18n("No relevant apps found")
+            visible: suggestedAppsList.count === 0
         }
     }
 
     Controls.Button {
-        text: "Finish"
+        text: i18n("Finish")
 
         Layout.alignment: Qt.AlignRight
 
