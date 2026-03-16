@@ -133,7 +133,7 @@ void AccountsModel::requestNew(QWindow *context)
             KWaylandExtras::self(),
             &KWaylandExtras::windowExported,
             this,
-            [&request](QWindow * /*window*/, const QString &handle) {
+            [request](QWindow * /*window*/, const QString &handle) {
                 request(handle);
             },
             Qt::SingleShotConnection);
