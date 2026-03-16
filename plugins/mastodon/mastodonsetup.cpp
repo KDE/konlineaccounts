@@ -43,24 +43,8 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     handler->setCallbackText(u"We're done here :)"_s);
 
-    connect(handler, &QOAuthHttpServerReplyHandler::tokensReceived, this, [](const QVariantMap &tokens) {
-        qWarning() << "tokens" << tokens;
-    });
-
-    connect(handler, &QOAuthHttpServerReplyHandler::callbackReceived, this, [](const QVariantMap &values) {
-        qWarning() << "callback" << values;
-    });
-
     connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [](QAbstractOAuth::Error error, const QString &errorString) {
         qWarning() << "errors" /*<< error*/ << errorString;
-    });
-
-    connect(handler, &QOAuthHttpServerReplyHandler::replyDataReceived, this, [](const QByteArray &data) {
-        qWarning() << "reply" << data;
-    });
-
-    connect(handler, &QOAuthHttpServerReplyHandler::callbackDataReceived, this, [](const QByteArray &data) {
-        qWarning() << "c data" << data;
     });
 
     // register
