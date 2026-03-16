@@ -7,6 +7,7 @@
 #include "kcm.h"
 
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusMessage>
 #include <QDBusReply>
 #include <QDesktopServices>
@@ -60,6 +61,11 @@ QStringList AccountsSettings::requestedTypes() const
 AccountBuilder *AccountsSettings::createBuilder(const QString &provider)
 {
     return new AccountBuilder(provider);
+}
+
+bool AccountsSettings::serviceRunning() const
+{
+    return QDBusConnection::sessionBus().interface()->isServiceRegistered(u"org.kde.KOnlineAccounts"_s);
 }
 
 #include "kcm.moc"

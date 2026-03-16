@@ -25,6 +25,7 @@ KCM.ScrollViewKCM {
         Kirigami.Action {
             text: i18n("Add Account…")
             icon.name: "list-add-symbolic"
+            enabled: kcm.serviceRunning
             onTriggered: {
                 addAccountDialog.open();
             }
@@ -41,8 +42,16 @@ KCM.ScrollViewKCM {
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             width: parent.width - Kirigami.Units.largeSpacing * 2
+            icon.name: "data-warning"
+            text: i18n("Online accounts service is not running")
+            visible: !kcm.serviceRunning
+        }
+
+        Kirigami.PlaceholderMessage {
+            anchors.centerIn: parent
+            width: parent.width - Kirigami.Units.largeSpacing * 2
             text: "No accounts yet"
-            visible: accountsList.count === 0
+            visible: kcm.serviceRunning && accountsList.count === 0
         }
 
         delegate: Controls.ItemDelegate {
