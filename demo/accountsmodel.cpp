@@ -117,12 +117,12 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
 void AccountsModel::requestNew(QWindow *context)
 {
-    auto request = [](const QString &windowHandle) {
+    auto request = [this](const QString &windowHandle) {
         QDBusMessage m = QDBusMessage::createMethodCall(u"org.kde.KOnlineAccounts"_s,
                                                         u"/org/kde/KOnlineAccounts"_s,
                                                         u"org.kde.KOnlineAccounts.Manager"_s,
                                                         u"requestAccount"_s);
-        m.setArguments({QStringList{u"mastodon"_s}, windowHandle});
+        m.setArguments({QStringList{m_type}, windowHandle});
 
         QDBusConnection::sessionBus().asyncCall(m);
     };

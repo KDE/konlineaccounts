@@ -129,6 +129,8 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
 
     // TODO null check
 
+    qWarning() << "type" << types;
+
     engine->rootContext()->setContextProperty(u"_manager"_s, this);
     engine->setInitialProperties({
         {u"manager"_s, QVariant::fromValue(this)},
