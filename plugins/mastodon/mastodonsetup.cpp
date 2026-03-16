@@ -45,8 +45,9 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     handler->setCallbackText(u"We're done here :)"_s);
 
-    connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [](QAbstractOAuth::Error /*error*/, const QString &errorString) {
+    connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [this](QAbstractOAuth::Error /*error*/, const QString &errorString) {
         qCWarning(LOG_KONLINEACCOUNTS_MASTODON) << "Mastodon OAuth callback error" << errorString;
+        m_builder->fail(errorString);
     });
 
     // register
@@ -64,10 +65,16 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     QNetworkAccessManager *nam = new QNetworkAccessManager;
 
-    auto foo = co_await nam->post(req, doc.toJson());
-    qWarning() << "reply" << foo;
+    QNetworkReply *registerReply = nam->post(req, doc.toJson());
+    const QByteArray registerReplyData = co_await registerReply;
 
-    QJsonDocument replyDoc = QJsonDocument::fromJson(foo);
+    if (registerReply->error()) {
+        qCWarning(LOG_KONLINEACCOUNTS_MASTODON) << "Error registering OAuth app" << registerReply->errorString();
+        m_builder->fail(registerReply->errorString());
+        co_return;
+    }
+
+    QJsonDocument replyDoc = QJsonDocument::fromJson(registerReplyData);
 
     const QString clientId = replyDoc[u"client_id"].toString();
     const QString clientSecret = replyDoc[u"client_secret"].toString();
@@ -77,7 +84,7 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     const QVariantMap values = co_await qCoro(handler, &QOAuthHttpServerReplyHandler::callbackReceived);
 
-    qWarning() << "got" << values;
+    qCDebug(LOG_KONLINEACCOUNTS_MASTODON) << "Got Mastodon OAuth callback";
 
     const QString authCode = values[u"code"_s].toString();
 
@@ -90,14 +97,19 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
     q.addQueryItem(QStringLiteral("grant_type"), u"authorization_code"_s);
     q.addQueryItem(QStringLiteral("code"), authCode);
 
-    QNetworkRequest req2(tokenUrl);
-    req2.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
+    QNetworkRequest tokenRequest(tokenUrl);
+    tokenRequest.setHeader(QNetworkRequest::ContentTypeHeader, QStringLiteral("application/x-www-form-urlencoded"));
 
-    auto reply = co_await nam->post(req2, q.toString().toUtf8());
+    QNetworkReply *tokenReply = nam->post(tokenRequest, q.toString().toUtf8());
+    auto tokenData = co_await tokenReply;
 
-    qWarning() << "reply" << reply;
+    if (tokenReply->error()) {
+        qCWarning(LOG_KONLINEACCOUNTS_MASTODON) << "Failed to obtain Mastodon token" << tokenReply->errorString();
+        m_builder->fail(tokenReply->errorString());
+        co_return;
+    }
 
-    QJsonDocument authReplyDoc = QJsonDocument::fromJson(reply);
+    QJsonDocument authReplyDoc = QJsonDocument::fromJson(tokenData);
 
     const QString accessToken = authReplyDoc[u"access_token"].toString();
 
