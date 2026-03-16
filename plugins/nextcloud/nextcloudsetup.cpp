@@ -56,8 +56,6 @@ QUrl createStatusUrl(const QString &input)
 
 void NextcloudSetup::finalUrlHandler(const QUrl &url)
 {
-    qWarning() << "handle url" << url;
-
     // url is of the form: nc://login/server:<server>&user:<loginname>&password:<password>
 
     QUrlQuery urlQuery;
