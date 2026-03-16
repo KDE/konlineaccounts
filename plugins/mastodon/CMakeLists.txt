@@ -11,3 +11,11 @@ ecm_add_qml_module(mastodonsetup URI "org.kde.konlineaccounts.mastodon" QML_FILE
 target_sources(mastodonsetup PRIVATE mastodonsetup.cpp)
 target_link_libraries(mastodonsetup PRIVATE Qt::NetworkAuth QCoro::Core QCoro::Network KF6::I18n KF6::KIOCore accounts)
 ecm_finalize_qml_module(mastodonsetup)
+
+ecm_qt_declare_logging_category(mastodonsetup
+    HEADER debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_MASTODON
+    CATEGORY_NAME konlineaccounts.mastodon
+    DESCRIPTION "KOnlineAccounts Mastodon"
+    EXPORT KOnlineAccounts
+)

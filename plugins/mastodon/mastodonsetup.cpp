@@ -23,6 +23,8 @@
 
 #include <QCoro/QCoroCore>
 
+#include "debug.h"
+
 using namespace Qt::Literals;
 
 MastodonSetup::MastodonSetup(QObject *parent)
@@ -43,8 +45,8 @@ QCoro::Task<void> MastodonSetup::doRegisterMastodon(const QString &_instanceUrl)
 
     handler->setCallbackText(u"We're done here :)"_s);
 
-    connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [](QAbstractOAuth::Error error, const QString &errorString) {
-        qWarning() << "errors" /*<< error*/ << errorString;
+    connect(handler, &QOAuthHttpServerReplyHandler::tokenRequestErrorOccurred, this, [](QAbstractOAuth::Error /*error*/, const QString &errorString) {
+        qCWarning(LOG_KONLINEACCOUNTS_MASTODON) << "Mastodon OAuth callback error" << errorString;
     });
 
     // register
