@@ -23,6 +23,7 @@
 #include "accountsmodel.h"
 #include "authorizedappsmodel.h"
 #include "availableaccountsmodel.h"
+#include "debug.h"
 #include "suggestedappsmodel.h"
 
 using namespace Qt::Literals;
@@ -34,6 +35,10 @@ AccountsSettings::AccountsSettings(QObject *parent, const KPluginMetaData &data,
 {
     if (args.length() == 2 && args.first().toString() == u"add") {
         m_requestedTypes = args[1].toString().split(u';');
+    }
+
+    if (args.length() == 2 && args.first().toString() == u"show") {
+        m_requestedAccount = args[1].toString();
     }
 
     qmlRegisterType<AccountsModel>("org.kde.konlineaccounts.kcm", 1, 0, "AccountsModel");
@@ -49,6 +54,7 @@ AccountsSettings::AccountsSettings(QObject *parent, const KPluginMetaData &data,
         this,
         [this] {
             Q_EMIT requestedTypesChanged();
+            Q_EMIT requestedAccountChanged();
         },
         Qt::QueuedConnection);
 }
@@ -58,9 +64,36 @@ QStringList AccountsSettings::requestedTypes() const
     return m_requestedTypes;
 }
 
+QString AccountsSettings::requestedAccount() const
+{
+    return m_requestedAccount;
+}
+
 AccountBuilder *AccountsSettings::createBuilder(const QString &provider)
 {
     return new AccountBuilder(provider);
+}
+
+QString AccountsSettings::accountName(const QString &accountId)
+{
+    if (accountId.isEmpty()) {
+        return accountId;
+    }
+
+    QDBusMessage msg = QDBusMessage::createMethodCall(u"org.kde.KOnlineAccounts"_s,
+                                                      u"/org/kde/KOnlineAccounts/Accounts/" + accountId,
+                                                      u"org.freedesktop.DBus.Properties"_s,
+                                                      u"Get"_s);
+    msg.setArguments({u"org.kde.KOnlineAccounts.Account"_s, u"displayName"_s});
+
+    QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
+
+    if (!reply.isValid()) {
+        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error reading account name" << reply.error().message();
+        return {};
+    }
+
+    return reply.value().toString();
 }
 
 bool AccountsSettings::serviceRunning() const

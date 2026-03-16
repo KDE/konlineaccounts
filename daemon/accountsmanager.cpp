@@ -149,6 +149,7 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
 
 void AccountsManager::requestAccountCreation(const QStringList &type)
 {
+    // TODO add activation token
     auto job = new KIO::CommandLauncherJob(u"systemsettings"_s, {u"kcm_konlineaccounts"_s, u"--args"_s, u"add " + type.join(u';')});
     job->setDesktopName(u"systemsettings"_s);
     job->start();

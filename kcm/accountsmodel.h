@@ -34,6 +34,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     Q_INVOKABLE void removeAccount(const QString &id);
+    Q_INVOKABLE bool hasAccount(const QString &id);
 
     void slotConfigChanged(const KConfigGroup &group, const QByteArrayList &names);
 

@@ -18,7 +18,7 @@ ecm_finalize_qml_module(accounts)
 
 target_sources(accounts PRIVATE account.cpp #[[accountsmodel.cpp accountsfiltermodel.cpp]] accountbuilder.cpp setupitem.cpp accessmanager.cpp)
 
-target_link_libraries(accounts PUBLIC Qt::Core Qt::Gui Qt::DBus Qt::Quick KF6::ConfigCore KF6::CoreAddons KF6::WindowSystem)
+target_link_libraries(accounts PUBLIC Qt::Core Qt::Gui Qt::DBus Qt::Quick KF6::ConfigCore KF6::CoreAddons KF6::WindowSystem KF6::KIOGui)
 
 ecm_qt_declare_logging_category(accounts
     HEADER debug.h

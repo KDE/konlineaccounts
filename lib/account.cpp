@@ -8,6 +8,7 @@
 
 #include <QDBusMessage>
 
+#include <KIO/CommandLauncherJob>
 #include <KSharedConfig>
 
 #include "accessmanager.h"
@@ -67,4 +68,12 @@ QStringList Account::types() const
 QString Account::icon() const
 {
     return m_metaData.iconName();
+}
+
+void Account::configure(const QString &xdgActivationToken)
+{
+    auto job = new KIO::CommandLauncherJob(u"systemsettings"_s, {u"kcm_konlineaccounts"_s, u"--args"_s, u"show " + id()});
+    job->setDesktopName(u"systemsettings"_s);
+    job->setStartupId(xdgActivationToken.toUtf8());
+    job->start();
 }

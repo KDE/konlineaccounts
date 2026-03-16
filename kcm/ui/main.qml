@@ -80,7 +80,6 @@ KCM.ScrollViewKCM {
 
             onClicked: kcm.push("Account.qml", {
                 accountId: id,
-                accountName: name,
             })
         }
     }
@@ -91,6 +90,18 @@ KCM.ScrollViewKCM {
         function onRequestedTypesChanged() {
             if (kcm.requestedTypes.length > 0) {
                 addAccountDialog.open();
+            }
+        }
+
+        function onRequestedAccountChanged() {
+            if (kcm.requestedAccount !== "") {
+                if (accModel.hasAccount(kcm.requestedAccount)) {
+                    kcm.push("Account.qml", {
+                        accountId: kcm.requestedAccount,
+                    })
+                } else {
+                    console.warn("No such account", kcm.requestedAccount)
+                }
             }
         }
     }

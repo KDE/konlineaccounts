@@ -18,6 +18,7 @@ class AccountsSettings : public KQuickConfigModule
 {
     Q_OBJECT
     Q_PROPERTY(QStringList requestedTypes READ requestedTypes NOTIFY requestedTypesChanged)
+    Q_PROPERTY(QString requestedAccount READ requestedAccount NOTIFY requestedAccountChanged)
     Q_PROPERTY(bool serviceRunning READ serviceRunning NOTIFY serviceRunningChanged)
 
 public:
@@ -26,13 +27,19 @@ public:
     QStringList requestedTypes() const;
     Q_SIGNAL void requestedTypesChanged();
 
+    QString requestedAccount() const;
+    Q_SIGNAL void requestedAccountChanged();
+
     bool serviceRunning() const;
     Q_SIGNAL void serviceRunningChanged();
 
     Q_INVOKABLE AccountBuilder *createBuilder(const QString &provider);
 
+    Q_INVOKABLE QString accountName(const QString &accountId);
+
 private:
     QStringList m_requestedTypes;
+    QString m_requestedAccount;
 };
 
 #endif // ACCOUNTSSETTINGS_H

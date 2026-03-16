@@ -124,6 +124,11 @@ void AccountsModel::removeAccount(const QString &id)
     endRemoveRows();
 }
 
+bool AccountsModel::hasAccount(const QString &id)
+{
+    return m_accountIds.contains(id);
+}
+
 void AccountsModel::slotConfigChanged(const KConfigGroup & /*group*/, const QByteArrayList & /*names*/)
 {
     beginResetModel();

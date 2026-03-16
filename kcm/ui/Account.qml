@@ -21,7 +21,7 @@ KCM.ScrollViewKCM {
 
     required property string accountId
 
-    required property string accountName
+    property string accountName: kcm.accountName(accountId)
 
     title: accountName
 

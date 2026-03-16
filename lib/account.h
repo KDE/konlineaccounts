@@ -37,6 +37,8 @@ public:
     virtual QString icon() const;
     Q_SIGNAL void iconChanged();
 
+    Q_SCRIPTABLE void configure(const QString &xdgActivationToken);
+
     KConfigGroup config() const;
 
     void grantAccess(const QString &appId);
