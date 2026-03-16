@@ -127,12 +127,14 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
 
     const KService::Ptr app = KService::serviceByDesktopName(appId);
 
-    // TODO null check
+    if (!app) {
+        qWarning() << "Could not find service" << appId;
+    }
 
     engine->rootContext()->setContextProperty(u"_manager"_s, this);
     engine->setInitialProperties({
         {u"manager"_s, QVariant::fromValue(this)},
-        {u"applicationName"_s, app ? app->name() : u"Foo"_s},
+        {u"applicationName"_s, app ? app->name() : u"Unknown"_s},
         {u"types"_s, types},
         {u"callerId"_s, appId},
     });
