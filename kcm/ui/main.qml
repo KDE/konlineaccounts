@@ -50,7 +50,7 @@ KCM.ScrollViewKCM {
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             width: parent.width - Kirigami.Units.largeSpacing * 2
-            text: "No accounts yet"
+            text: i18n("No accounts configured")
             visible: kcm.serviceRunning && accountsList.count === 0
         }
 
@@ -69,7 +69,7 @@ KCM.ScrollViewKCM {
                 }
 
                 Controls.ToolButton {
-                    text: "Remove"
+                    text: i18n("Remove")
                     display: Controls.ToolButton.IconOnly
                     icon.name: "list-remove"
                     onClicked: accModel.removeAccount(accountDelegate.id)
