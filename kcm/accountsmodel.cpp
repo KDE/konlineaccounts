@@ -48,7 +48,10 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
+        if (!reply.isValid()) {
+            qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error reading account name" << reply.error().message();
+            return {};
+        }
 
         return reply.value().toString();
     }
@@ -64,7 +67,10 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
+        if (!reply.isValid()) {
+            qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error reading account type" << reply.error().message();
+            return {};
+        }
 
         return reply.value().toStringList();
     }
@@ -77,7 +83,10 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
         QDBusReply<QVariant> reply = QDBusConnection::sessionBus().call(msg);
 
-        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
+        if (!reply.isValid()) {
+            qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error reading account icon" << reply.error().message();
+            return {};
+        }
 
         return reply.value().toString();
     }
@@ -103,7 +112,9 @@ void AccountsModel::removeAccount(const QString &id)
 
     QDBusReply<void> reply = QDBusConnection::sessionBus().call(msg);
 
-    qCWarning(LOG_KONLINEACCOUNTS_KCM) << "r" << reply.error();
+    if (!reply.isValid()) {
+        qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error removing account" << reply.error().message();
+    }
 
     endRemoveRows();
 }
