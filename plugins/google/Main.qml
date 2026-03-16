@@ -25,5 +25,6 @@ SetupItem {
 
     Controls.Label {
         text: "Continue in browser"
+        leftPadding: Kirigami.Units.largeSpacing
     }
 }
