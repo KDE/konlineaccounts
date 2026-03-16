@@ -19,7 +19,7 @@ include(KDEGitCommitHooks)
 include(ECMQmlModule)
 
 find_package(Qt6 REQUIRED COMPONENTS Core DBus Widgets)
-find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n Kirigami)
+find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n Kirigami WindowSystem)
 
 add_executable(demo)
 
@@ -31,7 +31,7 @@ ecm_add_qml_module(demo
     DEPENDENCIES QtCore
 )
 
-target_link_libraries(demo PRIVATE Qt::Quick Qt::Widgets Qt::DBus)
+target_link_libraries(demo PRIVATE Qt::Quick Qt::Widgets Qt::DBus KF6::WindowSystem)
 
 install(TARGETS demo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org.kde.konlineaccountsdemo.desktop DESTINATION ${KDE_INSTALL_APPDIR})

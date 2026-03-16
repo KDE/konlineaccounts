@@ -50,7 +50,7 @@ QQC2.ApplicationWindow {
             Layout.fillWidth: true
 
             text: "Add new"
-            onClicked: accModel.requestNew()
+            onClicked: accModel.requestNew(Window.window)
         }
     }
 }

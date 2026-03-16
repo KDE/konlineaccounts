@@ -12,6 +12,9 @@
 #include <QGuiApplication>
 #include <QVariantMap>
 
+#include <KWaylandExtras>
+#include <KWindowSystem>
+
 using namespace Qt::Literals;
 
 AccountsModel::AccountsModel(QObject *parent)
@@ -112,14 +115,31 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void AccountsModel::requestNew()
+void AccountsModel::requestNew(QWindow *context)
 {
-    QDBusMessage m =
-        QDBusMessage::createMethodCall(u"org.kde.KOnlineAccounts"_s, u"/org/kde/KOnlineAccounts"_s, u"org.kde.KOnlineAccounts.Manager"_s, u"requestAccount"_s);
+    auto request = [](const QString &windowHandle) {
+        QDBusMessage m = QDBusMessage::createMethodCall(u"org.kde.KOnlineAccounts"_s,
+                                                        u"/org/kde/KOnlineAccounts"_s,
+                                                        u"org.kde.KOnlineAccounts.Manager"_s,
+                                                        u"requestAccount"_s);
+        m.setArguments({QStringList{u"mastodon"_s}, windowHandle});
 
-    m.setArguments({QStringList{m_type}});
+        QDBusConnection::sessionBus().asyncCall(m);
+    };
 
-    QDBusConnection::sessionBus().asyncCall(m);
+    if (KWindowSystem::isPlatformWayland()) {
+        KWaylandExtras::exportWindow(context);
+        connect(
+            KWaylandExtras::self(),
+            &KWaylandExtras::windowExported,
+            this,
+            [&request](QWindow * /*window*/, const QString &handle) {
+                request(handle);
+            },
+            Qt::SingleShotConnection);
+    } else if (KWindowSystem::isPlatformX11()) {
+        request(QString::number(context->winId()));
+    }
 }
 
 void AccountsModel::slotAccountCreationFinished(const QDBusObjectPath &path, const QString & /*xdgActivationToken*/)
