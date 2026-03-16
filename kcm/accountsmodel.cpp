@@ -11,6 +11,7 @@
 #include <KSharedConfig>
 
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusMessage>
 #include <QDBusReply>
 
@@ -22,7 +23,11 @@ AccountsModel::AccountsModel(QObject *parent)
     : QAbstractListModel(parent)
 {
     m_config = KSharedConfig::openConfig(u"konlineaccountsrc"_s);
-    m_accountIds = m_config->group(u"Accounts"_s).readEntry("accounts", QStringList());
+
+    if (QDBusConnection::sessionBus().interface()->isServiceRegistered(u"org.kde.KOnlineAccounts"_s)) {
+        m_accountIds = m_config->group(u"Accounts"_s).readEntry("accounts", QStringList());
+    }
+
     m_configWatcher = KConfigWatcher::create(m_config);
     connect(m_configWatcher.get(), &KConfigWatcher::configChanged, this, &AccountsModel::slotConfigChanged);
 }
