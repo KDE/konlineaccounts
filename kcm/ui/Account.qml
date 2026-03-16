@@ -20,10 +20,22 @@ KCM.ScrollViewKCM {
     id: root
 
     required property string accountId
+    required property var accountsModel
 
     property string accountName: kcm.accountName(accountId)
 
     title: accountName
+
+    actions: [
+        Kirigami.Action {
+            text: i18n("Remove")
+            icon.name: "list-remove"
+            onTriggered: {
+                accountsModel.removeAccount(accountId)
+                kcm.pop()
+            }
+        }
+    ]
 
     header: Controls.Label {
         text: i18n("These applications are authorized to use %1:", root.accountName)

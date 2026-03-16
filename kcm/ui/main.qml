@@ -56,30 +56,19 @@ KCM.ScrollViewKCM {
 
         delegate: Controls.ItemDelegate {
             id: accountDelegate
+
             required property string name
             required property string id
             required property string iconName
 
-            contentItem: RowLayout {
-                Kirigami.IconTitleSubtitle {
-                    title: accountDelegate.name
-                    icon.name: accountDelegate.iconName
-
-                    Layout.fillWidth: true
-                }
-
-                Controls.ToolButton {
-                    text: i18n("Remove")
-                    display: Controls.ToolButton.IconOnly
-                    icon.name: "list-remove"
-                    onClicked: accModel.removeAccount(accountDelegate.id)
-                }
-            }
+            text: name
+            icon.name: iconName
 
             width: ListView.view.width
 
             onClicked: kcm.push("Account.qml", {
                 accountId: id,
+                accountsModel: accModel,
             })
         }
     }
@@ -98,6 +87,7 @@ KCM.ScrollViewKCM {
                 if (accModel.hasAccount(kcm.requestedAccount)) {
                     kcm.push("Account.qml", {
                         accountId: kcm.requestedAccount,
+                        accountsModel: accModel,
                     })
                 } else {
                     console.warn("No such account", kcm.requestedAccount)
