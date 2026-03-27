@@ -20,4 +20,7 @@ public:
 Q_SIGNALS:
     void accountCreationFinished(const QString &id, const QString &xdgActivationToken);
     void accountRemovalRequested(const QString &id);
+
+    Q_SCRIPTABLE void accountAdded(const QString &id);
+    Q_SCRIPTABLE void accountRemoved(const QString &id);
 };

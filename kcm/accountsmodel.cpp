@@ -28,8 +28,21 @@ AccountsModel::AccountsModel(QObject *parent)
         m_accountIds = m_config->group(u"Accounts"_s).readEntry("accounts", QStringList());
     }
 
-    m_configWatcher = KConfigWatcher::create(m_config);
-    connect(m_configWatcher.get(), &KConfigWatcher::configChanged, this, &AccountsModel::slotConfigChanged);
+    bool ret = QDBusConnection::sessionBus().connect(u"org.kde.private.KOnlineAccounts"_s,
+                                                     u"/org/kde/KOnlineAccounts/private"_s,
+                                                     u"org.kde.KOnlineAccounts.ManagerPrivate"_s,
+                                                     u"accountAdded"_s,
+                                                     this,
+                                                     SLOT(slotAccountAdded(QString)));
+    Q_ASSERT(ret);
+
+    ret = QDBusConnection::sessionBus().connect(u"org.kde.private.KOnlineAccounts"_s,
+                                                u"/org/kde/KOnlineAccounts/private"_s,
+                                                u"org.kde.KOnlineAccounts.ManagerPrivate"_s,
+                                                u"accountRemoved"_s,
+                                                this,
+                                                SLOT(slotAccountRemoved(QString)));
+    Q_ASSERT(ret);
 }
 
 int AccountsModel::rowCount(const QModelIndex & /*parent*/) const
@@ -101,14 +114,6 @@ QVariant AccountsModel::data(const QModelIndex &index, int role) const
 
 void AccountsModel::removeAccount(const QString &id)
 {
-    int index = m_accountIds.indexOf(id);
-
-    if (index < 0) {
-        return;
-    }
-
-    beginRemoveRows({}, index, index);
-
     QDBusMessage msg = QDBusMessage::createMethodCall(u"org.kde.private.KOnlineAccounts"_s,
                                                       u"/org/kde/KOnlineAccounts/private"_s,
                                                       u"org.kde.KOnlineAccounts.ManagerPrivate"_s,
@@ -120,8 +125,6 @@ void AccountsModel::removeAccount(const QString &id)
     if (!reply.isValid()) {
         qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Error removing account" << reply.error().message();
     }
-
-    endRemoveRows();
 }
 
 bool AccountsModel::hasAccount(const QString &id)
@@ -129,9 +132,20 @@ bool AccountsModel::hasAccount(const QString &id)
     return m_accountIds.contains(id);
 }
 
-void AccountsModel::slotConfigChanged(const KConfigGroup & /*group*/, const QByteArrayList & /*names*/)
+void AccountsModel::slotAccountAdded(const QString &id)
 {
+    qCDebug(LOG_KONLINEACCOUNTS_KCM) << "Account" << id << "was added";
     beginResetModel();
+    m_config->reparseConfiguration();
+    m_accountIds = m_config->group(u"Accounts"_s).readEntry("accounts", QStringList());
+    endResetModel();
+}
+
+void AccountsModel::slotAccountRemoved(const QString &id)
+{
+    qCDebug(LOG_KONLINEACCOUNTS_KCM) << "Account" << id << "was removed";
+    beginResetModel();
+    m_config->reparseConfiguration();
     m_accountIds = m_config->group(u"Accounts"_s).readEntry("accounts", QStringList());
     endResetModel();
 }

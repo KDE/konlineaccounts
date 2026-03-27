@@ -13,12 +13,14 @@
 #include <QDesktopServices>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QQuickRenderControl>
 #include <QUrlQuery>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KSharedConfig>
+#include <KWaylandExtras>
 
 #include "accountsmodel.h"
 #include "authorizedappsmodel.h"
@@ -72,6 +74,26 @@ QString AccountsSettings::requestedAccount() const
 AccountBuilder *AccountsSettings::createBuilder(const QString &provider)
 {
     return new AccountBuilder(provider);
+}
+
+void AccountsSettings::finishSetup(QQuickItem *context, AccountBuilder *builder)
+{
+    const auto window = QQuickRenderControl::renderWindowFor(context->window());
+
+    builder->apply();
+
+    KWaylandExtras::xdgActivationToken(window, KWaylandExtras::lastInputSerial(window), QString()).then(this, [builder](const QString &token) {
+        QDBusMessage msg = QDBusMessage::createMethodCall(u"org.kde.private.KOnlineAccounts"_s,
+                                                          u"/org/kde/KOnlineAccounts/private"_s,
+                                                          u"org.kde.KOnlineAccounts.ManagerPrivate"_s,
+                                                          u"sendAccountCreationFinished"_s);
+        msg.setArguments({builder->accountId(), token});
+        QDBusReply<void> reply = QDBusConnection::sessionBus().call(msg);
+
+        if (!reply.isValid()) {
+            qCWarning(LOG_KONLINEACCOUNTS_KCM) << "Failed to finish account setup" << reply.error().message();
+        }
+    });
 }
 
 QString AccountsSettings::accountName(const QString &accountId)

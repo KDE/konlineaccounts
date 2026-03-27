@@ -67,6 +67,8 @@ Kirigami.Dialog {
             }
 
             delegate: Kirigami.SubtitleDelegate {
+                id: accountDelegate
+
                 required property string name
                 required property string description
                 required property string iconName
@@ -103,6 +105,7 @@ Kirigami.Dialog {
                             types: provides
                         });
                         stack.currentItem.finished.connect(function () {
+                            kcm.finishSetup(accountDelegate, builder)
                             addAccountDialog.close();
                         });
                     });

@@ -18,18 +18,25 @@ class ACCOUNTS_EXPORT AccountBuilder : public QObject
     Q_OBJECT
     QML_ELEMENT
     QML_UNCREATABLE("")
+    Q_PROPERTY(QString accountId READ accountId CONSTANT)
     Q_PROPERTY(QStringList authorizedApps READ authorizedApps WRITE setAuthorizedApps NOTIFY authorizedAppsChanged)
 public:
     AccountBuilder(const QString &providerId);
 
+    // called by the provider when it is done
     void finish();
     void fail(const QString &errorMessage);
+
+    // called by the KCM when the setup is fully done. Writes the settings
+    void apply();
 
     KConfigGroup config() const;
 
     QStringList authorizedApps() const;
     void setAuthorizedApps(const QStringList &apps);
     Q_SIGNAL void authorizedAppsChanged();
+
+    QString accountId() const;
 
 Q_SIGNALS:
     void finished();

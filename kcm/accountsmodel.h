@@ -8,7 +8,6 @@
 
 #include <QAbstractListModel>
 
-#include <KConfigWatcher>
 #include <KSharedConfig>
 
 #include "accounts_export.h"
@@ -36,10 +35,11 @@ public:
     Q_INVOKABLE void removeAccount(const QString &id);
     Q_INVOKABLE bool hasAccount(const QString &id);
 
-    void slotConfigChanged(const KConfigGroup &group, const QByteArrayList &names);
+public Q_SLOTS:
+    void slotAccountAdded(const QString &id);
+    void slotAccountRemoved(const QString &id);
 
 private:
     KSharedConfig::Ptr m_config;
     QStringList m_accountIds;
-    KConfigWatcher::Ptr m_configWatcher;
 };

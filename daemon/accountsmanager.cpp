@@ -92,6 +92,8 @@ void AccountsManager::slotAccountCreationFinished(const QString &id, const QStri
     }
 
     m_accounts[id] = std::move(account);
+
+    Q_EMIT m_private->accountAdded(id);
 }
 
 QList<QDBusObjectPath> AccountsManager::accounts() const
@@ -219,8 +221,6 @@ QList<Account *> AccountsManager::accountsInternal() const
 
 void AccountsManager::slotRemoveAccount(const QString &id)
 {
-    Q_EMIT accountRemoved(QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id));
-
     m_accounts.erase(id);
 
     auto config = KSharedConfig::openConfig(u"konlineaccountsrc"_s);
@@ -228,7 +228,10 @@ void AccountsManager::slotRemoveAccount(const QString &id)
     KConfigGroup accountsGroup = config->group(u"Accounts"_s);
     QStringList accounts = accountsGroup.readEntry("accounts", QStringList());
     accounts.removeAll(id);
-    accountsGroup.writeEntry("accounts", accounts, KConfig::Notify);
+    accountsGroup.writeEntry("accounts", accounts);
     accountsGroup.deleteGroup(id);
     config->sync();
+
+    Q_EMIT accountRemoved(QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id));
+    Q_EMIT m_private->accountRemoved(id);
 }

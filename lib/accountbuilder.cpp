@@ -28,33 +28,20 @@ AccountBuilder::AccountBuilder(const QString &providerId)
     m_id = QUuid::createUuid().toString(QUuid::WithoutBraces).replace(u"-"_s, u"_"_s);
     accounts << m_id;
 
-    m_accountsConfig->group(u"Accounts"_s).writeEntry("accounts", accounts, KConfig::Notify);
+    m_accountsConfig->group(u"Accounts"_s).writeEntry("accounts", accounts);
 
     config().writeEntry("provider", providerId);
 }
 
 void AccountBuilder::finish()
 {
-    m_accountsConfig->sync();
-
-    KWaylandExtras::requestXdgActivationToken(qApp->focusWindow(), KWaylandExtras::lastInputSerial(qApp->focusWindow()), QString());
-
-    connect(
-        KWaylandExtras::self(),
-        &KWaylandExtras::xdgActivationTokenArrived,
-        this,
-        [this](int /*serial*/, const QString &token) {
-            QDBusMessage msg = QDBusMessage::createMethodCall(u"org.kde.private.KOnlineAccounts"_s,
-                                                              u"/org/kde/KOnlineAccounts/private"_s,
-                                                              u"org.kde.KOnlineAccounts.ManagerPrivate"_s,
-                                                              u"sendAccountCreationFinished"_s);
-            msg.setArguments({m_id, token});
-            QDBusReply<void> r = QDBusConnection::sessionBus().call(msg);
-            qCWarning(LOG_KONLINEACCOUNTS_LIB) << "reply" << r.error();
-        },
-        Qt::SingleShotConnection);
-
     Q_EMIT finished();
+}
+
+void AccountBuilder::apply()
+{
+    m_accountsConfig->sync();
+    config().sync();
 }
 
 void AccountBuilder::fail(const QString &errorMessage)
@@ -79,5 +66,9 @@ void AccountBuilder::setAuthorizedApps(const QStringList &apps)
     Q_EMIT authorizedAppsChanged();
 
     config().writeEntry("allowedApplications", apps);
-    config().sync();
+}
+
+QString AccountBuilder::accountId() const
+{
+    return m_id;
 }

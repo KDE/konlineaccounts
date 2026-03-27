@@ -8,6 +8,7 @@
 #define ACCOUNTSSETTINGS_H
 
 #include <QObject>
+#include <QQuickItem>
 #include <QVariant>
 
 #include <KQuickConfigModule>
@@ -34,6 +35,8 @@ public:
     Q_SIGNAL void serviceRunningChanged();
 
     Q_INVOKABLE AccountBuilder *createBuilder(const QString &provider);
+
+    Q_INVOKABLE void finishSetup(QQuickItem *context, AccountBuilder *builder);
 
     Q_INVOKABLE QString accountName(const QString &accountId);
 
