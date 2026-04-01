@@ -27,9 +27,19 @@ Applications can list the accounts they have access to, and request access to a 
 
 Every granted account is exposed as an object on the Bus. Account functionality is exposed using specific interfaces on that object. For example a Nextcloud account might expose a Nextcloud-specific interface, a CalDAV interface, and a CardDAV interface.
 
-Access control is managed based on the application ID/desktop file name. While for unsandboxed applications this can be easily spoofed, for Flatpak applications we obtain the true app ID from the Flatpak runtime, similar to what xdg-desktop-portal does.
-
 A KCM allows to add and manage accounts. When adding a new account the KCM can suggest applications that can make use of this account and offers to directly authenticate them.
+
+### Security Considerations
+
+KOnlineAccounts tries to restrict access to account data and secrets to authorized apps as much as feasible.
+
+Access control is managed based on the application ID/desktop file name.
+
+For unsandboxed applications the application ID is taken from the registerApp() DBus call. Since any app can send anything there this is fundamentally not secure.
+
+For Flatpak applications we obtain the true app ID from the Flatpak runtime, similar to what xdg-desktop-portal does. The value from registerApp() is ignored.
+
+Once an application had access to a secret that access cannot be meaningfully revoked, other than changing that secret. KOnlineAccounts currently makes no attempt at rotating secrets, so removing application access to an account cannot be securely implemented.
 
 ### Providers
 
