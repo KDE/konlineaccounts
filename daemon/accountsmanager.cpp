@@ -28,7 +28,6 @@
 #include "accessmanager.h"
 #include "account.h"
 #include "debug.h"
-#include "propertiesadaptor.h"
 
 using namespace Qt::Literals;
 
@@ -64,8 +63,6 @@ AccountsManager::AccountsManager()
 
     connect(m_private.get(), &AccountsManagerPrivate::accountCreationFinished, this, &AccountsManager::slotAccountCreationFinished);
     connect(m_private.get(), &AccountsManagerPrivate::accountRemovalRequested, this, &AccountsManager::slotRemoveAccount);
-
-    new PropertiesAdaptor(this);
 }
 
 void AccountsManager::slotAccountCreationFinished(const QString &id, const QString &xdgActivationToken)
