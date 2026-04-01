@@ -53,14 +53,11 @@ Currently the following providers are supported:
 
 Check the demo application under `demo/`.
 
-[Tokodon](https://invent.kde.org/network/tokodon/-/merge_requests/777)
+[Tokodon](https://invent.kde.org/network/tokodon/-/merge_requests/777) (in master)
 
 [Purpose](https://invent.kde.org/frameworks/purpose/-/merge_requests/146)
 
-KDE PIM:
- - [Akonadi](https://invent.kde.org/pim/akonadi/-/tree/work/nico/onlineaccounts)
- - [kdepim-runtime](https://invent.kde.org/pim/kdepim-runtime/-/tree/work/nico/not-kaccounts)
- - [Merkuro](https://invent.kde.org/pim/merkuro/-/tree/work/nico/onlineaccounts)
+KDE PIM (in master)
 
 ### Status
 
