@@ -11,6 +11,8 @@
 
 #include <KConfigGroup>
 
+#include "account.h"
+
 class NextcloudInterface : public QDBusAbstractAdaptor
 {
     Q_OBJECT
@@ -22,7 +24,7 @@ class NextcloudInterface : public QDBusAbstractAdaptor
     Q_PROPERTY(QString storagePath READ storagePath)
 
 public:
-    NextcloudInterface(QObject *parent, KConfigGroup config);
+    NextcloudInterface(Account *account, KConfigGroup config);
 
     QString url() const;
     QString username() const;
@@ -31,4 +33,5 @@ public:
 
 private:
     KConfigGroup m_config;
+    Account *m_account;
 };

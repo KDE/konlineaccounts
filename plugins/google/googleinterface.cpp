@@ -8,33 +8,50 @@
 
 using namespace Qt::Literals;
 
-GoogleInterface::GoogleInterface(QObject *parent, KConfigGroup config)
-    : QDBusAbstractAdaptor(parent)
+GoogleInterface::GoogleInterface(Account *account, KConfigGroup config)
+    : QDBusAbstractAdaptor(account)
     , m_config(config)
+    , m_account(account)
 {
 }
 
+#define CHECK_ACCESS                                                                                                                                           \
+    if (!m_account->currentCallerHasAccess()) {                                                                                                                \
+        m_account->sendErrorReply(QDBusError::AccessDenied, u"Caller is not authorized to read this property"_s);                                              \
+        return {};                                                                                                                                             \
+    }
+
 QString GoogleInterface::clientId() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("clientId", QString());
 }
 
 QString GoogleInterface::clientSecret() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("clientSecret", QString());
 }
 
 QString GoogleInterface::accessToken() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("accessToken", QString());
 }
 
 QString GoogleInterface::refreshToken() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("refreshToken", QString());
 }
 
 QStringList GoogleInterface::scopes() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("scopes", QStringList());
 }

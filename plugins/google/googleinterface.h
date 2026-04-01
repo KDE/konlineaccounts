@@ -11,6 +11,8 @@
 
 #include <KConfigGroup>
 
+#include "account.h"
+
 class GoogleInterface : public QDBusAbstractAdaptor
 {
     Q_OBJECT
@@ -23,7 +25,7 @@ class GoogleInterface : public QDBusAbstractAdaptor
     Q_PROPERTY(QStringList scopes READ scopes)
 
 public:
-    GoogleInterface(QObject *parent, KConfigGroup config);
+    GoogleInterface(Account *account, KConfigGroup config);
 
     QString clientId() const;
     QString clientSecret() const;
@@ -33,4 +35,5 @@ public:
 
 private:
     KConfigGroup m_config;
+    Account *m_account;
 };

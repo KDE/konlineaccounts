@@ -8,28 +8,43 @@
 
 using namespace Qt::Literals;
 
-NextcloudInterface::NextcloudInterface(QObject *parent, KConfigGroup config)
-    : QDBusAbstractAdaptor(parent)
+NextcloudInterface::NextcloudInterface(Account *account, KConfigGroup config)
+    : QDBusAbstractAdaptor(account)
     , m_config(config)
+    , m_account(account)
 {
 }
 
+#define CHECK_ACCESS                                                                                                                                           \
+    if (!m_account->currentCallerHasAccess()) {                                                                                                                \
+        m_account->sendErrorReply(QDBusError::AccessDenied, u"Caller is not authorized to read this property"_s);                                              \
+        return {};                                                                                                                                             \
+    }
+
 QString NextcloudInterface::url() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("url", QString());
 }
 
 QString NextcloudInterface::username() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("username", QString());
 }
 
 QString NextcloudInterface::password() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("password", QString());
 }
 
 QString NextcloudInterface::storagePath() const
 {
+    CHECK_ACCESS
+
     return m_config.readEntry("storagePath", QString());
 }

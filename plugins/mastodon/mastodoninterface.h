@@ -11,6 +11,8 @@
 
 #include <KConfigGroup>
 
+#include "account.h"
+
 class MastodonInterface : public QDBusAbstractAdaptor
 {
     Q_OBJECT
@@ -23,7 +25,7 @@ class MastodonInterface : public QDBusAbstractAdaptor
     Q_PROPERTY(QString accessToken READ accessToken)
 
 public:
-    MastodonInterface(QObject *parent, KConfigGroup config);
+    MastodonInterface(Account *account, KConfigGroup config);
 
     QString instanceUrl() const;
     QString username() const;
@@ -33,4 +35,5 @@ public:
 
 private:
     KConfigGroup m_config;
+    Account *m_account;
 };
