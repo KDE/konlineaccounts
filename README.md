@@ -37,7 +37,7 @@ Access control is managed based on the application ID/desktop file name.
 
 For unsandboxed applications the application ID is taken from the registerApp() DBus call. Since any app can send anything there this is fundamentally not secure.
 
-For Flatpak applications we obtain the true app ID from the Flatpak runtime, similar to what xdg-desktop-portal does. The value from registerApp() is ignored.
+For Flatpak applications we obtain the true app ID from the Flatpak runtime, similar to what xdg-desktop-portal does. The value from registerApp() is ignored. This only works correctly with Qt >= 6.11 (needs https://codereview.qt-project.org/c/qt/qtbase/+/659344).
 
 Once an application had access to a secret that access cannot be meaningfully revoked, other than changing that secret. KOnlineAccounts currently makes no attempt at rotating secrets, so removing application access to an account cannot be securely implemented.
 
