@@ -11,6 +11,8 @@
 
 #include <KConfigGroup>
 
+#include "account.h"
+
 class CardDAV : public QDBusAbstractAdaptor
 {
     Q_OBJECT
@@ -21,7 +23,7 @@ class CardDAV : public QDBusAbstractAdaptor
     Q_PROPERTY(QString password READ password)
 
 public:
-    CardDAV(QObject *parent, KConfigGroup config);
+    CardDAV(Account *account, KConfigGroup config);
 
     QString url() const;
     QString username() const;
@@ -29,4 +31,5 @@ public:
 
 private:
     KConfigGroup m_config;
+    Account *m_account;
 };
