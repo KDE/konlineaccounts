@@ -21,6 +21,8 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <qt6keychain/keychain.h>
+
 using namespace Qt::Literals;
 
 NextcloudSetup::NextcloudSetup(QObject *parent)
@@ -80,8 +82,17 @@ void NextcloudSetup::finalUrlHandler(const QUrl &url)
     auto nextcloudGroup = m_builder->config().group(u"Nextcloud"_s);
     nextcloudGroup.writeEntry("url", m_server.toString());
     nextcloudGroup.writeEntry("username", username);
-    nextcloudGroup.writeEntry("password", password);
+    // nextcloudGroup.writeEntry("password", password);
     nextcloudGroup.writeEntry("storagePath", u"/remote.php/dav/files/%1"_s.arg(username));
+
+    auto job = new QKeychain::WritePasswordJob(u"konlineaccounts"_s);
+    // TODO write once
+    job->setKey(u"account/" + m_builder->accountId() + u"/nextcloud/caldav/password");
+    job->setTextData(password);
+    connect(job, &QKeychain::WritePasswordJob::finished, this, [job] {
+        qWarning() << "done" << job->errorString();
+    });
+    job->start();
 
     m_builder->finish();
 
