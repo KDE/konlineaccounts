@@ -16,7 +16,7 @@ ecm_generate_export_header(accounts
 ecm_add_qml_module(accounts URI "org.kde.konlineaccounts" DEPENDENCIES QtCore QtQuick GENERATE_PLUGIN_SOURCE)
 ecm_finalize_qml_module(accounts)
 
-target_sources(accounts PRIVATE account.cpp #[[accountsmodel.cpp accountsfiltermodel.cpp]] accountbuilder.cpp setupitem.cpp accessmanager.cpp)
+target_sources(accounts PRIVATE account.cpp fdwriter.cpp accountbuilder.cpp setupitem.cpp accessmanager.cpp)
 
 target_link_libraries(accounts PUBLIC Qt::Core Qt::Gui Qt::DBus Qt::Quick KF6::ConfigCore KF6::CoreAddons KF6::WindowSystem KF6::KIOGui)
 

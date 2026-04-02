@@ -7,6 +7,7 @@
 #pragma once
 
 #include <QDBusAbstractAdaptor>
+#include <QDBusUnixFileDescriptor>
 #include <QObject>
 
 #include <KConfigGroup>
@@ -22,7 +23,7 @@ class MastodonInterface : public QDBusAbstractAdaptor
     Q_PROPERTY(QString username READ username)
     Q_PROPERTY(QString clientId READ clientId)
     Q_PROPERTY(QString clientSecret READ clientSecret)
-    Q_PROPERTY(QString accessToken READ accessToken)
+    Q_PROPERTY(QDBusUnixFileDescriptor accessToken READ accessToken)
 
 public:
     MastodonInterface(Account *account, KConfigGroup config);
@@ -31,7 +32,7 @@ public:
     QString username() const;
     QString clientId() const;
     QString clientSecret() const;
-    QString accessToken() const;
+    QDBusUnixFileDescriptor accessToken() const;
 
 private:
     KConfigGroup m_config;

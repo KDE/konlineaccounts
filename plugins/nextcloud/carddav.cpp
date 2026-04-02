@@ -6,6 +6,8 @@
 
 #include "carddav.h"
 
+#include "fdwriter.h"
+
 using namespace Qt::Literals;
 
 CardDAV::CardDAV(Account *account, KConfigGroup config)
@@ -35,9 +37,18 @@ QString CardDAV::username() const
     return m_config.readEntry("username", QString());
 }
 
-QString CardDAV::password() const
+QDBusUnixFileDescriptor CardDAV::password() const
 {
     CHECK_ACCESS
 
-    return m_config.readEntry("password", QString());
+    const QByteArray password = m_config.readEntry("password", QString()).toUtf8();
+
+    const auto result = FdWriter::write(password);
+
+    if (!result) {
+        m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
+        return {};
+    }
+
+    return *result;
 }

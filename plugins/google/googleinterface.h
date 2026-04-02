@@ -7,6 +7,7 @@
 #pragma once
 
 #include <QDBusAbstractAdaptor>
+#include <QDBusUnixFileDescriptor>
 #include <QObject>
 
 #include <KConfigGroup>
@@ -20,8 +21,8 @@ class GoogleInterface : public QDBusAbstractAdaptor
 
     Q_PROPERTY(QString clientId READ clientId)
     Q_PROPERTY(QString clientSecret READ clientSecret)
-    Q_PROPERTY(QString accessToken READ accessToken)
-    Q_PROPERTY(QString refreshToken READ refreshToken)
+    Q_PROPERTY(QDBusUnixFileDescriptor accessToken READ accessToken)
+    Q_PROPERTY(QDBusUnixFileDescriptor refreshToken READ refreshToken)
     Q_PROPERTY(QStringList scopes READ scopes)
 
 public:
@@ -29,8 +30,8 @@ public:
 
     QString clientId() const;
     QString clientSecret() const;
-    QString accessToken() const;
-    QString refreshToken() const;
+    QDBusUnixFileDescriptor accessToken() const;
+    QDBusUnixFileDescriptor refreshToken() const;
     QStringList scopes() const;
 
 private:

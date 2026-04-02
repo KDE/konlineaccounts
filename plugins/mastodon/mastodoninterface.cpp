@@ -6,6 +6,8 @@
 
 #include "mastodoninterface.h"
 
+#include "fdwriter.h"
+
 using namespace Qt::Literals;
 
 MastodonInterface::MastodonInterface(Account *account, KConfigGroup config)
@@ -49,9 +51,18 @@ QString MastodonInterface::clientSecret() const
     return m_config.readEntry("clientSecret", QString());
 }
 
-QString MastodonInterface::accessToken() const
+QDBusUnixFileDescriptor MastodonInterface::accessToken() const
 {
     CHECK_ACCESS
 
-    return m_config.readEntry("accessToken", QString());
+    const QByteArray accessToken = m_config.readEntry("accessToken", QString()).toUtf8();
+
+    const auto result = FdWriter::write(accessToken);
+
+    if (!result) {
+        m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
+        return {};
+    }
+
+    return *result;
 }

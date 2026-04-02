@@ -11,3 +11,11 @@ ecm_add_qml_module(nextcloudsetup URI "org.kde.konlineaccounts.nextcloud" QML_FI
 target_sources(nextcloudsetup PRIVATE nextcloudsetup.cpp)
 target_link_libraries(nextcloudsetup PRIVATE Qt::WebEngineQuick QCoro::Core QCoro::Network KF6::I18n KF6::KIOCore accounts)
 ecm_finalize_qml_module(nextcloudsetup)
+
+ecm_qt_declare_logging_category(nextcloud
+    HEADER debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_NEXTCLOUD
+    CATEGORY_NAME konlineaccounts.nextcloud
+    DESCRIPTION "KOnlineAccounts Nextcloud"
+    EXPORT KOnlineAccounts
+)

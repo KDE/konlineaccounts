@@ -7,6 +7,7 @@
 #pragma once
 
 #include <QDBusAbstractAdaptor>
+#include <QDBusUnixFileDescriptor>
 #include <QObject>
 
 #include <KConfigGroup>
@@ -20,14 +21,14 @@ class CalDAV : public QDBusAbstractAdaptor
 
     Q_PROPERTY(QString url READ url)
     Q_PROPERTY(QString username READ username)
-    Q_PROPERTY(QString password READ password)
+    Q_PROPERTY(QDBusUnixFileDescriptor password READ password)
 
 public:
     CalDAV(Account *account, KConfigGroup config);
 
     QString url() const;
     QString username() const;
-    QString password() const;
+    QDBusUnixFileDescriptor password() const;
 
 private:
     KConfigGroup m_config;

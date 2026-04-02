@@ -6,6 +6,8 @@
 
 #include "googleinterface.h"
 
+#include "fdwriter.h"
+
 using namespace Qt::Literals;
 
 GoogleInterface::GoogleInterface(Account *account, KConfigGroup config)
@@ -35,18 +37,38 @@ QString GoogleInterface::clientSecret() const
     return m_config.readEntry("clientSecret", QString());
 }
 
-QString GoogleInterface::accessToken() const
+QDBusUnixFileDescriptor GoogleInterface::accessToken() const
 {
     CHECK_ACCESS
 
-    return m_config.readEntry("accessToken", QString());
+    const QByteArray accessToken = m_config.readEntry("accessToken", QString()).toUtf8();
+
+    const auto result = FdWriter::write(accessToken);
+
+    if (!result) {
+        m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
+        return {};
+    }
+
+    return *result;
 }
 
-QString GoogleInterface::refreshToken() const
+QDBusUnixFileDescriptor GoogleInterface::refreshToken() const
 {
     CHECK_ACCESS
 
-    return m_config.readEntry("refreshToken", QString());
+    CHECK_ACCESS
+
+    const QByteArray accessToken = m_config.readEntry("refreshToken", QString()).toUtf8();
+
+    const auto result = FdWriter::write(accessToken);
+
+    if (!result) {
+        m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
+        return {};
+    }
+
+    return *result;
 }
 
 QStringList GoogleInterface::scopes() const
