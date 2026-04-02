@@ -41,13 +41,18 @@ void Account::grantAccess(const QString &appId)
 
 bool Account::hasAccess(const QString &appId) const
 {
+    Q_ASSERT(!appId.isEmpty());
     return m_config.readEntry("allowedApplications", QStringList()).contains(appId);
 }
 
 bool Account::currentCallerHasAccess() const
 {
     Q_ASSERT(calledFromDBus());
-    return hasAccess(AccessManager::instance().appIdForService(message().service()));
+    Q_ASSERT(!message().service().isEmpty());
+
+    auto maybeAppId = AccessManager::instance().appIdForService(message().service());
+
+    return maybeAppId ? hasAccess(*maybeAppId) : false;
 }
 
 QString Account::id() const

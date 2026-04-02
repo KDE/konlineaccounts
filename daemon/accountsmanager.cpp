@@ -105,10 +105,19 @@ QList<QDBusObjectPath> AccountsManager::accounts() const
     for (auto &[id, account] : m_accounts) {
         auto group = accountsGroup.group(id);
 
-        if (account->hasAccess(callerId())) {
+        const auto maybeCaller = callerId();
+
+        if (!maybeCaller) {
+            message().createErrorReply(QDBusError::AccessDenied, u"Caller is not registered"_s);
+            return {};
+        }
+
+        if (account->hasAccess(*maybeCaller)) {
             result << QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id);
         } else {
             qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << callerId() << "is not allowed to read this account";
+            message().createErrorReply(QDBusError::AccessDenied, u"Caller is not authorized to read this"_s);
+            return {};
         }
     }
 
@@ -121,14 +130,18 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
 
     KLocalization::setupLocalizedContext(engine);
 
-    const QString appId = callerId();
+    const auto maybeCaller = callerId();
 
-    m_requester = appId; // TODO make something more robust
+    if (!maybeCaller) {
+        return;
+    }
 
-    const KService::Ptr app = KService::serviceByDesktopName(appId);
+    m_requester = *maybeCaller; // TODO make something more robust
+
+    const KService::Ptr app = KService::serviceByDesktopName(*maybeCaller);
 
     if (!app) {
-        qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << "Could not find service" << appId;
+        qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << "Could not find service" << *maybeCaller;
     }
 
     engine->rootContext()->setContextProperty(u"_manager"_s, this);
@@ -136,7 +149,7 @@ void AccountsManager::requestAccount(const QStringList &types, const QString &wi
         {u"manager"_s, QVariant::fromValue(this)},
         {u"applicationName"_s, app ? app->name() : u"Unknown"_s},
         {u"types"_s, types},
-        {u"callerId"_s, appId},
+        {u"callerId"_s, *maybeCaller},
     });
     engine->loadFromModule("org.kde.konlineaccounts.daemon", "Main");
 
@@ -199,7 +212,7 @@ void AccountsManager::accountSelected(const QString &callerId, const QString &id
     m_window->close();
 }
 
-QString AccountsManager::callerId() const
+std::optional<QString> AccountsManager::callerId() const
 {
     Q_ASSERT(calledFromDBus());
     return AccessManager::instance().appIdForService(message().service());

@@ -54,7 +54,7 @@ private:
     void slotAccountCreationFinished(const QString &id, const QString &xdgActivationToken);
     void slotRemoveAccount(const QString &id);
     void configChanged(const KConfigGroup &group, const QByteArrayList &names);
-    QString callerId() const;
+    std::optional<QString> callerId() const;
 
     std::map<QString, std::unique_ptr<Account>> m_accounts;
     std::unique_ptr<AccountsManagerPrivate> m_private;
