@@ -6,6 +6,7 @@
 
 #include "caldav.h"
 
+#include "debug.h"
 #include "fdwriter.h"
 
 #include <qt6keychain/keychain.h>
@@ -50,19 +51,24 @@ QDBusUnixFileDescriptor CalDAV::password() const
     m_account->setDelayedReply(true);
 
     QKeychain::ReadPasswordJob *job = new QKeychain::ReadPasswordJob(u"konlineaccounts"_s);
-    job->setKey(u"account/" + m_account->id() + u"/nextcloud/caldav/password");
+    job->setKey(u"account/" + m_account->id() + u"/nextcloud/password");
 
     connect(job, &QKeychain::Job::finished, this, [this, job, message = m_account->message()] {
-        qWarning() << "reply" << job->textData();
+        if (job->error()) {
+            qCWarning(LOG_KONLINEACCOUNTS_NEXTCLOUD) << "Failed to read password from keychain" << job->errorString();
+            m_account->sendErrorReply(QDBusError::InternalError, job->errorString());
+            return;
+        }
 
         const auto result = FdWriter::write(job->textData().toUtf8());
 
         if (!result) {
             m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
-        } else {
-            auto reply = message.createReply(QVariant::fromValue(QDBusVariant(job->textData())));
-            QDBusConnection::sessionBus().send(reply);
+            return;
         }
+
+        auto reply = message.createReply(QVariant::fromValue(result.value()));
+        QDBusConnection::sessionBus().send(reply);
     });
 
     job->start();

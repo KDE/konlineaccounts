@@ -19,3 +19,11 @@ ecm_qt_declare_logging_category(nextcloud
     DESCRIPTION "KOnlineAccounts Nextcloud"
     EXPORT KOnlineAccounts
 )
+
+ecm_qt_declare_logging_category(nextcloudsetup
+    HEADER setup_debug.h
+    IDENTIFIER LOG_KONLINEACCOUNTS_NEXTCLOUD_SETUP
+    CATEGORY_NAME konlineaccounts.nextcloud.setup
+    DESCRIPTION "KOnlineAccounts Nextcloud Setup"
+    EXPORT KOnlineAccounts
+)
