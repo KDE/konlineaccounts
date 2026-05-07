@@ -6,6 +6,8 @@
 
 #include "nextcloudinterface.h"
 
+#include "fdwriter.h"
+
 using namespace Qt::Literals;
 
 NextcloudInterface::NextcloudInterface(Account *account, KConfigGroup config)
@@ -35,11 +37,20 @@ QString NextcloudInterface::username() const
     return m_config.readEntry("username", QString());
 }
 
-QString NextcloudInterface::password() const
+QDBusUnixFileDescriptor NextcloudInterface::password() const
 {
     CHECK_ACCESS
 
-    return m_config.readEntry("password", QString());
+    const QByteArray password = m_config.readEntry("password", QString()).toUtf8();
+
+    const auto result = FdWriter::write(password);
+
+    if (!result) {
+        m_account->sendErrorReply(QDBusError::InternalError, u"Internal error"_s);
+        return {};
+    }
+
+    return *result;
 }
 
 QString NextcloudInterface::storagePath() const
