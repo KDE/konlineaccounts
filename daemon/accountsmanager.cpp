@@ -114,10 +114,6 @@ QList<QDBusObjectPath> AccountsManager::accounts() const
 
         if (account->hasAccess(*maybeCaller)) {
             result << QDBusObjectPath(u"/org/kde/KOnlineAccounts/Accounts/" + id);
-        } else {
-            qCWarning(LOG_KONLINEACCOUNTS_DAEMON) << callerId() << "is not allowed to read this account";
-            message().createErrorReply(QDBusError::AccessDenied, u"Caller is not authorized to read this"_s);
-            return {};
         }
     }
 
