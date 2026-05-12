@@ -21,14 +21,14 @@ class CalDAV : public QDBusAbstractAdaptor
 
     Q_PROPERTY(QString url READ url)
     Q_PROPERTY(QString username READ username)
-    Q_PROPERTY(QDBusUnixFileDescriptor password READ password)
 
 public:
     CalDAV(Account *account, KConfigGroup config);
 
     QString url() const;
     QString username() const;
-    QDBusUnixFileDescriptor password() const;
+
+    Q_SCRIPTABLE QDBusUnixFileDescriptor password() const;
 
 private:
     KConfigGroup m_config;
