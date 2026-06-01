@@ -21,3 +21,10 @@ ecm_qt_declare_logging_category(konlineaccountsd
 
 install(TARGETS konlineaccountsd DESTINATION ${KDE_INSTALL_BINDIR})
 install(FILES org.kde.konlineaccountsd.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+
+configure_file(konlineaccountsd.service.in ${CMAKE_CURRENT_BINARY_DIR}/konlineaccountsd.service)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/konlineaccountsd.service DESTINATION ${KDE_INSTALL_SYSTEMDUSERUNITDIR})
+install(CODE "
+    include(${CMAKE_SOURCE_DIR}/cmake/SystemctlEnable.cmake)
+    systemctl_enable(konlineaccountsd.service graphical-session.target ${KDE_INSTALL_FULL_SYSTEMDUSERUNITDIR})
+")
