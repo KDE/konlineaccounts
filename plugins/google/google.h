@@ -13,4 +13,6 @@ class GoogleAccount : public Account
     Q_OBJECT
 public:
     GoogleAccount(QObject *parent, const KPluginMetaData &md, const QVariantList &args);
+
+    QString displayName() const override;
 };

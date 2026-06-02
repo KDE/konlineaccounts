@@ -20,4 +20,9 @@ GoogleAccount::GoogleAccount(QObject *parent, const KPluginMetaData &md, const Q
     new GoogleInterface(this, config().group(u"Google"_s));
 }
 
+QString GoogleAccount::displayName() const
+{
+    return config().group(u"Google"_s).readEntry("accountName", QString());
+}
+
 #include "google.moc"
