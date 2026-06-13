@@ -60,7 +60,8 @@ void SuggestedAppsModel::setTypes(const QStringList &types)
 
     m_apps = KApplicationTrader::query([this](const KService::Ptr &service) -> bool {
         return std::any_of(m_types.constBegin(), m_types.constEnd(), [&service](const QString &type) {
-            return service->property<QStringList>(u"X-KDE-OnlineAccounts-Types"_s).contains(type);
+            auto supportedOnlineAccountTypes = service->property<QString>(u"X-KDE-OnlineAccounts-Types"_s).split(QString::fromUtf8(";"));
+            return supportedOnlineAccountTypes.contains(type);
         });
     });
 
