@@ -18,6 +18,7 @@ public:
 
     void registerApp(const QString &serviceName, const QString &appId);
     std::optional<QString> appIdForService(const QString &serviceName);
+    std::optional<QString> serviceNameForAppId(const QString &appId);
 
 private:
     AccessManager() = default;

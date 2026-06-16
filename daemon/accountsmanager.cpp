@@ -78,6 +78,18 @@ void AccountsManager::slotAccountCreationFinished(const QString &id, const QStri
                                                  account.get(),
                                                  QDBusConnection::ExportScriptableContents | QDBusConnection::ExportAdaptors);
 
+    const QStringList apps = group.readEntry("allowedApplications", QStringList());
+    for (const QString &appId : apps) {
+        const auto service = AccessManager::instance().serviceNameForAppId(appId);
+        if (!service) {
+            continue;
+        }
+
+        auto message =
+            QDBusMessage::createTargetedSignal(service.value(), u"/org/kde/KOnlineAccounts"_s, u"org.kde.KOnlineAccounts.Manager"_s, u"accountAccessGranted"_s);
+        QDBusConnection::sessionBus().send(message);
+    }
+
     if (!m_requester.isEmpty()) {
         const QString appId = m_requester;
         m_requester = QString();

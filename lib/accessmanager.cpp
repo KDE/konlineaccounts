@@ -7,6 +7,7 @@
 #include "accessmanager.h"
 
 #include "debug.h"
+#include <optional>
 
 AccessManager &AccessManager::instance()
 {
@@ -26,4 +27,15 @@ std::optional<QString> AccessManager::appIdForService(const QString &serviceName
         return std::nullopt;
     }
     return m_appIdentities[serviceName];
+}
+
+std::optional<QString> AccessManager::serviceNameForAppId(const QString &serviceName)
+{
+    for (auto [key, value] : std::as_const(m_appIdentities).asKeyValueRange()) {
+        if (value == serviceName) {
+            return key;
+        }
+    }
+
+    return std::nullopt;
 }
