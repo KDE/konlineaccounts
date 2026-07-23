@@ -32,6 +32,20 @@ KCM.ScrollViewKCM {
         }
     ]
 
+    headerPaddingEnabled: false // Let the InlineMessage touch the edges
+    header: Kirigami.InlineMessage {
+        readonly property url bugReportURL: "https://invent.kde.org/system/konlineaccounts/-/work_items"
+
+        type: Kirigami.MessageType.Warning
+        position: Kirigami.InlineMessage.Position.Header
+        showCloseButton: false
+        visible: true
+
+        text: xi18nc("@info:usagetip", "This feature is under development and is still considered experimental. Report all issues <link url='%1'>here</link>.", bugReportURL)
+
+        onLinkActivated: Qt.openUrlExternally(bugReportURL)
+    }
+
     view: ListView {
         id: accountsList
 
