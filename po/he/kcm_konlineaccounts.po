@@ -1,0 +1,78 @@
+# Copyright (C) 2026 This file is copyright:
+# This file is distributed under the same license as the konlineaccounts package.
+#
+# SPDX-FileCopyrightText: 2026 Yaron Shahrabani <sh.yaron@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: konlineaccounts\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2026-07-23 00:47+0000\n"
+"PO-Revision-Date: 2026-07-23 08:58+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 26.04.1\n"
+
+#: ui/Account.qml:31
+#, kde-format
+msgid "Remove"
+msgstr "הסרה"
+
+#: ui/Account.qml:41
+#, kde-format
+msgid "These applications are authorized to use %1:"
+msgstr "היישומים האלו מורשים להשתמש ב־%1:"
+
+#: ui/Account.qml:63
+#, kde-format
+msgid "No applications are authorized to use %1"
+msgstr "אין יישומים שמורשים להשתמש ב־%1"
+
+#: ui/AddAccountDialog.qml:23
+#, kde-format
+msgid "Create Account"
+msgstr "יצירת חשבון"
+
+#: ui/App.qml:28
+#, kde-format
+msgid "Give access to relevant apps:"
+msgstr "להעניק גישה ליישומים המתאימים:"
+
+#: ui/App.qml:68
+#, kde-format
+msgid "No relevant apps found"
+msgstr "לא נמצאו יישומים מתאימים"
+
+#: ui/App.qml:74
+#, kde-format
+msgid "Finish"
+msgstr "סיום"
+
+#: ui/Error.qml:25
+#, kde-format
+msgid "Setup failed: %1"
+msgstr "ההגדרה נכשלה: %1"
+
+#: ui/Error.qml:29
+#, kde-format
+msgid "Ok"
+msgstr "אישור"
+
+#: ui/main.qml:26
+#, kde-format
+msgid "Add Account…"
+msgstr "הוספת חשבון…"
+
+#: ui/main.qml:46
+#, kde-format
+msgid "Online accounts service is not running"
+msgstr "שירות החשבונות המקוונים לא פעיל"
+
+#: ui/main.qml:53
+#, kde-format
+msgid "No accounts configured"
+msgstr "לא מוגדרים חשבונות"
