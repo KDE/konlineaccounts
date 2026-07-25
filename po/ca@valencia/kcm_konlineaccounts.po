@@ -1,16 +1,18 @@
-# Copyright (C) 2026 This file is copyright:
-# This file is distributed under the same license as the konlineaccounts package.
+# Translation of kcm_konlineaccounts.po to Catalan (Valencian)
+# Copyright (C) 2026 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
 #
-# SPDX-FileCopyrightText: 2026 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2026 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-23 00:47+0000\n"
-"PO-Revision-Date: 2026-07-23 17:10+0200\n"
-"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
-"Language-Team: \n"
-"Language: nl\n"
+"PO-Revision-Date: 2026-07-23 16:47+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,59 +22,59 @@ msgstr ""
 #: ui/Account.qml:31
 #, kde-format
 msgid "Remove"
-msgstr "Verwijderen"
+msgstr "Elimina"
 
 #: ui/Account.qml:41
 #, kde-format
 msgid "These applications are authorized to use %1:"
-msgstr "Deze toepassingen zijn geautoriseerd om %1 te gebruiken:"
+msgstr "Estes aplicacions estan autoritzades a utilitzar %1:"
 
 #: ui/Account.qml:63
 #, kde-format
 msgid "No applications are authorized to use %1"
-msgstr "Geen toepassingen zijn geautoriseerd om %1 te gebruiken"
+msgstr "Cap aplicació no està autoritzada a utilitzar %1"
 
 #: ui/AddAccountDialog.qml:23
 #, kde-format
 msgid "Create Account"
-msgstr "Account aanmaken"
+msgstr "Crea un compte"
 
 #: ui/App.qml:28
 #, kde-format
 msgid "Give access to relevant apps:"
-msgstr "Geef toegang tot relevante toepassingen:"
+msgstr "Dona accés a aplicacions rellevants:"
 
 #: ui/App.qml:68
 #, kde-format
 msgid "No relevant apps found"
-msgstr "Geen relevante toepassingen gevonden"
+msgstr "No s'ha trobat cap aplicació rellevant"
 
 #: ui/App.qml:74
 #, kde-format
 msgid "Finish"
-msgstr "Voltooien"
+msgstr "Finalitza"
 
 #: ui/Error.qml:25
 #, kde-format
 msgid "Setup failed: %1"
-msgstr "Opztten is mislukt: %1"
+msgstr "La configuració ha fallat: %1"
 
 #: ui/Error.qml:29
 #, kde-format
 msgid "Ok"
-msgstr "OK"
+msgstr "D'acord"
 
 #: ui/main.qml:26
 #, kde-format
 msgid "Add Account…"
-msgstr "Account toevoegen…"
+msgstr "Afig un compte…"
 
 #: ui/main.qml:46
 #, kde-format
 msgid "Online accounts service is not running"
-msgstr "De service voor online accounts wordt niet uitgevoerd"
+msgstr "El servei de comptes en línia no s'està executant"
 
 #: ui/main.qml:53
 #, kde-format
 msgid "No accounts configured"
-msgstr "Geen accounts geconfigureerd"
+msgstr "No s'ha configurat cap compte"

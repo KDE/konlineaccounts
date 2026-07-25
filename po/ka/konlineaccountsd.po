@@ -1,51 +1,51 @@
-# Copyright (C) 2026 This file is copyright:
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the konlineaccounts package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# SPDX-FileCopyrightText: 2026 Yaron Shahrabani <sh.yaron@gmail.com>
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-23 00:47+0000\n"
-"PO-Revision-Date: 2026-07-23 08:56+0300\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: צוות התרגום של KDE ישראל\n"
-"Language: he\n"
+"PO-Revision-Date: 2026-07-24 06:39+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "צוות התרגום של KDE ישראל"
+msgstr "Temuri Doghonadze"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "kde-l10n-he@kde.org"
+msgstr "temuri.doghonadze@gmail.com"
 
 #: Main.qml:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Online Accounts"
-msgstr "חשבונות מקוונים"
+msgstr "ონლაინ-ანგარიშები"
 
 #: Main.qml:38
 #, kde-format
 msgid "Choose account to use with %1"
-msgstr "נא לבחור חשבון לשימוש עם %1"
+msgstr "აირჩიეთ ანგარიში %1-ისთვის გამოსაყენებლად"
 
 #: Main.qml:46
 #, kde-format
 msgid "No accounts suitable for %1 yet"
-msgstr "אין חשבונות שמתאימים ל־%1 עדיין"
+msgstr "%1-ისთვის შესაფერისი ანგარიშები ჯერ არ არსებობს"
 
 #: Main.qml:73
 #, kde-format
 msgctxt "@action:button"
 msgid "Create New"
-msgstr "יצירת חדש"
+msgstr "ახლის შექმნა"
