@@ -3,10 +3,13 @@
 [Desktop Entry]
 Name=KOnlineAccounts Demo
 Name[ca]=Demostració del KOnlineAccounts
+Name[ca@valencia]=Demostració de KOnlineAccounts
 Name[es]=Demostración de KOnlineAccounts
 Name[he]=הדגמה של KOnlineAccounts
+Name[ka]=KOnlineAccounts-ის დემონსტრაცია
 Name[nl]=Demo van KOnlineAccounts
 Name[pt_BR]=Demonstração do KOnlineAccounts
+Name[sl]=KOnlineAccounts Demo
 Name[tr]=K Çevrim İçi Hesaplar Tanıtımı
 Name[uk]=Демонстрація KOnlineAccounts
 Exec=demo

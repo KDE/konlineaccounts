@@ -1,8 +1,22 @@
 {
     "KPlugin": {
         "Description": "Access Google Services",
+        "Description[ca]": "Accés a Google Services",
+        "Description[es]": "Acceder a servicios de Google",
+        "Description[he]": "גישה לשירותי Google",
+        "Description[nl]": "Toeganf tot Google-services",
+        "Description[pt_BR]": "Serviços de acesso do Google",
+        "Description[tr]": "Google hizmetlerine erişin",
+        "Description[uk]": "Доступ до служб Google",
         "Icon": "im-google",
-        "Name": "Google"
+        "Name": "Google",
+        "Name[ca]": "Google",
+        "Name[es]": "Google",
+        "Name[he]": "Google",
+        "Name[nl]": "Google",
+        "Name[pt_BR]": "Google",
+        "Name[tr]": "Google",
+        "Name[uk]": "Google"
     },
     "X-KOnlineAccounts-Provides": [
         "google"

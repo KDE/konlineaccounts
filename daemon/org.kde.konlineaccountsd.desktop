@@ -3,10 +3,13 @@
 [Desktop Entry]
 Name=Online Accounts
 Name[ca]=Comptes en línia
+Name[ca@valencia]=Comptes en línia
 Name[es]=Cuentas en línea
 Name[he]=חשבונות מקוונים
+Name[ka]=ონლაინ-ანგარიშები
 Name[nl]=Online accounts
 Name[pt_BR]=Contas online
+Name[sl]=Online Accounts
 Name[tr]=Çevrim İçi Hesaplar
 Name[uk]=Облікові записи в інтернеті
 Exec=konlineaccountsd
