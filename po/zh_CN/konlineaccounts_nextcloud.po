@@ -21,16 +21,16 @@ msgstr ""
 #: Main.qml:56
 #, kde-format
 msgid "Server:"
-msgstr ""
+msgstr "服务器："
 
 #: Main.qml:61
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: nextcloudsetup.cpp:160
 #, kde-format
 msgid ""
 "Unable to connect to Nextcloud at the given server URL. Please check the "
 "server URL."
-msgstr ""
+msgstr "无法使用给定服务器 URL 连接到 Nextcloud。请检查服务器 URL。"

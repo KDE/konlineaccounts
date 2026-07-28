@@ -21,19 +21,19 @@ msgstr ""
 #: Main.qml:44
 #, kde-format
 msgid "Instance URL:"
-msgstr ""
+msgstr "实例 URL："
 
 #: Main.qml:55
 #, kde-format
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: mastodonsetup.cpp:48
 #, kde-format
 msgid "Authentication completed, return to System Settings"
-msgstr ""
+msgstr "身份验证已完成，返回系统设置"
 
 #: mastodonsetup.cpp:58
 #, kde-format
 msgid "KDE Online Accounts"
-msgstr ""
+msgstr "KDE 在线账户"

@@ -20,31 +20,31 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "TysonTan"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "tds00@qq.com"
 
 #: Main.qml:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Online Accounts"
-msgstr ""
+msgstr "在线账户"
 
 #: Main.qml:38
 #, kde-format
 msgid "Choose account to use with %1"
-msgstr ""
+msgstr "选择 %1 使用的帐户"
 
 #: Main.qml:46
 #, kde-format
 msgid "No accounts suitable for %1 yet"
-msgstr ""
+msgstr "暂无适用于 %1 的账户"
 
 #: Main.qml:73
 #, kde-format
 msgctxt "@action:button"
 msgid "Create New"
-msgstr ""
+msgstr "新建"
