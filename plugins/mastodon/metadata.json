@@ -6,12 +6,14 @@
         "Description[es]": "Acceder a Mastodon",
         "Description[fr]": "Accéder à Mastodon",
         "Description[he]": "גישה למסטודון",
+        "Description[it]": "Accedi a Mastodon",
         "Description[ka]": "წვდომა Mastodon-ის სერვისებთან",
         "Description[nl]": "Toegang tot Mastodon",
         "Description[pt_BR]": "Acesso ao Mastodon",
         "Description[sl]": "Dostop Mastodon",
         "Description[tr]": "Mastodon hizmetine erişin",
         "Description[uk]": "Доступ до Mastodon",
+        "Description[zh_CN]": "访问 Mastodon",
         "Icon": "mastodon_microblog",
         "Name": "Mastodon",
         "Name[ca@valencia]": "Mastodon",
@@ -19,12 +21,14 @@
         "Name[es]": "Mastodon",
         "Name[fr]": "Mastodon",
         "Name[he]": "מסטודון",
+        "Name[it]": "Mastodon",
         "Name[ka]": "Mastodon",
         "Name[nl]": "Mastodon",
         "Name[pt_BR]": "Mastodon",
         "Name[sl]": "Mastodon",
         "Name[tr]": "Mastodon",
-        "Name[uk]": "Mastodon"
+        "Name[uk]": "Mastodon",
+        "Name[zh_CN]": "Mastodon"
     },
     "X-KOnlineAccounts-Provides": [
         "mastodon"
