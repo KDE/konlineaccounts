@@ -9,11 +9,13 @@
         "Description[it]": "Accedi ai servizi Google",
         "Description[ka]": "წვდომა Google-ის სერვისებთან",
         "Description[nl]": "Toeganf tot Google-services",
+        "Description[nn]": "Tilgang til Google-tenester",
         "Description[pt_BR]": "Serviços de acesso do Google",
         "Description[sl]": "Dostop do Google Services",
         "Description[tr]": "Google hizmetlerine erişin",
         "Description[uk]": "Доступ до служб Google",
         "Description[zh_CN]": "访问 Google 服务",
+        "Description[zh_TW]": "存取 Google 服務",
         "Icon": "im-google",
         "Name": "Google",
         "Name[ca@valencia]": "Google",
@@ -24,11 +26,13 @@
         "Name[it]": "Google",
         "Name[ka]": "Google",
         "Name[nl]": "Google",
+        "Name[nn]": "Google",
         "Name[pt_BR]": "Google",
         "Name[sl]": "Google",
         "Name[tr]": "Google",
         "Name[uk]": "Google",
-        "Name[zh_CN]": "Google"
+        "Name[zh_CN]": "Google",
+        "Name[zh_TW]": "Google"
     },
     "X-KOnlineAccounts-Provides": [
         "google"
