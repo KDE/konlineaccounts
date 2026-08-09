@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-08 00:48+0000\n"
-"PO-Revision-Date: 2026-07-23 16:47+0200\n"
+"PO-Revision-Date: 2026-08-08 10:15+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -76,6 +76,8 @@ msgid ""
 "This feature is under development and is still considered experimental. "
 "Report all issues <link url='%1'>here</link>."
 msgstr ""
+"Esta característica és en desenvolupament i encara està considerada "
+"experimental. Informeu de tots els problemes <link url='%1'>ací</link>."
 
 #: ui/main.qml:60
 #, kde-format
