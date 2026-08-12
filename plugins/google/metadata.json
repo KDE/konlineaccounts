@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Access Google Services",
+        "Description[ar]": "خدمات غوغل للوصول",
         "Description[ca@valencia]": "Accés a Google Services",
         "Description[ca]": "Accés a Google Services",
         "Description[es]": "Acceder a servicios de Google",
@@ -19,6 +20,7 @@
         "Description[zh_TW]": "存取 Google 服務",
         "Icon": "im-google",
         "Name": "Google",
+        "Name[ar]": "غوغل",
         "Name[ca@valencia]": "Google",
         "Name[ca]": "Google",
         "Name[es]": "Google",

@@ -2,6 +2,7 @@
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_kaccounts",
         "Description": "Configure your internet accounts such as Google, Live, Owncloud",
+        "Description[ar]": "اضبط حساباتك على الإنترنت كغوغل، لايف وسحابتك \"Owncloud\"",
         "Description[ca@valencia]": "Configura els vostres comptes d'Internet com Google, Live, Owncloud",
         "Description[ca]": "Configura els vostres comptes d'Internet com Google, Live, Owncloud",
         "Description[es]": "Configurar cuentas de internet, como Google, Live, Owncloud",
@@ -26,6 +27,7 @@
         ],
         "Icon": "preferences-online-accounts",
         "Name": "Online Accounts",
+        "Name[ar]": "حسابات الإنترنت",
         "Name[ca@valencia]": "Comptes en línia",
         "Name[ca]": "Comptes en línia",
         "Name[es]": "Cuentas en línea",
@@ -44,6 +46,7 @@
         "Name[zh_TW]": "線上帳號"
     },
     "X-KDE-Keywords": "network,google,live,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
+    "X-KDE-Keywords[ar]": ",شبكة,غوغل,جوجل,لايف,لايڤ,سحابتك,سحابة,جيميل,تقويم جوجل,تزامن",
     "X-KDE-Keywords[ca@valencia]": "xarxa,google,live,owncloud,en línia,comptes,sincronització,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
     "X-KDE-Keywords[ca]": "xarxa,google,live,owncloud,en línia,comptes,sincronització,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
     "X-KDE-Keywords[es]": "red,google,directo,en vivo,en directo,owncloud,sincronizar,en línea,con conexión,cuentas,sincronización,opendesktop,nextcloud,youtube,unidad,hangouts,gmail,calendario de google",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Access Files, Contacts, Calendars",
+        "Description[ar]": "الوصول للملفات وجهات الاتصال و تقاويم",
         "Description[ca@valencia]": "Accés a fitxers, contactes, calendaris",
         "Description[ca]": "Accés a fitxers, contactes, calendaris",
         "Description[es]": "Acceder a archivos, contactos y calendarios",
@@ -19,6 +20,7 @@
         "Description[zh_TW]": "存取檔案、聯絡人、行事曆",
         "Icon": "kaccounts-nextcloud",
         "Name": "Nextcloud",
+        "Name[ar]": "نِكست‌كلاود",
         "Name[ca@valencia]": "Nextcloud",
         "Name[ca]": "Nextcloud",
         "Name[es]": "Nextcloud",

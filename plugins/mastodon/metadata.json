@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Access Mastodon",
+        "Description[ar]": "الوصول لماستودون",
         "Description[ca@valencia]": "Accés a Mastodon",
         "Description[ca]": "Accés a Mastodon",
         "Description[es]": "Acceder a Mastodon",
@@ -19,6 +20,7 @@
         "Description[zh_TW]": "存取 Mastodon",
         "Icon": "mastodon_microblog",
         "Name": "Mastodon",
+        "Name[ar]": "ماستودون",
         "Name[ca@valencia]": "Mastodon",
         "Name[ca]": "Mastodon",
         "Name[es]": "Mastodon",
