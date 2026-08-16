@@ -1,0 +1,48 @@
+# translation of konlineaccountsd.po to Slovak
+# Roman Paholik <wizzardsk@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: konlineaccountsd\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2026-07-23 00:47+0000\n"
+"PO-Revision-Date: 2026-08-15 17:01+0200\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Roman Paholík"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "wizzardsk@gmail.com"
+
+#: Main.qml:20
+#, kde-format
+msgctxt "@title:window"
+msgid "Online Accounts"
+msgstr "Online účty"
+
+#: Main.qml:38
+#, kde-format
+msgid "Choose account to use with %1"
+msgstr "Vyberte účet, ktorý sa má použiť s %1"
+
+#: Main.qml:46
+#, kde-format
+msgid "No accounts suitable for %1 yet"
+msgstr "Zatiaľ nie sú k dispozícii žiadne účty vhodné pre %1"
+
+#: Main.qml:73
+#, kde-format
+msgctxt "@action:button"
+msgid "Create New"
+msgstr "Vytvoriť nový"

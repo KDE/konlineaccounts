@@ -1,0 +1,86 @@
+# translation of kcm_konlineaccounts.po to Slovak
+# Roman Paholik <wizzardsk@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kcm_konlineaccounts\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"PO-Revision-Date: 2026-08-15 17:01+0200\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ui/Account.qml:31
+#, kde-format
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: ui/Account.qml:41
+#, kde-format
+msgid "These applications are authorized to use %1:"
+msgstr "Tieto aplikácie majú oprávnenie používať %1:"
+
+#: ui/Account.qml:63
+#, kde-format
+msgid "No applications are authorized to use %1"
+msgstr "Žiadne aplikácie nemajú oprávnenie používať %1"
+
+#: ui/AddAccountDialog.qml:23
+#, kde-format
+msgid "Create Account"
+msgstr "Vytvoriť účet"
+
+#: ui/App.qml:28
+#, kde-format
+msgid "Give access to relevant apps:"
+msgstr "Udeliť prístup príslušným aplikáciám:"
+
+#: ui/App.qml:68
+#, kde-format
+msgid "No relevant apps found"
+msgstr "Nenašli sa žiadne príslušné aplikácie"
+
+#: ui/App.qml:74
+#, kde-format
+msgid "Finish"
+msgstr "Dokončiť"
+
+#: ui/Error.qml:25
+#, kde-format
+msgid "Setup failed: %1"
+msgstr "Nastavenie zlyhalo: %1"
+
+#: ui/Error.qml:29
+#, kde-format
+msgid "Ok"
+msgstr "OK"
+
+#: ui/main.qml:26
+#, kde-format
+msgid "Add Account…"
+msgstr "Pridať účet…"
+
+#: ui/main.qml:44
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"This feature is under development and is still considered experimental. "
+"Report all issues <link url='%1'>here</link>."
+msgstr ""
+"Táto funkcia sa ešte vyvíja a stále sa považuje za experimentálnu. Všetky "
+"problémy hláste <link url='%1'>tu</link>."
+
+#: ui/main.qml:60
+#, kde-format
+msgid "Online accounts service is not running"
+msgstr "Služba online účtov nebeží"
+
+#: ui/main.qml:67
+#, kde-format
+msgid "No accounts configured"
+msgstr "Nie sú nastavené žiadne účty"
