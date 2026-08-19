@@ -74,6 +74,8 @@ msgid ""
 "This feature is under development and is still considered experimental. "
 "Report all issues <link url='%1'>here</link>."
 msgstr ""
+"此功能尚在开发中，仍属实验性质。请将遇到的所有问题报告到 <link url='%1'>此处"
+"</link>。"
 
 #: ui/main.qml:60
 #, kde-format
