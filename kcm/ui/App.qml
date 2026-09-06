@@ -25,7 +25,7 @@ ColumnLayout {
     property list<string> apps
 
     Controls.Label {
-        text: i18n("Give access to relevant apps:")
+        text: i18nc("as in 'allow relevant apps to access your account'", "Give access to relevant apps:")
         leftPadding: Kirigami.Units.largeSpacing
     }
 
@@ -71,7 +71,7 @@ ColumnLayout {
     }
 
     Controls.Button {
-        text: i18n("Finish")
+        text: i18nc("@action:button", "Finish")
 
         Layout.alignment: Qt.AlignRight
 

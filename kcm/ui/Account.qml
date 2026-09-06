@@ -38,7 +38,7 @@ KCM.ScrollViewKCM {
     ]
 
     header: Controls.Label {
-        text: i18n("These applications are authorized to use %1:", root.accountName)
+        text: i18nc("%1 is the name of an online account", "These applications are authorized to use %1:", root.accountName)
     }
 
     view: ListView {
@@ -60,7 +60,7 @@ KCM.ScrollViewKCM {
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             width: parent.width - Kirigami.Units.largeSpacing * 2
-            text: i18n("No applications are authorized to use %1", root.accountName)
+            text: i18nc("%1 is the name of an online account", "No applications are authorized to use %1", root.accountName)
             visible: appsList.count === 0
         }
     }
