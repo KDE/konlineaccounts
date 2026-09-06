@@ -20,7 +20,7 @@ Kirigami.Dialog {
 
     required property list<string> requestedTypes
 
-    title: i18n("Create Account")
+    title: i18nc("@title:window", "Create Account")
 
     ColumnLayout {
         Controls.StackView {

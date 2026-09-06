@@ -35,7 +35,7 @@ Kirigami.ApplicationWindow {
 
         Kirigami.ScrollablePage {
 
-            title: i18n("Choose account to use with %1", root.applicationName)
+            title: i18nc("%1 is the name of an application", "Choose account to use with %1", root.applicationName)
 
             ListView {
                 id: accountsList
@@ -43,7 +43,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.PlaceholderMessage {
                     anchors.centerIn: parent
                     width: parent.width - Kirigami.Units.largeSpacing * 2
-                    text: i18n("No accounts suitable for %1 yet", root.applicationName)
+                    text: i18nc("%1 is the name of an application", "No accounts suitable for %1 yet", root.applicationName)
                     visible: accountsList.count === 0
                 }
 
@@ -70,7 +70,7 @@ Kirigami.ApplicationWindow {
             }
 
             footer: Button {
-                text: i18nc("@action:button", "Create New")
+                text: i18nc("@action:button Create a new account", "Create New")
                 icon.name: "list-add"
                 onClicked: root.manager.requestAccountCreation(root.types)
             }

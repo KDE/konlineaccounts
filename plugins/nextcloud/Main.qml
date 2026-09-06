@@ -58,7 +58,7 @@ SetupItem {
                 }
 
                 Controls.Button {
-                    text: _tr.i18n("Add")
+                    text: _tr.i18nc("@action:button", "Add")
 
                     Layout.alignment: Qt.AlignRight
 
