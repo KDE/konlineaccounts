@@ -2,19 +2,21 @@
 # German messages for konlineaccounts.
 # Copyright (C) 2026 This file is copyright:
 # This file is distributed under the same license as the konlineaccounts package.
+# SPDX-FileCopyrightText: 2026 Alois Spitzbart <spitz234@hotmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-23 00:47+0000\n"
-"PO-Revision-Date: 2026-07-23 08:56+0200\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-09-07 11:38+0200\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -30,20 +32,20 @@ msgstr "kde-i18n-de@kde.org"
 #, kde-format
 msgctxt "@title:window"
 msgid "Online Accounts"
-msgstr ""
+msgstr "Online-Konten"
 
 #: Main.qml:38
 #, kde-format
 msgid "Choose account to use with %1"
-msgstr ""
+msgstr "Konto für die Verwendung mit %1 auswählen"
 
 #: Main.qml:46
 #, kde-format
 msgid "No accounts suitable for %1 yet"
-msgstr ""
+msgstr "Es sind noch keine Konten für %1 geeignet"
 
 #: Main.qml:73
 #, kde-format
 msgctxt "@action:button"
 msgid "Create New"
-msgstr ""
+msgstr "Neu erstellen"
