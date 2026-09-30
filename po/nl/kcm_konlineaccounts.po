@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-08-08 18:30+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -23,22 +23,30 @@ msgid "Remove"
 msgstr "Verwijderen"
 
 #: ui/Account.qml:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "These applications are authorized to use %1:"
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Deze toepassingen zijn geautoriseerd om %1 te gebruiken:"
 
 #: ui/Account.qml:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No applications are authorized to use %1"
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "Geen toepassingen zijn geautoriseerd om %1 te gebruiken"
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "Account aanmaken"
 
 #: ui/App.qml:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Give access to relevant apps:"
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "Geef toegang tot relevante toepassingen:"
 
@@ -48,19 +56,24 @@ msgid "No relevant apps found"
 msgstr "Geen relevante toepassingen gevonden"
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "Voltooien"
 
 #: ui/Error.qml:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Setup failed: %1"
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Opztten is mislukt: %1"
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "OK"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -86,3 +99,6 @@ msgstr "De service voor online accounts wordt niet uitgevoerd"
 #, kde-format
 msgid "No accounts configured"
 msgstr "Geen accounts geconfigureerd"
+
+#~ msgid "Ok"
+#~ msgstr "OK"

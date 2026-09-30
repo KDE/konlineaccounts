@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-08-08 13:09+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -24,22 +24,30 @@ msgid "Remove"
 msgstr "Вилучити"
 
 #: ui/Account.qml:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "These applications are authorized to use %1:"
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Цим програмам дозволено використання %1:"
 
 #: ui/Account.qml:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No applications are authorized to use %1"
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "Жодній програмі не дозволено використання %1"
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "Створити обліковий запис"
 
 #: ui/App.qml:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Give access to relevant apps:"
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "Надати доступ до відповідних програм:"
 
@@ -49,19 +57,24 @@ msgid "No relevant apps found"
 msgstr "Не знайдено відповідних програм"
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "Завершити"
 
 #: ui/Error.qml:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Setup failed: %1"
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Помилка встановлення: %1"
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "Гаразд"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -87,3 +100,6 @@ msgstr "Службу облікових записів в інтернеті н�
 #, kde-format
 msgid "No accounts configured"
 msgstr "Не налаштовано жодного облікового запису"
+
+#~ msgid "Ok"
+#~ msgstr "Гаразд"

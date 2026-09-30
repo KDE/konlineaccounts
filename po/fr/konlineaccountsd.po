@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-23 00:47+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-07-24 12:14+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -32,17 +32,23 @@ msgid "Online Accounts"
 msgstr "Comptes en ligne"
 
 #: Main.qml:38
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Choose account to use with %1"
+msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
 msgstr "Sélectionnez le compte à utiliser avec %1"
 
 #: Main.qml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No accounts suitable for %1 yet"
+msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Aucun compte approprié pour %1 pour l'instant"
 
 #: Main.qml:73
-#, kde-format
-msgctxt "@action:button"
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Create New"
+msgctxt "@action:button Create a new account"
 msgid "Create New"
 msgstr "Créer un nouveau"

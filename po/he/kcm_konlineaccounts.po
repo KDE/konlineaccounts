@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-08-11 08:39+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -24,22 +24,30 @@ msgid "Remove"
 msgstr "הסרה"
 
 #: ui/Account.qml:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "These applications are authorized to use %1:"
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "היישומים האלו מורשים להשתמש ב־%1:"
 
 #: ui/Account.qml:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No applications are authorized to use %1"
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "אין יישומים שמורשים להשתמש ב־%1"
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "יצירת חשבון"
 
 #: ui/App.qml:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Give access to relevant apps:"
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "להעניק גישה ליישומים המתאימים:"
 
@@ -49,19 +57,24 @@ msgid "No relevant apps found"
 msgstr "לא נמצאו יישומים מתאימים"
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "סיום"
 
 #: ui/Error.qml:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Setup failed: %1"
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "ההגדרה נכשלה: %1"
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "אישור"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -87,3 +100,6 @@ msgstr "שירות החשבונות המקוונים לא פעיל"
 #, kde-format
 msgid "No accounts configured"
 msgstr "לא מוגדרים חשבונות"
+
+#~ msgid "Ok"
+#~ msgstr "אישור"

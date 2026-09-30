@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-23 00:47+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-07-23 12:18+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -35,17 +35,23 @@ msgid "Online Accounts"
 msgstr "Облікові записи в інтернеті"
 
 #: Main.qml:38
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Choose account to use with %1"
+msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
 msgstr "Виберіть використаний з %1 обліковий запис"
 
 #: Main.qml:46
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No accounts suitable for %1 yet"
+msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Відповідних %1 облікових записів немає"
 
 #: Main.qml:73
-#, kde-format
-msgctxt "@action:button"
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Create New"
+msgctxt "@action:button Create a new account"
 msgid "Create New"
 msgstr "Створити"

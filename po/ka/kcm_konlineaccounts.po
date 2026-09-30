@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-08-08 06:54+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -24,22 +24,30 @@ msgid "Remove"
 msgstr "წაშლა"
 
 #: ui/Account.qml:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "These applications are authorized to use %1:"
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "ამ აპლიკაციებს აქვთ უფლება, გამოიყენონ %1:"
 
 #: ui/Account.qml:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No applications are authorized to use %1"
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "აპლიკაციები, რომლებსაც აქვთ უფლება, გამოიყენონ %1, არ არსებობს"
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "ანგარიშის შექმნა"
 
 #: ui/App.qml:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Give access to relevant apps:"
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "წვდომის მინიჭება შესაბამისი პროგრამებისთვის:"
 
@@ -49,19 +57,24 @@ msgid "No relevant apps found"
 msgstr "შესაბამისი პროგრამები აღმოჩენილი არაა"
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "დასრულება"
 
 #: ui/Error.qml:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Setup failed: %1"
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "მორგება ჩავარდა: %1"
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "დიახ"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -87,3 +100,6 @@ msgstr "ონლაინ-ანგარიშების სერვის�
 #, kde-format
 msgid "No accounts configured"
 msgstr "მორგებული ანგარიშების გარეშე"
+
+#~ msgid "Ok"
+#~ msgstr "დიახ"

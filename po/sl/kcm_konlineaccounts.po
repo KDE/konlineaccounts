@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-08-08 06:58+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -24,22 +24,30 @@ msgid "Remove"
 msgstr "Odstrani"
 
 #: ui/Account.qml:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "These applications are authorized to use %1:"
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Te aplikacije so pooblaščene za uporabo %1:"
 
 #: ui/Account.qml:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No applications are authorized to use %1"
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "Še nobena aplikacija ni pooblaščena za uporabo %1"
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "Ustvari račun"
 
 #: ui/App.qml:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Give access to relevant apps:"
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "Omogoči dostop do ustreznih aplikacij:"
 
@@ -49,19 +57,24 @@ msgid "No relevant apps found"
 msgstr "Ni najdenih ustreznih aplikacij"
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "Končaj"
 
 #: ui/Error.qml:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Setup failed: %1"
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Nastavitev ni uspela: %1"
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "V redu"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -87,3 +100,6 @@ msgstr "Storitev Online accounts ne deluje"
 #, kde-format
 msgid "No accounts configured"
 msgstr "Ni konfiguriranih računov"
+
+#~ msgid "Ok"
+#~ msgstr "V redu"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts_nextcloud\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-23 00:47+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-07-23 11:48+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -25,7 +25,9 @@ msgid "Server:"
 msgstr "Servidor:"
 
 #: Main.qml:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add"
+msgctxt "@action:button"
 msgid "Add"
 msgstr "Añadir"
 

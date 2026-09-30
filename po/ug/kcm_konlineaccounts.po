@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-08 00:48+0000\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
 "PO-Revision-Date: 2026-09-23 06:56+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
@@ -24,21 +24,26 @@ msgstr "چىقىرىۋەت"
 
 #: ui/Account.qml:41
 #, kde-format
+msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr ""
 
 #: ui/Account.qml:63
 #, kde-format
+msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr ""
 
 #: ui/AddAccountDialog.qml:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create Account"
+msgctxt "@title:window"
 msgid "Create Account"
 msgstr "ھېسابات قۇر"
 
 #: ui/App.qml:28
 #, kde-format
+msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr ""
 
@@ -48,19 +53,23 @@ msgid "No relevant apps found"
 msgstr ""
 
 #: ui/App.qml:74
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Finish"
+msgctxt "@action:button"
 msgid "Finish"
 msgstr "تامام"
 
 #: ui/Error.qml:25
 #, kde-format
+msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr ""
 
 #: ui/Error.qml:29
 #, kde-format
-msgid "Ok"
-msgstr "جەزملە"
+msgctxt "@action:button"
+msgid "OK"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
@@ -84,3 +93,6 @@ msgstr ""
 #, kde-format
 msgid "No accounts configured"
 msgstr ""
+
+#~ msgid "Ok"
+#~ msgstr "جەزملە"
