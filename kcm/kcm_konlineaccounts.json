@@ -2,6 +2,16 @@
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_kaccounts",
         "Description": "Configure your online accounts such as Nextcloud, Google, Mastodon",
+        "Description[ar]": "اُضبط حساباتك على الإنترنت مثل نِكست‌كلاود وغوغل وماستودون",
+        "Description[ca]": "Configura els vostres comptes d'Internet com Nextcloud, Google, Mastodon",
+        "Description[es]": "Configure sus cuentas en línea, como Nextcloud, Google o Mastodon",
+        "Description[ka]": "დაამატეთ თქვენი ინტერნეტ-ანგარიშები. მაგ: Nextcloud, Google, Mastodon",
+        "Description[nl]": "Stel uw online accounts in zoals Nextcloud, Google, Mastodon",
+        "Description[pt_BR]": "Configure suas contas online, como Nextcloud, Google, Mastodon",
+        "Description[sl]": "Konfigurirajte svoje spletne račune, kot so Nextcloud, Google, Mastodon",
+        "Description[tr]": "Nextcloud, Google, Mastodon gibi internet hesaplarınızı yapılandırın",
+        "Description[uk]": "Налаштування ваших облікових записів у Nextcloud, Google, Mastodon",
+        "Description[zh_TW]": "設定您的線上帳號，例如 Nextcloud、Google、Mastodon",
         "FormFactors": [
             "desktop",
             "handset",
@@ -32,6 +42,16 @@
         "Name[zh_TW]": "線上帳號"
     },
     "X-KDE-Keywords": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,gmail,google calendar",
+    "X-KDE-Keywords[ar]": "مباشر,شبكة,غوغل,جوجل,لايف,لايڤ,سحابتك,سحابة,جيميل,تقويم جوجل,تزامن",
+    "X-KDE-Keywords[ca]": "xarxa,google,live,owncloud,comptes,sincronització,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar",
+    "X-KDE-Keywords[es]": "red,google,owncloud,sincronizar,en línea,con conexión,cuentas,sincronización,opendesktop,nextcloud,youtube,unidad,gmail,calendario de google",
+    "X-KDE-Keywords[ka]": "ქსელი,გუგლი,ლაივი,owncloud,სინქრონიზაცია,ონლაინ,ანგარიშები,სინქრონიზაცია,opendesktop,nextcloud,youtube,drive,hangouts,gmail,გუგლის კალენდარი",
+    "X-KDE-Keywords[nl]": "netwerk,google,owncloud,sync,online,accounts,synchronisatie,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google-agenda",
+    "X-KDE-Keywords[pt_BR]": "rede,google,owncloud,sync,online,contas,sincronização,opendesktop,nextcloud,youtube,drive,gmail,calendário google",
+    "X-KDE-Keywords[sl]": "omrežje,google,owncloud,sync,online,accounts,sinhronizacija,opendesktop,nextcloud,youtube,pogon,gmail,google calendar",
+    "X-KDE-Keywords[tr]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,gmail,google calendar,eşzamanla,eşitle,çevrim içi,çevrim dışı,ağ,hesap,google takvim",
+    "X-KDE-Keywords[uk]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar,мережа,гугл,аунклауд,синхронізація,синхронізувати,інтернет,обліковий запис,записи,оупендесктоп,некстклауд,ютюб,диск,хенгаутс,жмейл,календар гугл",
+    "X-KDE-Keywords[zh_TW]": "網路,網絡,線上服務,微軟,google,同步,帳號,帳戶,雲端硬碟,google 行事曆",
     "X-KDE-System-Settings-Parent-Category": "network",
     "X-KDE-Weight": 20
 }
