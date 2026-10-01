@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-09-15 14:12+0900\n"
+"PO-Revision-Date: 2026-10-01 03:28+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -23,29 +23,25 @@ msgid "Remove"
 msgstr "移除"
 
 #: ui/Account.qml:41
-#, fuzzy, kde-format
-#| msgid "These applications are authorized to use %1:"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "這些應用程式已獲授權使用 %1："
 
 #: ui/Account.qml:63
-#, fuzzy, kde-format
-#| msgid "No applications are authorized to use %1"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "沒有獲授權使用 %1 的應用程式"
 
 #: ui/AddAccountDialog.qml:23
-#, fuzzy, kde-format
-#| msgid "Create Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
 msgstr "建立帳號"
 
 #: ui/App.qml:28
-#, fuzzy, kde-format
-#| msgid "Give access to relevant apps:"
+#, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "提供存取權給相關應用程式："
@@ -56,15 +52,13 @@ msgid "No relevant apps found"
 msgstr "找不到相關應用程式"
 
 #: ui/App.qml:74
-#, fuzzy, kde-format
-#| msgid "Finish"
+#, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "完成"
 
 #: ui/Error.qml:25
-#, fuzzy, kde-format
-#| msgid "Setup failed: %1"
+#, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "設定失敗：%1"
@@ -73,7 +67,7 @@ msgstr "設定失敗：%1"
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "確定"
 
 #: ui/main.qml:26
 #, kde-format

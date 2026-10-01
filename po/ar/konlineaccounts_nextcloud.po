@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-08-10 17:25+0400\n"
+"PO-Revision-Date: 2026-09-30 19:17+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -24,8 +24,7 @@ msgid "Server:"
 msgstr "الخادم: "
 
 #: Main.qml:61
-#, fuzzy, kde-format
-#| msgid "Add"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add"
 msgstr "أضف"

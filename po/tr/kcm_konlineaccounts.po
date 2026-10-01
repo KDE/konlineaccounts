@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-08-08 20:18+0300\n"
+"PO-Revision-Date: 2026-09-30 10:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: ui/Account.qml:31
 #, kde-format
@@ -23,29 +23,25 @@ msgid "Remove"
 msgstr "Kaldır"
 
 #: ui/Account.qml:41
-#, fuzzy, kde-format
-#| msgid "These applications are authorized to use %1:"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Bu uygulamalar, %1 hizmetini kullanmak için yetkilendirilmiş:"
 
 #: ui/Account.qml:63
-#, fuzzy, kde-format
-#| msgid "No applications are authorized to use %1"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "%1 hizmetini kullanmak için yetkilendirilmiş uygulama yok"
 
 #: ui/AddAccountDialog.qml:23
-#, fuzzy, kde-format
-#| msgid "Create Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
 msgstr "Hesap Oluştur"
 
 #: ui/App.qml:28
-#, fuzzy, kde-format
-#| msgid "Give access to relevant apps:"
+#, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "İlgili uygulamalara erişim izni verin:"
@@ -56,15 +52,13 @@ msgid "No relevant apps found"
 msgstr "Bulunan ilgili uygulama yok"
 
 #: ui/App.qml:74
-#, fuzzy, kde-format
-#| msgid "Finish"
+#, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "Bitir"
 
 #: ui/Error.qml:25
-#, fuzzy, kde-format
-#| msgid "Setup failed: %1"
+#, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Kurulum başarısız: %1"
@@ -73,7 +67,7 @@ msgstr "Kurulum başarısız: %1"
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: ui/main.qml:26
 #, kde-format

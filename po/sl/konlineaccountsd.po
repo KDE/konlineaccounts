@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-07-24 07:57+0200\n"
+"PO-Revision-Date: 2026-09-30 07:27+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 26.04.3\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -35,23 +35,19 @@ msgid "Online Accounts"
 msgstr "Spletni računi"
 
 #: Main.qml:38
-#, fuzzy, kde-format
-#| msgid "Choose account to use with %1"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
-msgstr "Izberite račune za uporabo z %1"
+msgstr "Izberite račun za uporabo z %1"
 
 #: Main.qml:46
-#, fuzzy, kde-format
-#| msgid "No accounts suitable for %1 yet"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Še ni primernih računov za %1"
 
 #: Main.qml:73
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Create New"
+#, kde-format
 msgctxt "@action:button Create a new account"
 msgid "Create New"
 msgstr "Ustvari novega"

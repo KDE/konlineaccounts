@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-07-23 17:16+0200\n"
+"PO-Revision-Date: 2026-09-30 15:52+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.04.3\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -34,23 +34,19 @@ msgid "Online Accounts"
 msgstr "Online accounts"
 
 #: Main.qml:38
-#, fuzzy, kde-format
-#| msgid "Choose account to use with %1"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
 msgstr "Kies het account dat u met %1 wilt gebruiken"
 
 #: Main.qml:46
-#, fuzzy, kde-format
-#| msgid "No accounts suitable for %1 yet"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Nog geen accounts geschikt voor %1"
 
 #: Main.qml:73
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Create New"
+#, kde-format
 msgctxt "@action:button Create a new account"
 msgid "Create New"
 msgstr "Nieuwe aanmaken"

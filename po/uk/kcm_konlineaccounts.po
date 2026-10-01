@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-08-08 13:09+0300\n"
+"PO-Revision-Date: 2026-09-30 17:18+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -24,29 +24,25 @@ msgid "Remove"
 msgstr "Вилучити"
 
 #: ui/Account.qml:41
-#, fuzzy, kde-format
-#| msgid "These applications are authorized to use %1:"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Цим програмам дозволено використання %1:"
 
 #: ui/Account.qml:63
-#, fuzzy, kde-format
-#| msgid "No applications are authorized to use %1"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "Жодній програмі не дозволено використання %1"
 
 #: ui/AddAccountDialog.qml:23
-#, fuzzy, kde-format
-#| msgid "Create Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
-msgstr "Створити обліковий запис"
+msgstr "Створення облікового запису"
 
 #: ui/App.qml:28
-#, fuzzy, kde-format
-#| msgid "Give access to relevant apps:"
+#, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "Надати доступ до відповідних програм:"
@@ -57,15 +53,13 @@ msgid "No relevant apps found"
 msgstr "Не знайдено відповідних програм"
 
 #: ui/App.qml:74
-#, fuzzy, kde-format
-#| msgid "Finish"
+#, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "Завершити"
 
 #: ui/Error.qml:25
-#, fuzzy, kde-format
-#| msgid "Setup failed: %1"
+#, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Помилка встановлення: %1"
@@ -74,7 +68,7 @@ msgstr "Помилка встановлення: %1"
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "Гаразд"
 
 #: ui/main.qml:26
 #, kde-format
