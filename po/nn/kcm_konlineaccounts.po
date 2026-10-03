@@ -102,6 +102,3 @@ msgstr "Tenesta for nettkontoar køyrer ikkje no"
 #, kde-format
 msgid "No accounts configured"
 msgstr "Ingen kontoar er sette opp"
-
-#~ msgid "Ok"
-#~ msgstr "OK"

@@ -1,75 +1,78 @@
-# SPDX-FileCopyrightText: 2026 Xavier Besnard <xavier.besnard@kde.org>
+# Copyright (C) 2026 This file is copyright:
+# This file is distributed under the same license as the konlineaccounts package.
+# SPDX-FileCopyrightText: 2026 Tommi Nieminen <translator@legisign.org>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-10-01 13:32+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: fr\n"
-"Language: fr\n"
+"PO-Revision-Date: 2026-08-16 21:45+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: ui/Account.qml:31
 #, kde-format
 msgid "Remove"
-msgstr "Supprimer"
+msgstr "Poista"
 
 #: ui/Account.qml:41
 #, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
-msgstr "Ces applications sont autorisées à utiliser %1 :"
+msgstr ""
 
 #: ui/Account.qml:63
 #, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
-msgstr "Aucune application n'est autorisée à utiliser %1."
+msgstr ""
 
 #: ui/AddAccountDialog.qml:23
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
-msgstr "Créer un compte"
+msgstr ""
 
 #: ui/App.qml:28
 #, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
-msgstr "Donner un accès aux applications pertinentes :"
+msgstr ""
 
 #: ui/App.qml:68
 #, kde-format
 msgid "No relevant apps found"
-msgstr "Aucune application pertinente n'a été trouvée."
+msgstr "Soveltuvia sovelluksia ei löytynyt"
 
 #: ui/App.qml:74
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
-msgstr "Terminer"
+msgstr ""
 
 #: ui/Error.qml:25
 #, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
-msgstr "Échec de la configuration : %1"
+msgstr ""
 
 #: ui/Error.qml:29
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr "Ok"
+msgstr ""
 
 #: ui/main.qml:26
 #, kde-format
 msgid "Add Account…"
-msgstr "Ajouter un compte…"
+msgstr "Lisää tili…"
 
 #: ui/main.qml:44
 #, kde-kuit-format
@@ -78,19 +81,15 @@ msgid ""
 "This feature is under development and is still considered experimental. "
 "Report all issues <link url='%1'>here</link>."
 msgstr ""
-"Cette fonctionnalité est en cours de développement. Elle est encore "
-"considérée comme expérimentale. Veuillez signaler tous les problèmes <link "
-"url='%1'>ici</link>."
+"Tämä ominaisuus on kehityksen alla ja yhä kokeellinen. Ilmoita kaikista "
+"ongelmista <link url='%1'>tänne</link>."
 
 #: ui/main.qml:60
 #, kde-format
 msgid "Online accounts service is not running"
-msgstr "Le service de comptes en ligne ne fonctionne pas."
+msgstr "Verkkotilipalvelu ei ole käynnissä"
 
 #: ui/main.qml:67
 #, kde-format
 msgid "No accounts configured"
-msgstr "Aucun compte n'est configuré."
-
-#~ msgid "Ok"
-#~ msgstr "Ok"
+msgstr "Ei määritettyjä tilejä"

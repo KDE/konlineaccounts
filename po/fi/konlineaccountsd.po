@@ -1,50 +1,52 @@
+# Copyright (C) 2026 This file is copyright:
+# This file is distributed under the same license as the konlineaccounts package.
+# SPDX-FileCopyrightText: 2026 Tommi Nieminen <translator@legisign.org>
 #
-# SPDX-FileCopyrightText: 2026 Xavier Besnard <xavier.besnard@kde.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-10-01 13:32+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: fr\n"
-"Language: fr\n"
+"PO-Revision-Date: 2026-08-16 21:48+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Xavier Besnard"
+msgstr "Tommi Nieminen"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "xavier.besnard@kde.org"
+msgstr "translator@legisign.org"
 
 #: Main.qml:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Online Accounts"
-msgstr "Comptes en ligne"
+msgstr "Verkkotilit"
 
 #: Main.qml:38
 #, kde-format
 msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
-msgstr "Sélectionnez le compte à utiliser avec %1"
+msgstr ""
 
 #: Main.qml:46
 #, kde-format
 msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
-msgstr "Aucun compte approprié pour %1 pour l'instant"
+msgstr ""
 
 #: Main.qml:73
 #, kde-format
 msgctxt "@action:button Create a new account"
 msgid "Create New"
-msgstr "Créer un nouveau"
+msgstr ""
