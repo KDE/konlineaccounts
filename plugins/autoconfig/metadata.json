@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Description": "Autoconfig",
+        "Icon": "kaccounts-nextcloud",
+        "Name": "Autoconfig"
+    },
+    "X-KOnlineAccounts-Provides": [
+        "pop3",
+        "imap",
+        "smtp",
+        "caldav",
+        "carddav"
+    ],
+    "X-KOnlineAccounts-SetupModule": "org.kde.konlineaccounts.autoconfig"
+}
