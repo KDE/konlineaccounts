@@ -7,9 +7,11 @@ project(konlineaccounts LANGUAGES CXX VERSION 0.1.0)
 
 find_package(ECM 6.19.0 REQUIRED)
 
+set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
+
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" OFF)
+option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" ON)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -26,6 +28,8 @@ find_package(Qt6 6.10 REQUIRED COMPONENTS Core DBus NetworkAuth WebEngineCore We
 find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n KCMUtils KIO DBusAddons Crash)
 
 find_package(KPim6GAPI REQUIRED)
+
+find_package(KPim6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
 
 find_package(QCoro6 REQUIRED COMPONENTS Core Network)
 
