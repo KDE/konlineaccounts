@@ -6,6 +6,12 @@
 
 #include "setupitem.h"
 
+SetupItem::SetupItem(QQuickItem *parent)
+    : QQuickItem(parent)
+{
+    setFlag(ItemIsFocusScope, true);
+}
+
 AccountBuilder *SetupItem::builder() const
 {
     return m_builder;
