@@ -11,7 +11,7 @@ set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" OFF)
+option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" ON)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)

@@ -103,7 +103,7 @@ SetupItem {
                         required property var serverList
                         required property string protocol
 
-                        visible: serverList.length !== 0
+                        visible: !serverList.empty
 
                         property bool expanded: true
 
@@ -130,18 +130,20 @@ SetupItem {
                                     id: group
                                 }
 
-                                Repeater {
-                                    model: serverList
-
-                                    Controls.RadioButton {
-                                        required property string modelData
+                                ListView {
+                                    model: card.serverList
+                                    implicitHeight: contentHeight
+                                    delegate: Controls.RadioButton {
+                                        required property url url
+                                        required property string host
+                                        required property int port
                                         required property int index
-                                        text: modelData
+                                        text: `${host}:${port}`
                                         checked: index === 0
                                         Controls.ButtonGroup.group: group
                                         leftPadding: indicator.width
                                         onClicked: {
-                                            autoconfig.setUrlSelectedForProtocol(protocol, modelData)
+                                            autoconfig.setUrlSelectedForProtocol(protocol, url)
                                         }
                                     }
                                 }
