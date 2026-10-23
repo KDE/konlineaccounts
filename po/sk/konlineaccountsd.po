@@ -32,23 +32,19 @@ msgid "Online Accounts"
 msgstr "Online účty"
 
 #: Main.qml:38
-#, fuzzy, kde-format
-#| msgid "Choose account to use with %1"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
 msgstr "Vyberte účet, ktorý sa má použiť s %1"
 
 #: Main.qml:46
-#, fuzzy, kde-format
-#| msgid "No accounts suitable for %1 yet"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Zatiaľ nie sú k dispozícii žiadne účty vhodné pre %1"
 
 #: Main.qml:73
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Create New"
+#, kde-format
 msgctxt "@action:button Create a new account"
 msgid "Create New"
 msgstr "Vytvoriť nový"
