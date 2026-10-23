@@ -35,4 +35,29 @@ public:
         Q_ASSERT(protocolToString.contains(protocol));
         return protocolToString[protocol];
     }
+
+    static QString authenticationTypeToString(const KAutoconfigServer::AuthenticationType &authentication)
+    {
+        std::map<KAutoconfigServer::AuthenticationType, QString> authenticationTypeToString{
+            {KAutoconfigServer::AuthenticationType::UnknownAuthentication, QStringLiteral("UnknownAuthentication")},
+            {KAutoconfigServer::AuthenticationType::Basic, QStringLiteral("Basic")},
+            {KAutoconfigServer::AuthenticationType::Digest, QStringLiteral("Digest")},
+            {KAutoconfigServer::AuthenticationType::PasswordCleartext, QStringLiteral("PasswordCleartext")},
+            {KAutoconfigServer::AuthenticationType::PasswordEncrypted, QStringLiteral("PasswordEncrypted")},
+        };
+        Q_ASSERT(authenticationTypeToString.contains(authentication));
+        return authenticationTypeToString[authentication];
+    }
+
+    static QString socketTypeToString(const KAutoconfigServer::SocketType &socket)
+    {
+        std::map<KAutoconfigServer::SocketType, QString> socketTypeToString{
+            {KAutoconfigServer::SocketType::UnknownSocketType, QStringLiteral("UnknownSocketType")},
+            {KAutoconfigServer::SocketType::Plain, QStringLiteral("Plain")},
+            {KAutoconfigServer::SocketType::SSL, QStringLiteral("SSL")},
+            {KAutoconfigServer::SocketType::STARTTLS, QStringLiteral("STARTTLS")},
+        };
+        Q_ASSERT(socketTypeToString.contains(socket));
+        return socketTypeToString[socket];
+    }
 };

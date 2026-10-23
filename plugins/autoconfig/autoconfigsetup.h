@@ -7,6 +7,7 @@
 #pragma once
 
 #include "accountbuilder.h"
+#include "autoconfighelper.h"
 #include "kautoconfigserver.h"
 
 #include <QAbstractListModel>
@@ -15,7 +16,6 @@
 class ServerListModel : public QAbstractListModel
 {
     Q_OBJECT
-    QML_ELEMENT
 
     Q_PROPERTY(bool empty READ isEmpty NOTIFY countChanged)
 
@@ -53,11 +53,11 @@ public:
         case PortRole:
             return item.url().port();
         case ProtocolRole:
-            return item.protocol();
+            return AutoconfigHelper::protocolToString(item.protocol());
         case AuthenticationTypeRole:
-            return item.authenticationType();
+            return AutoconfigHelper::authenticationTypeToString(item.authenticationType());
         case SocketTypeRole:
-            return item.socketType();
+            return AutoconfigHelper::socketTypeToString(item.socketType());
         default:
             return {};
         }

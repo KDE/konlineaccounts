@@ -143,8 +143,8 @@ void AutoconfigSetup::dumpServersToConfig()
     const auto dumpMailServer = [this](const KAutoconfigServer &server, KConfigGroup serverConfig) {
         serverConfig.writeEntry(u"hostname"_s, server.url().host());
         serverConfig.writeEntry(u"port"_s, server.url().port());
-        serverConfig.writeEntry(u"socket_type"_s, static_cast<int>(server.socketType()));
-        serverConfig.writeEntry(u"authentication_type"_s, static_cast<int>(server.authenticationType()));
+        serverConfig.writeEntry(u"socket_type"_s, AutoconfigHelper::socketTypeToString(server.socketType()));
+        serverConfig.writeEntry(u"authentication_type"_s, AutoconfigHelper::authenticationTypeToString(server.authenticationType()));
         serverConfig.writeEntry(u"username"_s, m_email);
     };
 
