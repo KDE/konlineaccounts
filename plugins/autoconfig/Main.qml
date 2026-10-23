@@ -155,8 +155,9 @@ SetupItem {
                                         required property url url
                                         required property string host
                                         required property int port
+                                        required property string authenticationType
                                         required property int index
-                                        text: `${host}:${port}`
+                                        text: `${host}:${port} - auth by ${authenticationType}`
                                         checked: index === 0
                                         Controls.ButtonGroup.group: group
                                         leftPadding: indicator.width
