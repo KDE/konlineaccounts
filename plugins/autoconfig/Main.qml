@@ -45,15 +45,12 @@ SetupItem {
         Component {
             id: form
 
-            ColumnLayout {
+            Kirigami.ScrollablePage {
                 anchors.fill: parent
 
                 Kirigami.FormLayout {
-                    id: form_info
-
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-
                     Controls.TextField {
                         id: email
                         placeholderText: "some_email@example.com"
@@ -69,22 +66,25 @@ SetupItem {
 
                     Controls.BusyIndicator {
                         id: busy
-
+                        visible: running
                         running: false
                     }
+                }
 
-                    Controls.Button {
-                        text: _tr.i18n("Add")
-
-                        enabled: !busy.running
-
-                        Layout.alignment: Qt.AlignRight
-
-                        onClicked: {
-                            busy.running = true;
-                            autoconfig.registerAutoconfig(email.text);
+                footer: Kirigami.ActionToolBar {
+                    alignment: Qt.AlignRight
+                    actions: [
+                        Kirigami.Action {
+                            text: _tr.i18n("Add")
+                            icon.name: "list-add"
+                            enabled: !busy.running
+                            shortcut: "Return"
+                            onTriggered: {
+                                busy.running = true;
+                                autoconfig.registerAutoconfig(email.text);
+                            }
                         }
-                    }
+                    ]
                 }
             }
         }
@@ -93,6 +93,24 @@ SetupItem {
             id: servers
             Kirigami.ScrollablePage {
                 anchors.fill: parent
+
+                footer: Kirigami.ActionToolBar {
+                    alignment: Qt.AlignRight
+                    actions: [
+                        Kirigami.Action {
+                            id: saveAction
+                            text: _tr.i18nc("@action:button", "Save")
+                            icon.name: "document-save"
+                            tooltip: "Saves the selected server configuration to a configuration file" // TODO: translation
+                            shortcut: "Return"
+                            enabled: !busy.running
+                            onTriggered: {
+                                busy.running = true;
+                                autoconfig.dumpServersToConfig();
+                            }
+                        }
+                    ]
+                }
 
                 ColumnLayout {
                     width: parent.width
@@ -183,18 +201,6 @@ SetupItem {
                         visible: running
                     }
 
-                    Controls.Button {
-                        text: _tr.i18n("Save")
-
-                        enabled: !busy.running
-
-                        Layout.alignment: Qt.AlignRight
-
-                        onClicked: {
-                            busy.running = true;
-                            autoconfig.dumpServersToConfig();
-                        }
-                    }
                 }
             }
         }
