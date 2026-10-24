@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2026 Mint <5602mint@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: konlineaccounts\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2026-09-30 00:49+0000\n"
+"PO-Revision-Date: 2026-10-17 22:07+0900\n"
+"Last-Translator: Mint <5602mint@gmail.com>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Generator: Lokalize 26.04.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Mint"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "5602mint@gmail.com"
+
+#: Main.qml:20
+#, kde-format
+msgctxt "@title:window"
+msgid "Online Accounts"
+msgstr "オンラインアカウント"
+
+#: Main.qml:38
+#, kde-format
+msgctxt "%1 is the name of an application"
+msgid "Choose account to use with %1"
+msgstr "%1 で使用するアカウントを選択"
+
+#: Main.qml:46
+#, kde-format
+msgctxt "%1 is the name of an application"
+msgid "No accounts suitable for %1 yet"
+msgstr "%1 に対応するアカウントはまだありません"
+
+#: Main.qml:73
+#, kde-format
+msgctxt "@action:button Create a new account"
+msgid "Create New"
+msgstr "新規作成"
