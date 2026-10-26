@@ -123,7 +123,7 @@ public:
 
     explicit AutoconfigSetup(QObject *parent = nullptr);
 
-    Q_INVOKABLE void registerAutoconfig(const QString &email);
+    Q_INVOKABLE void registerAutoconfig(const QString &email, const QString &password);
     Q_INVOKABLE void setProtocolEnabled(const QString &protocol_str, bool enabled);
     Q_INVOKABLE void setUrlSelectedForProtocol(const QString &protocol_str, const QUrl &url);
     Q_INVOKABLE void dumpServersToConfig();
@@ -171,6 +171,7 @@ private:
     AccountBuilder *m_builder;
 
     QString m_email;
+    QString m_password;
     QList<KAutoconfigServer> m_servers;
     ServerListModel *m_imapServers;
     ServerListModel *m_pop3Servers;

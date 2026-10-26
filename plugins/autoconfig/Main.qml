@@ -81,7 +81,7 @@ SetupItem {
                             shortcut: "Return"
                             onTriggered: {
                                 busy.running = true;
-                                autoconfig.registerAutoconfig(email.text);
+                                autoconfig.registerAutoconfig(email.text, password.text);
                             }
                         }
                     ]

@@ -30,10 +30,11 @@ AutoconfigSetup::AutoconfigSetup(QObject *parent)
 {
 }
 
-void AutoconfigSetup::registerAutoconfig(const QString &email)
+void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &password)
 {
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Registering autoconfig" << email;
     m_email = email;
+    m_password = password;
     const auto job = new KAccountAutoconfigJob(this);
     job->setEmail(email);
     job->start();
@@ -159,8 +160,20 @@ void AutoconfigSetup::dumpServersToConfig()
     dumpServersWithProtocolToConfig(KAutoconfigServer::CalDAV, dumpDavServer);
     dumpServersWithProtocolToConfig(KAutoconfigServer::CardDAV, dumpDavServer);
 
-    // auto job = new QKeychain::WritePasswordJob(u"konlineaccounts"_s);
-    m_builder->finish();
+    auto job = new QKeychain::WritePasswordJob(u"konlineaccounts"_s);
+    job->setKey(u"account/" + m_builder->accountId() + u"/autoconfig/password");
+    job->setTextData(m_password);
+
+    connect(job, &QKeychain::WritePasswordJob::finished, this, [this, job] {
+        if (job->error()) {
+            qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP)
+                << "Failed to write password for Autoconfig account" << m_builder->accountId() << job->errorString();
+            m_builder->fail(job->errorString());
+            return;
+        }
+        m_builder->finish();
+    });
+    job->start();
 }
 
 AccountBuilder *AutoconfigSetup::builder() const
