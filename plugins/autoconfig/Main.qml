@@ -41,7 +41,7 @@ SetupItem {
         Shortcut {
             sequences: ["Return", "Enter"]
             enabled: autoconfig.state === AutoconfigSetup.ServerSelection
-            onActivated: saveButton.save()
+            onActivated: loginTestButton.save()
         }
 
         footer: RowLayout {
@@ -67,20 +67,20 @@ SetupItem {
                 onClicked: addButton.add()
             }
             Controls.Button {
-                id: saveButton
+                id: loginTestButton
                 visible: autoconfig.state === AutoconfigSetup.ServerSelection
-                enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !saveJobRunningIndicator.running
+                enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !loginTestJobRunningIndicator.running
                 text: _tr.i18nc("@action:button", "Save")
                 icon.name: "document-save"
                 hoverEnabled: true
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
                 Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
-                function save() {
-                    saveJobRunningIndicator.running = true;
-                    autoconfig.dumpServersToConfig();
+                function loginTest() {
+                    loginTestJobRunningIndicator.running = true;
+                    autoconfig.performLoginTests();
                 }
-                onClicked: saveButton.save()
+                onClicked: loginTestButton.loginTest()
             }
         }
 
@@ -199,7 +199,7 @@ SetupItem {
                 }
 
                 Controls.BusyIndicator {
-                    id: saveJobRunningIndicator
+                    id: loginTestJobRunningIndicator
                     running: false
                     visible: running
                 }

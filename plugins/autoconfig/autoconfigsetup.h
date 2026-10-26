@@ -43,6 +43,7 @@ public:
     Q_INVOKABLE void registerAutoconfig(const QString &email, const QString &password);
     Q_INVOKABLE void setProtocolEnabled(const KAccountAutoconfigServer::Protocol &protocol, bool enabled);
     Q_INVOKABLE void setUrlSelectedForProtocol(const KAccountAutoconfigServer::Protocol &protocol, const QUrl &url);
+    Q_INVOKABLE void performLoginTests();
     Q_INVOKABLE void dumpServersToConfig();
 
     [[nodiscard]] AccountBuilder *builder() const;
