@@ -7,6 +7,7 @@
 #pragma once
 
 #include <KAccountAutoconfigServer>
+#include "logintestlistmodel.h"
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
@@ -28,6 +29,8 @@ class PIMAutoconfigSetup : public QObject
     Q_PROPERTY(ServerListModel *calDavServers READ calDavServers CONSTANT)
     Q_PROPERTY(ServerListModel *cardDavServers READ cardDavServers CONSTANT)
 
+    Q_PROPERTY(LoginTestListModel *loginTestResult READ loginTestResult CONSTANT)
+
 public:
     /**
      * This state is used directly in Main.qml to indicate the index of the page being displayed.
@@ -36,6 +39,7 @@ public:
     enum State {
         EmailForm = 0,
         ServerSelection,
+        LoginResult,
     };
     Q_ENUM(State);
 
@@ -44,6 +48,7 @@ public:
     Q_INVOKABLE void registerAutoconfig(const QString &email, const QString &password);
     Q_INVOKABLE void setProtocolEnabled(const KAccountAutoconfigServer::Protocol &protocol, bool enabled);
     Q_INVOKABLE void setUrlSelectedForProtocol(const KAccountAutoconfigServer::Protocol &protocol, const QUrl &url);
+    Q_INVOKABLE void performLoginTests();
     Q_INVOKABLE void dumpServersToConfig();
 
     [[nodiscard]] AccountBuilder *builder() const;
@@ -58,6 +63,8 @@ public:
     [[nodiscard]] ServerListModel *smtpServers() const;
     [[nodiscard]] ServerListModel *calDavServers() const;
     [[nodiscard]] ServerListModel *cardDavServers() const;
+
+    [[nodiscard]] LoginTestListModel *loginTestResult() const;
 
 Q_SIGNALS:
     void stateChanged();
@@ -80,6 +87,7 @@ private:
      * Used because we can't pass an entire KAccountAutoconfigServer to our QML view so we can't know which entry was selected
      */
     KAccountAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol);
+    std::optional<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol);
 
     void setState(const State &state);
 
@@ -96,4 +104,6 @@ private:
     ServerListModel *m_cardDavServers;
     QHash<KAccountAutoconfigServer::Protocol, QUrl> m_selectedUrlPerProtocol;
     QSet<KAccountAutoconfigServer::Protocol> m_enabledProtocols;
+
+    LoginTestListModel *m_loginTestResult;
 };

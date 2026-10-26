@@ -52,10 +52,25 @@ SetupItem {
                 }
             }
             Controls.Button {
-                id: saveButton
                 Layout.alignment: Qt.AlignRight
+                id: loginTestButton
                 visible: pimautoconfig.state === PIMAutoconfigSetup.ServerSelection
-                enabled: pimautoconfig.state === PIMAutoconfigSetup.ServerSelection && !saveJobRunningIndicator.running
+                // TODO: disable if no option is selected
+                enabled: pimautoconfig.state === PIMAutoconfigSetup.ServerSelection && !loginTestJobRunningIndicator.running
+                text: _tr.i18nc("@action:button", "Login")
+                hoverEnabled: true
+                Controls.ToolTip.visible: hovered
+                Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Attempt to login on the selected servers")
+                onClicked: {
+                    loginTestJobRunningIndicator.running = true;
+                    pimautoconfig.performLoginTests();
+                }
+            }
+            Controls.Button {
+                id: saveButton
+                visible: pimautoconfig.state === PIMAutoconfigSetup.LoginResult
+                enabled: pimautoconfig.state === PIMAutoconfigSetup.LoginResult && !saveRunningIndicator.running
                 text: _tr.i18nc("@action:button", "Save")
                 icon.name: "document-save"
                 hoverEnabled: true
@@ -63,7 +78,7 @@ SetupItem {
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
                 Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
                 onClicked: {
-                    saveJobRunningIndicator.running = true;
+                    saveRunningIndicator.running = true;
                     pimautoconfig.dumpServersToConfig();
                 }
             }
@@ -159,7 +174,74 @@ SetupItem {
                 }
 
                 Controls.BusyIndicator {
-                    id: saveJobRunningIndicator
+                    id: loginTestJobRunningIndicator
+                    running: false
+                    visible: running
+                }
+            }
+
+            ColumnLayout {
+                width: parent.width
+
+                Kirigami.Heading {
+                    Layout.fillWidth: true
+                    text: _tr.i18n("Summary for email: ") + autoconfig.email
+                }
+
+                Repeater {
+                    model: pimautoconfig.loginTestResult
+
+                    delegate: Kirigami.AbstractCard
+                    {
+                        required property string host
+                        required property int port
+                        required property string protocol
+                        required property string authenticationType
+                        required property string socketType
+                        required property bool loginResult
+                        required property string loginResultErrorString
+
+                        header: RowLayout {
+                            Kirigami.Heading {
+                                Layout.fillWidth: true
+                                text: Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol)
+                            }
+                        }
+
+                        contentItem: Kirigami.Padding {
+                            padding: Kirigami.Units.smallSpacing
+                            contentItem: ColumnLayout {
+                                RowLayout {
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: _tr.i18n(`Host: <b>${host}</b>`)
+                                    }
+                                    Text {
+                                        text: _tr.i18n(`Port: <b>${port}</b>`)
+                                    }
+                                }
+                                RowLayout {
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: _tr.i18n(`Authentication: <b>${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}</b>`)
+                                    }
+                                    Text {
+                                        text: _tr.i18n(`Socket: <b>${Qt.enumValueToString(KAccountAutoconfigServer.SocketType, socketType)}</b>`)
+                                    }
+                                }
+                                Kirigami.InlineMessage {
+                                    Layout.fillWidth: true
+                                    type: Kirigami.MessageType.Error
+                                    visible: !loginResult
+                                    text: _tr.i18n(loginResultErrorString)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Controls.BusyIndicator {
+                    id: saveRunningIndicator
                     running: false
                     visible: running
                 }
