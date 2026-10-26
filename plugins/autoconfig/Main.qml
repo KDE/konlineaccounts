@@ -109,7 +109,7 @@ SetupItem {
                             enabled: !busy.running
                             onTriggered: {
                                 busy.running = true;
-                                autoconfig.dumpServersToConfig();
+                                autoconfig.performLoginTests();
                             }
                         }
                     ]

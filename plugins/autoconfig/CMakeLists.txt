@@ -11,10 +11,24 @@ target_sources(autoconfig PRIVATE autoconfig.cpp autoconfiginterface.cpp)
 
 target_link_libraries(autoconfig PRIVATE accounts KPim6::AccountAutoconfig)
 
+set(LOGIN_TESTS_SRCS
+        logintestjob.cpp
+        logintestjob.h
+        logintestbase.cpp
+        logintestbase.h
+)
+
 ecm_add_qml_module(autoconfigsetup URI "org.kde.konlineaccounts.autoconfig" QML_FILES Main.qml GENERATE_PLUGIN_SOURCE DEPENDENCIES QtCore org.kde.konlineaccounts)
-target_sources(autoconfigsetup PRIVATE autoconfigsetup.cpp)
+target_sources(autoconfigsetup PRIVATE autoconfigsetup.cpp ${LOGIN_TESTS_SRCS})
 #target_link_libraries(autoconfigsetup PRIVATE Qt::NetworkAuth QCoro::Core QCoro::Network KF6::I18n KF6::KIOCore Qt6Keychain::Qt6Keychain accounts)
-target_link_libraries(autoconfigsetup PRIVATE KF6::I18n KPim6::AccountAutoconfig Qt6Keychain::Qt6Keychain Kirigami accounts)
+target_link_libraries(autoconfigsetup
+        PRIVATE
+        KF6::I18n
+        KPim6::AccountAutoconfig
+        Qt6Keychain::Qt6Keychain
+        Kirigami
+        accounts
+)
 ecm_finalize_qml_module(autoconfigsetup)
 
 ecm_qt_declare_logging_category(autoconfig

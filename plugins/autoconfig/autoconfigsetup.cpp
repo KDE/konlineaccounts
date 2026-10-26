@@ -7,6 +7,7 @@
 #include "autoconfigsetup.h"
 
 #include "autoconfighelper.h"
+#include "logintestjob.h"
 
 #include <QDBusReply>
 
@@ -70,6 +71,28 @@ void AutoconfigSetup::setUrlSelectedForProtocol(const QString &protocol_str, con
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Selected" << protocol << "server with url" << url;
 
     m_selectedUrlPerProtocol.insert(protocol, url);
+}
+
+void AutoconfigSetup::performLoginTests()
+{
+    const auto login = new LoginTestJob(this);
+    login->setEmail(m_email);
+    login->setPassword(m_password);
+
+    for (const KAutoconfigServer::Protocol protocol : m_enabledProtocols) {
+        const auto server = findServerFromUrlAndProtocol(m_selectedUrlPerProtocol[protocol], protocol);
+        login->addServer(server);
+    }
+
+    connect(login, &KJob::finished, this, [this, login] {
+        if (login->error() != KJob::NoError) {
+            m_builder->fail(login->errorString());
+            return;
+        }
+        qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Login test results:" << login->result;
+        // TODO: go to screen#3 and display the results
+    });
+    login->start();
 }
 
 void AutoconfigSetup::handleReply(const QList<KAutoconfigServer> &servers)
