@@ -53,13 +53,13 @@ SetupItem {
                     Layout.fillHeight: true
                     Controls.TextField {
                         id: email
-                        placeholderText: "some_email@example.com"
+                        placeholderText: _tr.i18n("some_email@example.com")
                         Kirigami.FormData.label: _tr.i18n("Email:")
                     }
 
                     Controls.TextField {
                         id: password
-                        placeholderText: "some_password"
+                        placeholderText: _tr.i18n("some_password")
                         echoMode: TextInput.Password
                         Kirigami.FormData.label: _tr.i18n("Password:")
                     }
@@ -101,7 +101,7 @@ SetupItem {
                             id: saveAction
                             text: _tr.i18nc("@action:button", "Save")
                             icon.name: "document-save"
-                            tooltip: "Saves the selected server configuration to a configuration file" // TODO: translation
+                            tooltip: _tr.i18nc("@tooltip", "Saves the selected server configuration to a configuration file")
                             shortcut: "Return"
                             enabled: !busy.running
                             onTriggered: {
@@ -128,7 +128,7 @@ SetupItem {
                         header: Kirigami.Heading {
                             Layout.fillWidth: true
                             Controls.CheckBox {
-                                text: protocol + " servers"
+                                text: protocol + _tr.i18n(" servers")
                                 checked: true
                                 onCheckedChanged: {
                                     card.expanded = checked;
@@ -157,7 +157,7 @@ SetupItem {
                                         required property int port
                                         required property string authenticationType
                                         required property int index
-                                        text: `${host}:${port} - auth by ${authenticationType}`
+                                        text: _tr.i18n(`${host}:${port} - auth by ${authenticationType}`)
                                         checked: index === 0
                                         Controls.ButtonGroup.group: group
                                         leftPadding: indicator.width
@@ -172,7 +172,7 @@ SetupItem {
 
                     Kirigami.Heading {
                         Layout.fillWidth: true
-                        text: "For email: " + autoconfig.email
+                        text: _tr.i18n("For email: ") + autoconfig.email
                     }
 
                     ProtocolServerSelect {
