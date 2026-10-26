@@ -48,9 +48,29 @@ void LoginTestJob::slotResult(KJob *job)
     }
 }
 
+IMAPLoginTest *LoginTestJob::mapAutoconfigServerToIMAP(const KAccountAutoconfigServer &server)
+{
+    auto const imap = new IMAPLoginTest(this);
+    imap->setHostname(server.url().host());
+    imap->setPort(server.url().port());
+    imap->setUsername(m_email);
+    imap->setPassword(m_password);
+    imap->setSocketType(server.socketType());
+    imap->setAuthenticationType(server.authenticationType());
+
+    connect(imap, &KJob::finished, this, [this, imap, server] {
+        result.emplace_back(QPair{server, QPair{imap->error() == NoError, imap->errorString()}});
+    });
+
+    return imap;
+}
+
 void LoginTestJob::addServer(const KAccountAutoconfigServer &server)
 {
     switch (server.protocol()) {
+    case KAccountAutoconfigServer::IMAP:
+        addSubjob(mapAutoconfigServerToIMAP(server));
+        break;
     // TODO: add other protocols
     default:
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported protocol" << server.protocol();
