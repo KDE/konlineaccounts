@@ -16,6 +16,8 @@ set(LOGIN_TESTS_SRCS
         logintestjob.h
         logintestbase.cpp
         logintestbase.h
+        imaplogintest.cpp
+        imaplogintest.h
 )
 
 ecm_add_qml_module(autoconfigsetup URI "org.kde.konlineaccounts.autoconfig" QML_FILES Main.qml GENERATE_PLUGIN_SOURCE DEPENDENCIES QtCore org.kde.konlineaccounts)
@@ -24,6 +26,7 @@ target_sources(autoconfigsetup PRIVATE autoconfigsetup.cpp ${LOGIN_TESTS_SRCS})
 target_link_libraries(autoconfigsetup
         PRIVATE
         KF6::I18n
+        KPim6::IMAP
         KPim6::AccountAutoconfig
         Qt6Keychain::Qt6Keychain
         Kirigami
