@@ -8,6 +8,7 @@
 
 #include "accountbuilder.h"
 #include "serverlistmodel.h"
+#include "logintests/logintestjob.h"
 
 #include <QDBusReply>
 
@@ -46,6 +47,7 @@ AutoconfigSetup::AutoconfigSetup(QObject *parent)
     , m_smtpServers(new ServerListModel(this))
     , m_calDavServers(new ServerListModel(this))
     , m_cardDavServers(new ServerListModel(this))
+    , m_loginTestResult(new LoginTestListModel(this))
 {
 }
 
@@ -106,6 +108,33 @@ void AutoconfigSetup::handleReply(const QList<KAccountAutoconfigServer> &servers
     setState(ServerSelection);
 }
 
+void AutoconfigSetup::performLoginTests()
+{
+    const auto login = new LoginTestJob(this);
+    login->setEmail(m_email);
+    login->setPassword(m_password);
+
+    for (const auto protocol : m_enabledProtocols) {
+        const auto server = findServerFromUrlAndProtocol(m_selectedUrlPerProtocol[protocol], protocol);
+        login->addServer(server);
+    }
+
+    connect(login, &KJob::finished, this, [this, login] {
+        // TODO: if some critical error happens, show some proper error to the user
+        // if (login->error() != KJob::NoError) {
+        //     m_builder->fail(login->errorString());
+        //     return;
+        // }
+        qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Login test results:" << login->result;
+
+        m_loginTestResult->setLoginTestResult(login->result);
+
+        m_state = LoginResult;
+        Q_EMIT stateChanged();
+    });
+    login->start();
+}
+
 void AutoconfigSetup::populateServersByProtocol()
 {
     m_imapServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::IMAP));
@@ -140,11 +169,15 @@ void AutoconfigSetup::populateSelectedUrlMap()
 template<typename F>
 void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback)
 {
-    if (!m_enabledProtocols.contains(protocol)) {
+    const auto result = getLoginResultForProtocol(protocol);
+    if (!result.has_value()) {
+        return;
+    }
+    const auto [server, loginResult] = result.value();
+    if (const auto [loginSuccess, _] = loginResult; !loginSuccess) {
         return;
     }
     auto serverConfig = m_builder->config().group(protocolToString(protocol));
-    const auto server = findServerFromUrlAndProtocol(m_selectedUrlPerProtocol[protocol], protocol);
     callback(server, serverConfig);
 }
 
@@ -230,6 +263,19 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
+std::optional<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
+{
+    auto result = m_loginTestResult->getItems() | std::views::filter([protocol](const auto &kv) {
+                      return kv.first.protocol() == protocol;
+                  });
+    QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> servers;
+    std::ranges::copy(result, std::back_inserter(servers));
+    if (servers.count() != 1) {
+        return {};
+    }
+    return servers.first();
+}
+
 ServerListModel *AutoconfigSetup::imapServers() const
 {
     return m_imapServers;
@@ -253,6 +299,11 @@ ServerListModel *AutoconfigSetup::calDavServers() const
 ServerListModel *AutoconfigSetup::cardDavServers() const
 {
     return m_cardDavServers;
+}
+
+LoginTestListModel *AutoconfigSetup::loginTestResult() const
+{
+    return m_loginTestResult;
 }
 
 #include "moc_autoconfigsetup.cpp"
