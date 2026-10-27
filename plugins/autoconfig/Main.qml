@@ -55,6 +55,9 @@ SetupItem {
                         id: email
                         placeholderText: _tr.i18n("some_email@example.com")
                         Kirigami.FormData.label: _tr.i18n("Email:")
+                        Component.onCompleted: {
+                            Qt.callLater(() => forceActiveFocus())
+                        }
                     }
 
                     Controls.TextField {
