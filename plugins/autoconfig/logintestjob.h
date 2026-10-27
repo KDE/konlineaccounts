@@ -24,7 +24,7 @@ public:
 
     void addServer(const KAutoconfigServer &server);
 
-    QHash<QUrl, bool> result;
+    QHash<QPair<QUrl, KAutoconfigServer::Protocol>, bool> result;
 
 protected:
     Q_SLOT void slotResult(KJob *job) override;

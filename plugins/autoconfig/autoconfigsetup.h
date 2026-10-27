@@ -100,6 +100,73 @@ private:
     QList<KAutoconfigServer> m_items;
 };
 
+class LoginTestListModel : public QAbstractListModel
+{
+    Q_OBJECT
+
+public:
+    LoginTestListModel(QObject *parent)
+        : QAbstractListModel(parent)
+    {
+    }
+
+    enum LoginTestDisplayRoles {
+        UrlRole = Qt::UserRole + 1,
+        ProtocolRole,
+        LoginResultRole,
+    };
+
+    int rowCount(const QModelIndex &parent) const override
+    {
+        return m_items.size();
+    }
+
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
+    {
+        if (!index.isValid() || index.row() >= m_items.size())
+            return {};
+
+        const auto &item = m_items.at(index.row());
+        switch (role) {
+        case UrlRole:
+            return item.first.first;
+        case ProtocolRole:
+            return AutoconfigHelper::protocolToString(item.first.second);
+        case LoginResultRole:
+            return item.second;
+        default:
+            return {};
+        }
+    }
+
+    QHash<int, QByteArray> roleNames() const override
+    {
+        return {
+            {UrlRole, "url"},
+            {ProtocolRole, "protocol"},
+            {LoginResultRole, "loginResult"},
+        };
+    }
+
+    void setLoginTestResult(const QHash<QPair<QUrl, KAutoconfigServer::Protocol>, bool> &result)
+    {
+        beginResetModel();
+        m_items.clear();
+        for (const auto [key, value] : result.asKeyValueRange()) {
+            m_items << QPair{key, value};
+        }
+        endResetModel();
+        Q_EMIT countChanged();
+    }
+
+Q_SIGNALS:
+    void countChanged();
+
+private:
+    using KeyType = QPair<QUrl, KAutoconfigServer::Protocol>;
+    QList<QPair<KeyType, bool>> m_items;
+};
+
 class AutoconfigSetup : public QObject
 {
     Q_OBJECT
@@ -107,17 +174,22 @@ class AutoconfigSetup : public QObject
 
     Q_PROPERTY(State state MEMBER m_state NOTIFY stateChanged)
     Q_PROPERTY(AccountBuilder *builder READ builder WRITE setBuilder NOTIFY builderChanged)
+
     Q_PROPERTY(QString email READ getEmail NOTIFY emailChanged)
+
     Q_PROPERTY(ServerListModel *imapServers READ getImapServers NOTIFY imapServersChanged)
     Q_PROPERTY(ServerListModel *pop3Servers READ getPop3Servers NOTIFY pop3ServersChanged)
     Q_PROPERTY(ServerListModel *smtpServers READ getSmtpServers NOTIFY smtpServersChanged)
     Q_PROPERTY(ServerListModel *calDavServers READ getCalDavServers NOTIFY calDavServersChanged)
     Q_PROPERTY(ServerListModel *cardDavServers READ getCardDavServers NOTIFY cardDavServersChanged)
 
+    Q_PROPERTY(LoginTestListModel *loginTestResult READ getLoginTestResult NOTIFY loginTestResultChanged)
+
 public:
     enum State {
         EmailForm = 0,
         ServerSelection,
+        LoginResult,
     };
     Q_ENUM(State);
 
@@ -140,6 +212,8 @@ public:
     ServerListModel *getCalDavServers();
     ServerListModel *getCardDavServers();
 
+    LoginTestListModel *getLoginTestResult();
+
 Q_SIGNALS:
     void stateChanged();
     void autoconfigJobFailed();
@@ -151,6 +225,8 @@ Q_SIGNALS:
     void smtpServersChanged();
     void calDavServersChanged();
     void cardDavServersChanged();
+
+    void loginTestResultChanged();
 
 private:
     void handleReply(const QList<KAutoconfigServer> &servers);
@@ -173,12 +249,16 @@ private:
 
     QString m_email;
     QString m_password;
+
     QList<KAutoconfigServer> m_servers;
     ServerListModel *m_imapServers;
     ServerListModel *m_pop3Servers;
     ServerListModel *m_smtpServers;
     ServerListModel *m_calDavServers;
     ServerListModel *m_cardDavServers;
+
     QHash<KAutoconfigServer::Protocol, QUrl> m_selectedUrlPerProtocol;
     QSet<KAutoconfigServer::Protocol> m_enabledProtocols;
+
+    LoginTestListModel *m_loginTestResult;
 };

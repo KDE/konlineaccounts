@@ -39,6 +39,8 @@ SetupItem {
             onStateChanged: {
                 if (state === AutoconfigSetup.ServerSelection)
                     loader.sourceComponent = servers;
+                else if (state === AutoconfigSetup.LoginResult)
+                    loader.sourceComponent = loginResults;
             }
         }
 
@@ -102,9 +104,8 @@ SetupItem {
                     actions: [
                         Kirigami.Action {
                             id: saveAction
-                            text: _tr.i18nc("@action:button", "Save")
-                            icon.name: "document-save"
-                            tooltip: _tr.i18nc("@tooltip", "Saves the selected server configuration to a configuration file")
+                            text: _tr.i18nc("@action:button", "Login")
+                            tooltip: _tr.i18nc("@tooltip", "Attempt to login on the selected servers")
                             shortcut: "Return"
                             enabled: !busy.running
                             onTriggered: {
@@ -204,7 +205,82 @@ SetupItem {
                         running: false
                         visible: running
                     }
+                }
+            }
+        }
 
+        Component {
+            id: loginResults
+            Kirigami.ScrollablePage {
+                anchors.fill: parent
+
+                footer: Kirigami.ActionToolBar {
+                    alignment: Qt.AlignRight
+                    actions: [
+                        Kirigami.Action {
+                            id: saveAction
+                            text: _tr.i18nc("@action:button", "Save")
+                            icon.name: "document-save"
+                            tooltip: _tr.i18nc("@tooltip", "Saves the selected server configuration to a configuration file")
+                            shortcut: "Return"
+                            enabled: !busy.running
+                            onTriggered: {
+                                busy.running = true;
+                                autoconfig.dumpServersToConfig();
+                            }
+                        }
+                    ]
+                }
+
+                ColumnLayout {
+                    width: parent.width
+
+                    component LoginTestResult: Kirigami.AbstractCard {
+                        id: card
+
+                        required property var results
+
+                        Component.onCompleted: {
+                            console.log(results)
+                        }
+
+                        contentItem: Item {
+                            implicitHeight: contentColumn.implicitHeight
+                            ColumnLayout {
+                                id: contentColumn
+
+                                ListView {
+                                    implicitHeight: contentHeight
+                                    model: card.results
+                                    delegate: Controls.Button {
+                                        required property url url
+                                        required property string protocol
+                                        required property bool loginResult
+                                        text: `${protocol}: ${url}`
+                                        icon.source: loginResult ? "emblem-success" : "emblem-error"
+                                        Component.onCompleted: {
+                                            console.log("Rendered item:", protocol, url, "Result:", loginResult)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Kirigami.Heading {
+                        Layout.fillWidth: true
+                        text: _tr.i18n("For email: ") + autoconfig.email
+                    }
+
+                    LoginTestResult {
+                        results: autoconfig.loginTestResult
+                    }
+
+                    Controls.BusyIndicator {
+                        id: busy
+                        running: false
+                        visible: running
+                    }
                 }
             }
         }

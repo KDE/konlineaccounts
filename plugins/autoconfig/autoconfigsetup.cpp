@@ -28,6 +28,7 @@ AutoconfigSetup::AutoconfigSetup(QObject *parent)
     , m_smtpServers(new ServerListModel(this))
     , m_calDavServers(new ServerListModel(this))
     , m_cardDavServers(new ServerListModel(this))
+    , m_loginTestResult(new LoginTestListModel(this))
 {
 }
 
@@ -85,12 +86,24 @@ void AutoconfigSetup::performLoginTests()
     }
 
     connect(login, &KJob::finished, this, [this, login] {
-        if (login->error() != KJob::NoError) {
-            m_builder->fail(login->errorString());
-            return;
-        }
+        // TODO: if some critical error happens, show some proper error to the user
+        // if (login->error() != KJob::NoError) {
+        //     m_builder->fail(login->errorString());
+        //     return;
+        // }
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Login test results:" << login->result;
-        // TODO: go to screen#3 and display the results
+
+        m_loginTestResult->setLoginTestResult(login->result);
+        // for dumping to config file, match the "enabled protocols" to only have the successful ones enabled
+        m_enabledProtocols.clear();
+        for (const auto [k, v] : login->result.asKeyValueRange()) {
+            if (v) {
+                m_enabledProtocols.insert(k.second);
+            }
+        }
+
+        m_state = LoginResult;
+        Q_EMIT stateChanged();
     });
     login->start();
 }
@@ -152,6 +165,7 @@ void AutoconfigSetup::populateSelectedUrlMap()
 template<typename F>
 void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAutoconfigServer::Protocol &protocol, F &&callback)
 {
+    // TODO: read from login results instead
     if (!m_enabledProtocols.contains(protocol)) {
         return;
     }
@@ -260,4 +274,9 @@ ServerListModel *AutoconfigSetup::getCalDavServers()
 ServerListModel *AutoconfigSetup::getCardDavServers()
 {
     return m_cardDavServers;
+}
+
+LoginTestListModel *AutoconfigSetup::getLoginTestResult()
+{
+    return m_loginTestResult;
 }

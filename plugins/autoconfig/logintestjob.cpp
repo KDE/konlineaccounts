@@ -10,10 +10,6 @@
 
 #include <qloggingcategory.h>
 
-namespace
-{
-}
-
 LoginTestJob::LoginTestJob(QObject *parent)
     : KCompositeJob(parent)
 {
