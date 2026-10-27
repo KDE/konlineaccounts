@@ -24,7 +24,7 @@ public:
 
     void addServer(const KAccountAutoconfigServer &server);
 
-    QHash<QUrl, bool> result;
+    QList<QPair<KAccountAutoconfigServer, bool>> result;
 
 protected:
     Q_SLOT void slotResult(KJob *job) override;

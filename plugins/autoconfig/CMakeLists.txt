@@ -15,6 +15,8 @@ set(AUTOCONFIG_SETUP_SRCS
         autoconfigsetup.cpp
         serverlistmodel.cpp
         serverlistmodel.h
+        logintestlistmodel.cpp
+        logintestlistmodel.h
         kaccountautoconfigserverforeign.h
 )
 

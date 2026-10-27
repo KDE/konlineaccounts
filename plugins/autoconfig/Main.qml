@@ -41,7 +41,12 @@ SetupItem {
         Shortcut {
             sequences: ["Return", "Enter"]
             enabled: autoconfig.state === AutoconfigSetup.ServerSelection
-            onActivated: loginTestButton.save()
+            onActivated: loginTestButton.loginTest()
+        }
+        Shortcut {
+            sequences: ["Return", "Enter"]
+            enabled: autoconfig.state === AutoconfigSetup.LoginResult
+            onActivated: saveButton.save()
         }
 
         footer: RowLayout {
@@ -69,18 +74,34 @@ SetupItem {
             Controls.Button {
                 id: loginTestButton
                 visible: autoconfig.state === AutoconfigSetup.ServerSelection
+                // TODO: disable if no option is selected
                 enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !loginTestJobRunningIndicator.running
+                text: _tr.i18nc("@action:button", "Login")
+                hoverEnabled: true
+                Controls.ToolTip.visible: hovered
+                Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Attempt to login on the selected servers")
+                function loginTest() {
+                    loginTestJobRunningIndicator.running = true;
+                    autoconfig.performLoginTests();
+                }
+                onClicked: loginTestButton.loginTest()
+            }
+            Controls.Button {
+                id: saveButton
+                visible: autoconfig.state === AutoconfigSetup.LoginResult
+                enabled: autoconfig.state === AutoconfigSetup.LoginResult && !saveRunningIndicator.running
                 text: _tr.i18nc("@action:button", "Save")
                 icon.name: "document-save"
                 hoverEnabled: true
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
                 Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
-                function loginTest() {
-                    loginTestJobRunningIndicator.running = true;
-                    autoconfig.performLoginTests();
+                function save() {
+                    saveRunningIndicator.running = true;
+                    autoconfig.dumpServersToConfig();
                 }
-                onClicked: loginTestButton.loginTest()
+                onClicked: saveButton.save()
             }
         }
 
@@ -200,6 +221,69 @@ SetupItem {
 
                 Controls.BusyIndicator {
                     id: loginTestJobRunningIndicator
+                    running: false
+                    visible: running
+                }
+            }
+
+            ColumnLayout {
+                width: parent.width
+
+                Kirigami.Heading {
+                    Layout.fillWidth: true
+                    text: _tr.i18n("Summary for email: ") + autoconfig.email
+                }
+
+                Repeater {
+                    model: autoconfig.loginTestResult
+
+                    delegate: Kirigami.AbstractCard
+                    {
+                        required property string host
+                        required property int port
+                        required property string protocol
+                        required property string authenticationType
+                        required property string socketType
+                        required property bool loginResult
+
+                        header: RowLayout {
+                            Kirigami.Heading {
+                                Layout.fillWidth: true
+                                text: Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol)
+                            }
+                            Kirigami.Icon {
+                                source: loginResult ? "emblem-success" : "emblem-error"
+                            }
+                        }
+
+                        contentItem: Kirigami.Padding {
+                            padding: Kirigami.Units.smallSpacing
+                            contentItem: ColumnLayout {
+                                RowLayout {
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: _tr.i18n(`Host: <b>${host}</b>`)
+                                    }
+                                    Text {
+                                        text: _tr.i18n(`Port: <b>${port}</b>`)
+                                    }
+                                }
+                                RowLayout {
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: _tr.i18n(`Authentication: <b>${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}</b>`)
+                                    }
+                                    Text {
+                                        text: _tr.i18n(`Socket: <b>${Qt.enumValueToString(KAccountAutoconfigServer.SocketType, socketType)}</b>`)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Controls.BusyIndicator {
+                    id: saveRunningIndicator
                     running: false
                     visible: running
                 }

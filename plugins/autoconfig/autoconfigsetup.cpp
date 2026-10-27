@@ -45,6 +45,7 @@ AutoconfigSetup::AutoconfigSetup(QObject *parent)
     , m_smtpServers(new ServerListModel(this))
     , m_calDavServers(new ServerListModel(this))
     , m_cardDavServers(new ServerListModel(this))
+    , m_loginTestResult(new LoginTestListModel(this))
 {
 }
 
@@ -113,12 +114,17 @@ void AutoconfigSetup::performLoginTests()
     }
 
     connect(login, &KJob::finished, this, [this, login] {
-        if (login->error() != KJob::NoError) {
-            m_builder->fail(login->errorString());
-            return;
-        }
+        // TODO: if some critical error happens, show some proper error to the user
+        // if (login->error() != KJob::NoError) {
+        //     m_builder->fail(login->errorString());
+        //     return;
+        // }
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Login test results:" << login->result;
-        // TODO: go to screen#3 and display the results
+
+        m_loginTestResult->setLoginTestResult(login->result);
+
+        m_state = LoginResult;
+        Q_EMIT stateChanged();
     });
     login->start();
 }
@@ -168,11 +174,11 @@ void AutoconfigSetup::populateSelectedUrlMap()
 template<typename F>
 void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback)
 {
-    if (!m_enabledProtocols.contains(protocol)) {
+    const auto [server, loginResult] = getLoginResultForProtocol(protocol);
+    if (!loginResult) {
         return;
     }
     auto serverConfig = m_builder->config().group(protocolToString(protocol));
-    const auto server = findServerFromUrlAndProtocol(m_selectedUrlPerProtocol[protocol], protocol);
     callback(server, serverConfig);
 }
 
@@ -258,6 +264,17 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
+QPair<KAccountAutoconfigServer, bool> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
+{
+    auto result = m_loginTestResult->getItems() | std::views::filter([protocol](const auto &kv) {
+                      return kv.first.protocol() == protocol;
+                  });
+    QList<QPair<KAccountAutoconfigServer, bool>> servers;
+    std::ranges::copy(result, std::back_inserter(servers));
+    Q_ASSERT(servers.count() == 1);
+    return servers.first();
+}
+
 const ServerListModel *AutoconfigSetup::imapServers() const
 {
     return m_imapServers;
@@ -281,4 +298,9 @@ const ServerListModel *AutoconfigSetup::calDavServers() const
 const ServerListModel *AutoconfigSetup::cardDavServers() const
 {
     return m_cardDavServers;
+}
+
+const LoginTestListModel *AutoconfigSetup::loginTestResult() const
+{
+    return m_loginTestResult;
 }

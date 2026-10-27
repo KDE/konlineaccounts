@@ -7,6 +7,7 @@
 #pragma once
 
 #include "accountbuilder.h"
+#include "logintestlistmodel.h"
 
 #include "serverlistmodel.h"
 
@@ -27,6 +28,8 @@ class AutoconfigSetup : public QObject
     Q_PROPERTY(const ServerListModel *calDavServers READ calDavServers NOTIFY calDavServersChanged)
     Q_PROPERTY(const ServerListModel *cardDavServers READ cardDavServers NOTIFY cardDavServersChanged)
 
+    Q_PROPERTY(const LoginTestListModel *loginTestResult READ loginTestResult NOTIFY loginTestResultChanged)
+
 public:
     /**
      * This state is used directly in Main.qml to indicate the index of the page being displayed.
@@ -35,6 +38,7 @@ public:
     enum State {
         EmailForm = 0,
         ServerSelection,
+        LoginResult,
     };
     Q_ENUM(State);
 
@@ -59,6 +63,8 @@ public:
     [[nodiscard]] const ServerListModel *calDavServers() const;
     [[nodiscard]] const ServerListModel *cardDavServers() const;
 
+    [[nodiscard]] const LoginTestListModel *loginTestResult() const;
+
 Q_SIGNALS:
     void stateChanged();
     void autoconfigJobFailed();
@@ -70,6 +76,8 @@ Q_SIGNALS:
     void smtpServersChanged();
     void calDavServersChanged();
     void cardDavServersChanged();
+
+    void loginTestResultChanged();
 
 private:
     void handleReply(const QList<KAccountAutoconfigServer> &servers);
@@ -86,6 +94,7 @@ private:
      * Used because we can't pass an entire KAccountAutoconfigServer to our QML view so we can't know which entry was selected
      */
     KAccountAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol);
+    QPair<KAccountAutoconfigServer, bool> getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol);
 
     State m_state = EmailForm;
     AccountBuilder *m_builder;
@@ -100,4 +109,6 @@ private:
     ServerListModel *m_cardDavServers;
     QHash<KAccountAutoconfigServer::Protocol, QUrl> m_selectedUrlPerProtocol;
     QSet<KAccountAutoconfigServer::Protocol> m_enabledProtocols;
+
+    LoginTestListModel *m_loginTestResult;
 };
