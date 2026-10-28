@@ -9,6 +9,8 @@ find_package(ECM 6.19.0 REQUIRED)
 
 set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
 
+set(KSMTP_LIB_VERSION "6.8.40")
+
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" ON)
@@ -30,6 +32,8 @@ find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n KCMUtils KIO DBusAdd
 find_package(KPim6GAPI REQUIRED)
 
 find_package(KPim6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
+
+find_package(KPim6SMTP ${KSMTP_LIB_VERSION} CONFIG REQUIRED)
 
 find_package(QCoro6 REQUIRED COMPONENTS Core Network)
 

@@ -6,6 +6,7 @@
 
 #pragma once
 #include "kautoconfigserver.h"
+#include "smtplogintestjob.h"
 
 #include <KCompositeJob>
 
@@ -32,4 +33,6 @@ protected:
 private:
     QString m_email;
     QString m_password;
+
+    SMTPLoginTestJob *mapAutoconfigServerToSMTP(const KAutoconfigServer &server);
 };

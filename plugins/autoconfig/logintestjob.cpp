@@ -41,11 +41,29 @@ void LoginTestJob::slotResult(KJob *job)
         emitResult();
     }
 }
+SMTPLoginTestJob *LoginTestJob::mapAutoconfigServerToSMTP(const KAutoconfigServer &server)
+{
+    const auto smtpJob = new SMTPLoginTestJob(this);
+    smtpJob->setHostname(server.url().host());
+    smtpJob->setPort(server.url().port());
+    smtpJob->setUsername(m_email);
+    smtpJob->setPassword(m_password);
+    smtpJob->setSocketType(server.socketType());
+    smtpJob->setAuthenticationType(server.authenticationType());
+
+    connect(smtpJob, &KJob::finished, this, [this, smtpJob, server] {
+        result.insert(QPair{server.url(), server.protocol()}, smtpJob->error() == NoError);
+    });
+
+    return smtpJob;
+}
 
 void LoginTestJob::addServer(const KAutoconfigServer &server)
 {
     switch (server.protocol()) {
-    // TODO: add protocols
+    case KAutoconfigServer::SMTP:
+        addSubjob(mapAutoconfigServerToSMTP(server));
+        break;
     default:
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported protocol" << server.protocol();
         break;
