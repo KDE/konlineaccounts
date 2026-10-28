@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-08-03 19:53+0200\n"
+"PO-Revision-Date: 2026-10-27 20:04+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -37,23 +37,19 @@ msgid "Online Accounts"
 msgstr "Nett­kontoar"
 
 #: Main.qml:38
-#, fuzzy, kde-format
-#| msgid "Choose account to use with %1"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "Choose account to use with %1"
 msgstr "Vel konto å bruka med %1"
 
 #: Main.qml:46
-#, fuzzy, kde-format
-#| msgid "No accounts suitable for %1 yet"
+#, kde-format
 msgctxt "%1 is the name of an application"
 msgid "No accounts suitable for %1 yet"
 msgstr "Finst ingen kontoar som kan brukast med %1 enno"
 
 #: Main.qml:73
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Create New"
+#, kde-format
 msgctxt "@action:button Create a new account"
 msgid "Create New"
-msgstr "Legg til ny"
+msgstr "Lag ny"

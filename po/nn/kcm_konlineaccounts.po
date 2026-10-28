@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-09-19 16:44+0200\n"
+"PO-Revision-Date: 2026-10-27 20:03+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.08.1\n"
+"X-Generator: Lokalize 26.11.70\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -26,29 +26,25 @@ msgid "Remove"
 msgstr "Fjern"
 
 #: ui/Account.qml:41
-#, fuzzy, kde-format
-#| msgid "These applications are authorized to use %1:"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "Desse programma har løyve til å bruka %1:"
 
 #: ui/Account.qml:63
-#, fuzzy, kde-format
-#| msgid "No applications are authorized to use %1"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "Ingen program har løyve til å bruka %1"
 
 #: ui/AddAccountDialog.qml:23
-#, fuzzy, kde-format
-#| msgid "Create Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
 msgstr "Opprett ein konto"
 
 #: ui/App.qml:28
-#, fuzzy, kde-format
-#| msgid "Give access to relevant apps:"
+#, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "Gje løyve til relevante program:"
@@ -59,15 +55,13 @@ msgid "No relevant apps found"
 msgstr "Fann ingen relevante program"
 
 #: ui/App.qml:74
-#, fuzzy, kde-format
-#| msgid "Finish"
+#, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "Fullfør"
 
 #: ui/Error.qml:25
-#, fuzzy, kde-format
-#| msgid "Setup failed: %1"
+#, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "Feil ved oppsett: %1"
@@ -76,7 +70,7 @@ msgstr "Feil ved oppsett: %1"
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ui/main.qml:26
 #, kde-format
