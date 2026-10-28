@@ -5,7 +5,9 @@
  */
 
 #pragma once
+
 #include "imaplogintest.h"
+#include "smtplogintestjob.h"
 #include <KAccountAutoconfigServer>
 
 #include <KCompositeJob>
@@ -29,9 +31,11 @@ public:
 
 protected:
     Q_SLOT void slotResult(KJob *job) override;
-    IMAPLoginTest *mapAutoconfigServerToIMAP(const KAccountAutoconfigServer &server);
 
 private:
     QString m_email;
     QString m_password;
+
+    IMAPLoginTest *mapAutoconfigServerToIMAP(const KAccountAutoconfigServer &server);
+    SMTPLoginTestJob *mapAutoconfigServerToSMTP(const KAccountAutoconfigServer &server);
 };

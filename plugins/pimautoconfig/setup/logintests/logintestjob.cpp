@@ -65,11 +65,31 @@ IMAPLoginTest *LoginTestJob::mapAutoconfigServerToIMAP(const KAccountAutoconfigS
     return imap;
 }
 
+SMTPLoginTestJob *LoginTestJob::mapAutoconfigServerToSMTP(const KAccountAutoconfigServer &server)
+{
+    const auto smtpJob = new SMTPLoginTestJob(this);
+    smtpJob->setHostname(server.url().host());
+    smtpJob->setPort(server.url().port());
+    smtpJob->setUsername(m_email);
+    smtpJob->setPassword(m_password);
+    smtpJob->setSocketType(server.socketType());
+    smtpJob->setAuthenticationType(server.authenticationType());
+
+    connect(smtpJob, &KJob::finished, this, [this, smtpJob, server] {
+        result.emplace_back(QPair{server, QPair{smtpJob->error() == NoError, smtpJob->errorString()}});
+    });
+
+    return smtpJob;
+}
+
 void LoginTestJob::addServer(const KAccountAutoconfigServer &server)
 {
     switch (server.protocol()) {
     case KAccountAutoconfigServer::IMAP:
         addSubjob(mapAutoconfigServerToIMAP(server));
+        break;
+    case KAccountAutoconfigServer::SMTP:
+        addSubjob(mapAutoconfigServerToSMTP(server));
         break;
     // TODO: add other protocols
     default:
