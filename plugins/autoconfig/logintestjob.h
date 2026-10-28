@@ -7,6 +7,7 @@
 #pragma once
 #include "kautoconfigserver.h"
 #include "smtplogintestjob.h"
+#include "poplogintestjob.h"
 
 #include <KCompositeJob>
 
@@ -35,4 +36,5 @@ private:
     QString m_password;
 
     SMTPLoginTestJob *mapAutoconfigServerToSMTP(const KAutoconfigServer &server);
+    POPLoginTestJob *mapAutoconfigServerToPOP(const KAutoconfigServer &server);
 };
