@@ -6,6 +6,7 @@
 
 #include "logintestjob.h"
 
+#include "davlogintestjob.h"
 #include "setup_debug.h"
 
 #include <qloggingcategory.h>
@@ -75,6 +76,20 @@ POPLoginTestJob *LoginTestJob::mapAutoconfigServerToPOP(const KAutoconfigServer 
     return popJob;
 }
 
+DAVLoginTestJob *LoginTestJob::mapAutoconfigServerToDAV(const KAutoconfigServer &server)
+{
+    const auto davJob = new DAVLoginTestJob(this);
+    davJob->setUrl(server.url());
+    davJob->setUsername(m_email);
+    davJob->setPassword(m_password);
+
+    connect(davJob, &KJob::finished, this, [this, davJob, server] {
+        result.insert(QPair{server.url(), server.protocol()}, davJob->error() == NoError);
+    });
+
+    return davJob;
+}
+
 void LoginTestJob::addServer(const KAutoconfigServer &server)
 {
     switch (server.protocol()) {
@@ -84,6 +99,9 @@ void LoginTestJob::addServer(const KAutoconfigServer &server)
     case KAutoconfigServer::POP3:
         addSubjob(mapAutoconfigServerToPOP(server));
         break;
+    case KAutoconfigServer::CalDAV:
+    case KAutoconfigServer::CardDAV:
+        addSubjob(mapAutoconfigServerToDAV(server));
     default:
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported protocol" << server.protocol();
         break;

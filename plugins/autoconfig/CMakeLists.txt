@@ -20,6 +20,8 @@ set(LOGIN_TESTS_SRCS
         smtplogintestjob.h
         poplogintestjob.cpp
         poplogintestjob.h
+        davlogintestjob.cpp
+        davlogintestjob.h
 )
 
 ecm_add_qml_module(autoconfigsetup URI "org.kde.konlineaccounts.autoconfig" QML_FILES Main.qml GENERATE_PLUGIN_SOURCE DEPENDENCIES QtCore org.kde.konlineaccounts)
@@ -30,6 +32,7 @@ target_link_libraries(autoconfigsetup
         KF6::I18n
         KPim6::SMTP
         KF6::POP
+        Qt6::Network
         KPim6::AccountAutoconfig
         Qt6Keychain::Qt6Keychain
         Kirigami

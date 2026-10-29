@@ -8,6 +8,7 @@
 #include "kautoconfigserver.h"
 #include "smtplogintestjob.h"
 #include "poplogintestjob.h"
+#include "davlogintestjob.h"
 
 #include <KCompositeJob>
 
@@ -37,4 +38,5 @@ private:
 
     SMTPLoginTestJob *mapAutoconfigServerToSMTP(const KAutoconfigServer &server);
     POPLoginTestJob *mapAutoconfigServerToPOP(const KAutoconfigServer &server);
+    DAVLoginTestJob *mapAutoconfigServerToDAV(const KAutoconfigServer &server);
 };
