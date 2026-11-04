@@ -7,97 +7,11 @@
 #pragma once
 
 #include "accountbuilder.h"
-#include "kaccountautoconfigserver.h"
+
+#include "serverlistmodel.h"
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
-
-class ServerListModel : public QAbstractListModel
-{
-    Q_OBJECT
-
-    Q_PROPERTY(bool empty READ isEmpty NOTIFY countChanged)
-
-public:
-    ServerListModel(QObject *parent)
-        : QAbstractListModel(parent)
-    {
-    }
-
-    enum ServerDisplayRoles {
-        UrlRole = Qt::UserRole + 1,
-        HostRole,
-        PortRole,
-        ProtocolRole,
-        AuthenticationTypeRole,
-        SocketTypeRole,
-    };
-
-    int rowCount(const QModelIndex &parent) const override
-    {
-        return m_items.size();
-    }
-
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
-    {
-        if (!index.isValid() || index.row() >= m_items.size())
-            return {};
-
-        const auto &item = m_items.at(index.row());
-        switch (role) {
-        case UrlRole:
-            return item.url();
-        case HostRole:
-            return item.url().host();
-        case PortRole:
-            return item.url().port();
-        case ProtocolRole:
-            return item.protocol();
-        case AuthenticationTypeRole:
-            return item.authenticationType();
-        case SocketTypeRole:
-            return item.socketType();
-        default:
-            return {};
-        }
-    }
-
-    QHash<int, QByteArray> roleNames() const override
-    {
-        return {
-            {UrlRole, "url"},
-            {HostRole, "host"},
-            {PortRole, "port"},
-            {ProtocolRole, "protocol"},
-            {AuthenticationTypeRole, "authenticationType"},
-            {SocketTypeRole, "socketType"},
-        };
-    }
-
-    void setServers(const QList<KAccountAutoconfigServer> &servers)
-    {
-        beginResetModel();
-        m_items = servers;
-        endResetModel();
-        Q_EMIT countChanged();
-    }
-
-    bool isEmpty() const
-    {
-        return m_items.isEmpty();
-    }
-
-    KAccountAutoconfigServer &first()
-    {
-        return m_items.first();
-    }
-
-Q_SIGNALS:
-    void countChanged();
-
-private:
-    QList<KAccountAutoconfigServer> m_items;
-};
 
 class AutoconfigSetup : public QObject
 {
