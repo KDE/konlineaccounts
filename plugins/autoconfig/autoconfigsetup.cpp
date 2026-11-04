@@ -10,7 +10,7 @@
 
 #include <QDBusReply>
 
-#include <KAccountAutoconfig/KAccountAutoconfigJob>
+#include <KAccountAutoconfigJob>
 
 #include "setup_debug.h"
 
