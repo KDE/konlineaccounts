@@ -13,7 +13,7 @@ target_link_libraries(autoconfig PRIVATE accounts KF6::AccountAutoconfig)
 
 ecm_add_qml_module(autoconfigsetup URI "org.kde.konlineaccounts.autoconfig" QML_FILES Main.qml GENERATE_PLUGIN_SOURCE DEPENDENCIES QtCore org.kde.konlineaccounts)
 target_sources(autoconfigsetup PRIVATE autoconfigsetup.cpp)
-target_link_libraries(autoconfigsetup PRIVATE KF6::I18n KF6::AccountAutoconfig Qt6Keychain::Qt6Keychain Kirigami accounts)
+target_link_libraries(autoconfigsetup PRIVATE KF6::I18n KF6::AccountAutoconfig Qt6Keychain::Qt6Keychain KF6::Kirigami accounts)
 ecm_finalize_qml_module(autoconfigsetup)
 
 ecm_qt_declare_logging_category(autoconfig
