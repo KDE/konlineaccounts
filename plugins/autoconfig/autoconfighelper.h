@@ -10,7 +10,7 @@
 class AutoconfigHelper
 {
 public:
-    static KAccountAutoconfigServer::Protocol parseProtocol(const QString &protocol)
+    static KAccountAutoconfigServer::Protocol protocolFromString(const QString &protocol)
     {
         std::map<QString, KAccountAutoconfigServer::Protocol> stringToProtocol{
             {QStringLiteral("IMAP"), KAccountAutoconfigServer::Protocol::IMAP},

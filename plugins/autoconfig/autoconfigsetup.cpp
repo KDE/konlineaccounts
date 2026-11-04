@@ -54,7 +54,7 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
 
 void AutoconfigSetup::setProtocolEnabled(const QString &protocol_str, bool enabled)
 {
-    const auto protocol = AutoconfigHelper::parseProtocol(protocol_str);
+    const auto protocol = AutoconfigHelper::protocolFromString(protocol_str);
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << (enabled ? "Enabling" : "Disabling") << protocol;
 
     if (enabled) {
@@ -66,7 +66,7 @@ void AutoconfigSetup::setProtocolEnabled(const QString &protocol_str, bool enabl
 
 void AutoconfigSetup::setUrlSelectedForProtocol(const QString &protocol_str, const QUrl &url)
 {
-    const auto protocol = AutoconfigHelper::parseProtocol(protocol_str);
+    const auto protocol = AutoconfigHelper::protocolFromString(protocol_str);
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Selected" << protocol << "server with url" << url;
 
     m_selectedUrlPerProtocol.insert(protocol, url);
