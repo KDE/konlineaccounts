@@ -20,7 +20,7 @@ class AutoconfigSetup : public QObject
 
     Q_PROPERTY(State state READ state NOTIFY stateChanged)
     Q_PROPERTY(AccountBuilder *builder READ builder WRITE setBuilder NOTIFY builderChanged)
-    Q_PROPERTY(QString email READ getEmail NOTIFY emailChanged)
+    Q_PROPERTY(const QString email READ email NOTIFY emailChanged)
     Q_PROPERTY(const ServerListModel *imapServers READ imapServers NOTIFY imapServersChanged)
     Q_PROPERTY(const ServerListModel *pop3Servers READ pop3Servers NOTIFY pop3ServersChanged)
     Q_PROPERTY(const ServerListModel *smtpServers READ smtpServers NOTIFY smtpServersChanged)
@@ -48,7 +48,7 @@ public:
     [[nodiscard]] AccountBuilder *builder() const;
     void setBuilder(AccountBuilder *builder);
 
-    QString getEmail();
+    [[nodiscard]] const QString &email() const;
 
     [[nodiscard]] State state() const;
 

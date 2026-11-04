@@ -33,34 +33,55 @@ SetupItem {
     Kirigami.ScrollablePage {
         anchors.fill: parent
 
-        footer: Kirigami.ActionToolBar {
-            alignment: Qt.AlignRight
-            actions: [
-                Kirigami.Action {
-                    visible: autoconfig.state === AutoconfigSetup.EmailForm
-                    enabled: autoconfig.state === AutoconfigSetup.EmailForm && !autoconfigJobRunningIndicator.running
-                    text: _tr.i18n("Add")
-                    icon.name: "list-add"
-                    shortcut: "Return"
-                    onTriggered: {
-                        autoconfigJobRunningIndicator.running = true;
-                        autoconfig.registerAutoconfig(email.text, password.text);
-                    }
-                },
-                Kirigami.Action {
-                    id: saveAction
-                    visible: autoconfig.state === AutoconfigSetup.ServerSelection
-                    enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !saveJobRunningIndicator.running
-                    text: _tr.i18nc("@action:button", "Save")
-                    icon.name: "document-save"
-                    tooltip: _tr.i18nc("@tooltip", "Saves the selected server configuration to a configuration file")
-                    shortcut: "Return"
-                    onTriggered: {
-                        saveJobRunningIndicator.running = true;
-                        autoconfig.dumpServersToConfig();
-                    }
+        Shortcut {
+            sequences: ["Return", "Enter"]
+            enabled: autoconfig.state === AutoconfigSetup.EmailForm
+            onActivated: addButton.add()
+        }
+        Shortcut {
+            sequences: ["Return", "Enter"]
+            enabled: autoconfig.state === AutoconfigSetup.ServerSelection
+            onActivated: saveButton.save()
+        }
+
+        footer: RowLayout {
+            Layout.fillWidth: true
+            Item {
+                // spacer
+                Layout.fillWidth: true
+            }
+            Controls.Button {
+                id: addButton
+                visible: autoconfig.state === AutoconfigSetup.EmailForm
+                enabled: autoconfig.state === AutoconfigSetup.EmailForm && !autoconfigJobRunningIndicator.running
+                text: _tr.i18n("Add")
+                icon.name: "list-add"
+                hoverEnabled: true
+                Controls.ToolTip.visible: hovered
+                Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Search for servers that can be configured with the given email address")
+                function add() {
+                    autoconfigJobRunningIndicator.running = true;
+                    autoconfig.registerAutoconfig(email.text, password.text);
                 }
-            ]
+                onClicked: addButton.add()
+            }
+            Controls.Button {
+                id: saveButton
+                visible: autoconfig.state === AutoconfigSetup.ServerSelection
+                enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !saveJobRunningIndicator.running
+                text: _tr.i18nc("@action:button", "Save")
+                icon.name: "document-save"
+                hoverEnabled: true
+                Controls.ToolTip.visible: hovered
+                Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
+                function save() {
+                    saveJobRunningIndicator.running = true;
+                    autoconfig.dumpServersToConfig();
+                }
+                onClicked: saveButton.save()
+            }
         }
 
         StackLayout {

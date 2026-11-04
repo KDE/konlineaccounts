@@ -50,6 +50,7 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
 {
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Registering autoconfig" << email;
     m_email = email;
+    Q_EMIT emailChanged();
     m_password = password;
     const auto job = new KAccountAutoconfigJob(this);
     job->setEmail(email);
@@ -201,7 +202,7 @@ void AutoconfigSetup::setBuilder(AccountBuilder *builder)
     Q_EMIT builderChanged();
 }
 
-QString AutoconfigSetup::getEmail()
+const QString &AutoconfigSetup::email() const
 {
     return m_email;
 }
