@@ -206,6 +206,11 @@ QString AutoconfigSetup::getEmail()
     return m_email;
 }
 
+AutoconfigSetup::State AutoconfigSetup::state() const
+{
+    return m_state;
+}
+
 QList<KAccountAutoconfigServer> AutoconfigSetup::getServersWithProtocol(KAccountAutoconfigServer::Protocol protocol)
 {
     auto result = m_servers | std::views::filter([protocol](const KAccountAutoconfigServer &server) {
@@ -228,27 +233,27 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
-ServerListModel *AutoconfigSetup::getImapServers()
+const ServerListModel *AutoconfigSetup::imapServers() const
 {
     return m_imapServers;
 }
 
-ServerListModel *AutoconfigSetup::getPop3Servers()
+const ServerListModel *AutoconfigSetup::pop3Servers() const
 {
     return m_pop3Servers;
 }
 
-ServerListModel *AutoconfigSetup::getSmtpServers()
+const ServerListModel *AutoconfigSetup::smtpServers() const
 {
     return m_smtpServers;
 }
 
-ServerListModel *AutoconfigSetup::getCalDavServers()
+const ServerListModel *AutoconfigSetup::calDavServers() const
 {
     return m_calDavServers;
 }
 
-ServerListModel *AutoconfigSetup::getCardDavServers()
+const ServerListModel *AutoconfigSetup::cardDavServers() const
 {
     return m_cardDavServers;
 }
