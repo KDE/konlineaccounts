@@ -52,9 +52,9 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
     });
 }
 
-void AutoconfigSetup::setProtocolEnabled(const QString &protocol_str, bool enabled)
+void AutoconfigSetup::setProtocolEnabled(const QString &protocolStr, bool enabled)
 {
-    const auto protocol = AutoconfigHelper::protocolFromString(protocol_str);
+    const auto protocol = AutoconfigHelper::protocolFromString(protocolStr);
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << (enabled ? "Enabling" : "Disabling") << protocol;
 
     if (enabled) {

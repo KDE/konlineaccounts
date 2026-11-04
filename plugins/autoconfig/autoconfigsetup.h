@@ -127,8 +127,8 @@ public:
     explicit AutoconfigSetup(QObject *parent = nullptr);
 
     Q_INVOKABLE void registerAutoconfig(const QString &email, const QString &password);
-    Q_INVOKABLE void setProtocolEnabled(const QString &protocol_str, bool enabled);
-    Q_INVOKABLE void setUrlSelectedForProtocol(const QString &protocol_str, const QUrl &url);
+    Q_INVOKABLE void setProtocolEnabled(const QString &protocolStr, bool enabled);
+    Q_INVOKABLE void setUrlSelectedForProtocol(const QString &protocolStr, const QUrl &url);
     Q_INVOKABLE void dumpServersToConfig();
 
     AccountBuilder *builder() const;
