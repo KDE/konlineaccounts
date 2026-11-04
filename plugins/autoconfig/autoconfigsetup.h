@@ -7,7 +7,7 @@
 #pragma once
 
 #include "accountbuilder.h"
-#include "autoconfighelper.h"
+#include "kaccountautoconfigserver.h"
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
@@ -52,11 +52,11 @@ public:
         case PortRole:
             return item.url().port();
         case ProtocolRole:
-            return AutoconfigHelper::protocolToString(item.protocol());
+            return item.protocol();
         case AuthenticationTypeRole:
-            return AutoconfigHelper::authenticationTypeToString(item.authenticationType());
+            return item.authenticationType();
         case SocketTypeRole:
-            return AutoconfigHelper::socketTypeToString(item.socketType());
+            return item.socketType();
         default:
             return {};
         }
@@ -127,8 +127,8 @@ public:
     explicit AutoconfigSetup(QObject *parent = nullptr);
 
     Q_INVOKABLE void registerAutoconfig(const QString &email, const QString &password);
-    Q_INVOKABLE void setProtocolEnabled(const QString &protocolStr, bool enabled);
-    Q_INVOKABLE void setUrlSelectedForProtocol(const QString &protocolStr, const QUrl &url);
+    Q_INVOKABLE void setProtocolEnabled(const KAccountAutoconfigServer::Protocol &protocol, bool enabled);
+    Q_INVOKABLE void setUrlSelectedForProtocol(const KAccountAutoconfigServer::Protocol &protocol, const QUrl &url);
     Q_INVOKABLE void dumpServersToConfig();
 
     AccountBuilder *builder() const;

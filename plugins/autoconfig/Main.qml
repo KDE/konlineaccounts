@@ -6,6 +6,7 @@
 
 pragma ComponentBehavior: Bound
 
+import QtQml
 import QtQuick
 import QtQuick.Controls as Controls
 import QtQuick.Layouts
@@ -99,7 +100,7 @@ SetupItem {
                     id: card
 
                     required property var serverList
-                    required property string protocol
+                    required property int protocol
 
                     visible: !serverList.empty
 
@@ -108,7 +109,7 @@ SetupItem {
                     header: Kirigami.Heading {
                         Layout.fillWidth: true
                         Controls.CheckBox {
-                            text: protocol + _tr.i18n(" servers")
+                            text: _tr.i18n(Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol) + " servers")
                             checked: true
                             onCheckedChanged: {
                                 card.expanded = checked;
@@ -137,7 +138,7 @@ SetupItem {
                                     required property int port
                                     required property string authenticationType
                                     required property int index
-                                    text: _tr.i18n(`${host}:${port} - auth by ${authenticationType}`)
+                                    text: _tr.i18n(`${host}:${port} - auth by ${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}`)
                                     checked: index === 0
                                     Controls.ButtonGroup.group: group
                                     leftPadding: indicator.width
@@ -157,23 +158,23 @@ SetupItem {
 
                 ProtocolServerSelect {
                     serverList: autoconfig.imapServers
-                    protocol: "IMAP"
+                    protocol: KAccountAutoconfigServer.IMAP
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.pop3Servers
-                    protocol: "POP3"
+                    protocol: KAccountAutoconfigServer.POP3
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.smtpServers
-                    protocol: "SMTP"
+                    protocol: KAccountAutoconfigServer.SMTP
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.calDavServers
-                    protocol: "CalDAV"
+                    protocol: KAccountAutoconfigServer.CalDAV
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.cardDavServers
-                    protocol: "CardDAV"
+                    protocol: KAccountAutoconfigServer.CardDAV
                 }
 
                 Controls.BusyIndicator {

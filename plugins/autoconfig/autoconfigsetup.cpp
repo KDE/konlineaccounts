@@ -6,8 +6,6 @@
 
 #include "autoconfigsetup.h"
 
-#include "autoconfighelper.h"
-
 #include <QDBusReply>
 
 #include <KAccountAutoconfigJob>
@@ -18,6 +16,24 @@
 #include <qt6keychain/keychain.h>
 
 using namespace Qt::Literals;
+
+namespace
+{
+QString protocolToString(KAccountAutoconfigServer::Protocol protocol)
+{
+    return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::Protocol>().valueToKey(protocol));
+}
+
+QString socketTypeToString(KAccountAutoconfigServer::SocketType socket)
+{
+    return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::SocketType>().valueToKey(socket));
+}
+
+QString authenticationTypeToString(KAccountAutoconfigServer::AuthenticationType authentication)
+{
+    return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::AuthenticationType>().valueToKey(authentication));
+}
+}
 
 AutoconfigSetup::AutoconfigSetup(QObject *parent)
     : QObject(parent)
@@ -52,9 +68,8 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
     });
 }
 
-void AutoconfigSetup::setProtocolEnabled(const QString &protocolStr, bool enabled)
+void AutoconfigSetup::setProtocolEnabled(const KAccountAutoconfigServer::Protocol &protocol, bool enabled)
 {
-    const auto protocol = AutoconfigHelper::protocolFromString(protocolStr);
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << (enabled ? "Enabling" : "Disabling") << protocol;
 
     if (enabled) {
@@ -64,9 +79,8 @@ void AutoconfigSetup::setProtocolEnabled(const QString &protocolStr, bool enable
     }
 }
 
-void AutoconfigSetup::setUrlSelectedForProtocol(const QString &protocol_str, const QUrl &url)
+void AutoconfigSetup::setUrlSelectedForProtocol(const KAccountAutoconfigServer::Protocol &protocol, const QUrl &url)
 {
-    const auto protocol = AutoconfigHelper::protocolFromString(protocol_str);
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Selected" << protocol << "server with url" << url;
 
     m_selectedUrlPerProtocol.insert(protocol, url);
@@ -132,7 +146,7 @@ void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigSe
     if (!m_enabledProtocols.contains(protocol)) {
         return;
     }
-    auto serverConfig = m_builder->config().group(AutoconfigHelper::protocolToString(protocol));
+    auto serverConfig = m_builder->config().group(protocolToString(protocol));
     const auto server = findServerFromUrlAndProtocol(m_selectedUrlPerProtocol[protocol], protocol);
     callback(server, serverConfig);
 }
@@ -144,8 +158,8 @@ void AutoconfigSetup::dumpServersToConfig()
     const auto dumpMailServer = [this](const KAccountAutoconfigServer &server, KConfigGroup serverConfig) {
         serverConfig.writeEntry(u"hostname"_s, server.url().host());
         serverConfig.writeEntry(u"port"_s, server.url().port());
-        serverConfig.writeEntry(u"socket_type"_s, AutoconfigHelper::socketTypeToString(server.socketType()));
-        serverConfig.writeEntry(u"authentication_type"_s, AutoconfigHelper::authenticationTypeToString(server.authenticationType()));
+        serverConfig.writeEntry(u"socket_type"_s, socketTypeToString(server.socketType()));
+        serverConfig.writeEntry(u"authentication_type"_s, authenticationTypeToString(server.authenticationType()));
         serverConfig.writeEntry(u"username"_s, m_email);
     };
 
