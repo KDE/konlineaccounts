@@ -39,7 +39,7 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
     job->setEmail(email);
     job->start();
 
-    connect(job, &KJob::result, this, [this, email, job]() {
+    connect(job, &KJob::result, this, [this, job] {
         if (job->error()) {
             qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Job failed" << job->errorString();
             // Q_EMIT autoconfigJobFailed();
