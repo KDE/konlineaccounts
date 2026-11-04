@@ -114,6 +114,10 @@ class AutoconfigSetup : public QObject
     Q_PROPERTY(ServerListModel *cardDavServers READ getCardDavServers NOTIFY cardDavServersChanged)
 
 public:
+    /**
+     * This state is used directly in Main.qml to indicate the index of the page being displayed.
+     * Make sure to match the enum index with the child index in the StackLayout.
+     */
     enum State {
         EmailForm = 0,
         ServerSelection,
