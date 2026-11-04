@@ -72,7 +72,7 @@ void AutoconfigSetup::setUrlSelectedForProtocol(const QString &protocol_str, con
     m_selectedUrlPerProtocol.insert(protocol, url);
 }
 
-void AutoconfigSetup::handleReply(const QList<KAutoconfigServer> &servers)
+void AutoconfigSetup::handleReply(const QList<KAccountAutoconfigServer> &servers)
 {
     qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Found servers:" << servers;
     m_servers = servers;
@@ -87,15 +87,15 @@ void AutoconfigSetup::handleReply(const QList<KAutoconfigServer> &servers)
 void AutoconfigSetup::populateServersByProtocol()
 {
     // TODO: better notifications than one each time
-    m_imapServers->setServers(getServersWithProtocol(KAutoconfigServer::IMAP));
+    m_imapServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::IMAP));
     Q_EMIT imapServersChanged();
-    m_pop3Servers->setServers(getServersWithProtocol(KAutoconfigServer::POP3));
+    m_pop3Servers->setServers(getServersWithProtocol(KAccountAutoconfigServer::POP3));
     Q_EMIT pop3ServersChanged();
-    m_smtpServers->setServers(getServersWithProtocol(KAutoconfigServer::SMTP));
+    m_smtpServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::SMTP));
     Q_EMIT smtpServersChanged();
-    m_calDavServers->setServers(getServersWithProtocol(KAutoconfigServer::CalDAV));
+    m_calDavServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::CalDAV));
     Q_EMIT calDavServersChanged();
-    m_cardDavServers->setServers(getServersWithProtocol(KAutoconfigServer::CardDAV));
+    m_cardDavServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::CardDAV));
     Q_EMIT cardDavServersChanged();
 }
 
@@ -105,29 +105,29 @@ void AutoconfigSetup::populateSelectedUrlMap()
     m_selectedUrlPerProtocol.clear();
 
     if (!m_imapServers->isEmpty()) {
-        m_enabledProtocols.insert(KAutoconfigServer::Protocol::IMAP);
-        m_selectedUrlPerProtocol.insert(KAutoconfigServer::Protocol::IMAP, m_imapServers->first().url());
+        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::IMAP);
+        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::IMAP, m_imapServers->first().url());
     }
     if (!m_pop3Servers->isEmpty()) {
-        m_enabledProtocols.insert(KAutoconfigServer::Protocol::POP3);
-        m_selectedUrlPerProtocol.insert(KAutoconfigServer::Protocol::POP3, m_pop3Servers->first().url());
+        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::POP3);
+        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::POP3, m_pop3Servers->first().url());
     }
     if (!m_smtpServers->isEmpty()) {
-        m_enabledProtocols.insert(KAutoconfigServer::Protocol::SMTP);
-        m_selectedUrlPerProtocol.insert(KAutoconfigServer::Protocol::SMTP, m_smtpServers->first().url());
+        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::SMTP);
+        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::SMTP, m_smtpServers->first().url());
     }
     if (!m_calDavServers->isEmpty()) {
-        m_enabledProtocols.insert(KAutoconfigServer::Protocol::CalDAV);
-        m_selectedUrlPerProtocol.insert(KAutoconfigServer::Protocol::CalDAV, m_calDavServers->first().url());
+        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::CalDAV);
+        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::CalDAV, m_calDavServers->first().url());
     }
     if (!m_cardDavServers->isEmpty()) {
-        m_enabledProtocols.insert(KAutoconfigServer::Protocol::CardDAV);
-        m_selectedUrlPerProtocol.insert(KAutoconfigServer::Protocol::CardDAV, m_cardDavServers->first().url());
+        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::CardDAV);
+        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::CardDAV, m_cardDavServers->first().url());
     }
 }
 
 template<typename F>
-void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAutoconfigServer::Protocol &protocol, F &&callback)
+void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback)
 {
     if (!m_enabledProtocols.contains(protocol)) {
         return;
@@ -141,7 +141,7 @@ void AutoconfigSetup::dumpServersToConfig()
 {
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Dumping selected servers to config" << m_selectedUrlPerProtocol << "to" << m_builder->config().name();
 
-    const auto dumpMailServer = [this](const KAutoconfigServer &server, KConfigGroup serverConfig) {
+    const auto dumpMailServer = [this](const KAccountAutoconfigServer &server, KConfigGroup serverConfig) {
         serverConfig.writeEntry(u"hostname"_s, server.url().host());
         serverConfig.writeEntry(u"port"_s, server.url().port());
         serverConfig.writeEntry(u"socket_type"_s, AutoconfigHelper::socketTypeToString(server.socketType()));
@@ -149,16 +149,16 @@ void AutoconfigSetup::dumpServersToConfig()
         serverConfig.writeEntry(u"username"_s, m_email);
     };
 
-    const auto dumpDavServer = [this](const KAutoconfigServer &server, KConfigGroup serverConfig) {
+    const auto dumpDavServer = [this](const KAccountAutoconfigServer &server, KConfigGroup serverConfig) {
         serverConfig.writeEntry(u"url"_s, server.url());
         serverConfig.writeEntry(u"username"_s, m_email);
     };
 
-    dumpServersWithProtocolToConfig(KAutoconfigServer::IMAP, dumpMailServer);
-    dumpServersWithProtocolToConfig(KAutoconfigServer::POP3, dumpMailServer);
-    dumpServersWithProtocolToConfig(KAutoconfigServer::SMTP, dumpMailServer);
-    dumpServersWithProtocolToConfig(KAutoconfigServer::CalDAV, dumpDavServer);
-    dumpServersWithProtocolToConfig(KAutoconfigServer::CardDAV, dumpDavServer);
+    dumpServersWithProtocolToConfig(KAccountAutoconfigServer::IMAP, dumpMailServer);
+    dumpServersWithProtocolToConfig(KAccountAutoconfigServer::POP3, dumpMailServer);
+    dumpServersWithProtocolToConfig(KAccountAutoconfigServer::SMTP, dumpMailServer);
+    dumpServersWithProtocolToConfig(KAccountAutoconfigServer::CalDAV, dumpDavServer);
+    dumpServersWithProtocolToConfig(KAccountAutoconfigServer::CardDAV, dumpDavServer);
 
     auto job = new QKeychain::WritePasswordJob(u"konlineaccounts"_s);
     job->setKey(u"account/" + m_builder->accountId() + u"/autoconfig/password");
@@ -192,23 +192,23 @@ QString AutoconfigSetup::getEmail()
     return m_email;
 }
 
-QList<KAutoconfigServer> AutoconfigSetup::getServersWithProtocol(KAutoconfigServer::Protocol protocol)
+QList<KAccountAutoconfigServer> AutoconfigSetup::getServersWithProtocol(KAccountAutoconfigServer::Protocol protocol)
 {
-    auto result = m_servers | std::views::filter([protocol](const KAutoconfigServer &server) {
+    auto result = m_servers | std::views::filter([protocol](const KAccountAutoconfigServer &server) {
                       return server.protocol() == protocol;
                   });
 
-    QList<KAutoconfigServer> servers;
+    QList<KAccountAutoconfigServer> servers;
     std::ranges::copy(result, std::back_inserter(servers));
     return servers;
 }
 
-KAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUrl &url, KAutoconfigServer::Protocol protocol)
+KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol)
 {
-    auto result = m_servers | std::views::filter([protocol, url](const KAutoconfigServer &server) {
+    auto result = m_servers | std::views::filter([protocol, url](const KAccountAutoconfigServer &server) {
                       return server.protocol() == protocol && server.url() == url;
                   });
-    QList<KAutoconfigServer> servers;
+    QList<KAccountAutoconfigServer> servers;
     std::ranges::copy(result, std::back_inserter(servers));
     Q_ASSERT(servers.count() == 1);
     return servers.first();

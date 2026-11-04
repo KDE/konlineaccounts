@@ -29,7 +29,7 @@ find_package(KF6 REQUIRED COMPONENTS CoreAddons Config I18n KCMUtils KIO DBusAdd
 
 find_package(KPim6GAPI REQUIRED)
 
-find_package(KPim6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
+find_package(KF6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
 
 find_package(QCoro6 REQUIRED COMPONENTS Core Network)
 

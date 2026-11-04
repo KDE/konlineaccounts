@@ -8,7 +8,6 @@
 
 #include "accountbuilder.h"
 #include "autoconfighelper.h"
-#include "kautoconfigserver.h"
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
@@ -75,7 +74,7 @@ public:
         };
     }
 
-    void setServers(const QList<KAutoconfigServer> &servers)
+    void setServers(const QList<KAccountAutoconfigServer> &servers)
     {
         beginResetModel();
         m_items = servers;
@@ -88,7 +87,7 @@ public:
         return m_items.isEmpty();
     }
 
-    KAutoconfigServer &first()
+    KAccountAutoconfigServer &first()
     {
         return m_items.first();
     }
@@ -97,7 +96,7 @@ Q_SIGNALS:
     void countChanged();
 
 private:
-    QList<KAutoconfigServer> m_items;
+    QList<KAccountAutoconfigServer> m_items;
 };
 
 class AutoconfigSetup : public QObject
@@ -152,32 +151,32 @@ Q_SIGNALS:
     void cardDavServersChanged();
 
 private:
-    void handleReply(const QList<KAutoconfigServer> &servers);
+    void handleReply(const QList<KAccountAutoconfigServer> &servers);
     void populateServersByProtocol();
     void populateSelectedUrlMap();
     template<typename F>
-    void dumpServersWithProtocolToConfig(const KAutoconfigServer::Protocol &protocol, F &&callback);
+    void dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback);
     /**
      * Filters the servers returned by KAccountAutoconfigJob
      */
-    QList<KAutoconfigServer> getServersWithProtocol(KAutoconfigServer::Protocol protocol);
+    QList<KAccountAutoconfigServer> getServersWithProtocol(KAccountAutoconfigServer::Protocol protocol);
     /**
      * Finds a server from the list of servers returned by KAccountAutoconfigJob by its protocol/url
-     * Used because we can't pass an entire KAutoconfigServer to our QML view so we can't know which entry was selected
+     * Used because we can't pass an entire KAccountAutoconfigServer to our QML view so we can't know which entry was selected
      */
-    KAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAutoconfigServer::Protocol protocol);
+    KAccountAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol);
 
     State m_state = EmailForm;
     AccountBuilder *m_builder;
 
     QString m_email;
     QString m_password;
-    QList<KAutoconfigServer> m_servers;
+    QList<KAccountAutoconfigServer> m_servers;
     ServerListModel *m_imapServers;
     ServerListModel *m_pop3Servers;
     ServerListModel *m_smtpServers;
     ServerListModel *m_calDavServers;
     ServerListModel *m_cardDavServers;
-    QHash<KAutoconfigServer::Protocol, QUrl> m_selectedUrlPerProtocol;
-    QSet<KAutoconfigServer::Protocol> m_enabledProtocols;
+    QHash<KAccountAutoconfigServer::Protocol, QUrl> m_selectedUrlPerProtocol;
+    QSet<KAccountAutoconfigServer::Protocol> m_enabledProtocols;
 };
