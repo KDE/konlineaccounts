@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-08-16 21:45+0300\n"
+"PO-Revision-Date: 2026-10-06 13:14+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -26,25 +26,25 @@ msgstr "Poista"
 #, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
-msgstr ""
+msgstr "Nämä sovellukset on todennettu käyttämään: %1:"
 
 #: ui/Account.qml:63
 #, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
-msgstr ""
+msgstr "Mitään sovelluksia ei ole todennettu käyttämään: %1"
 
 #: ui/AddAccountDialog.qml:23
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
-msgstr ""
+msgstr "Luo tili"
 
 #: ui/App.qml:28
 #, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
-msgstr ""
+msgstr "Anna pääsy soveltuville sovelluksille:"
 
 #: ui/App.qml:68
 #, kde-format
@@ -55,19 +55,19 @@ msgstr "Soveltuvia sovelluksia ei löytynyt"
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
-msgstr ""
+msgstr "Viimeistele"
 
 #: ui/Error.qml:25
 #, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
-msgstr ""
+msgstr "Asetus epäonnistui: %1"
 
 #: ui/Error.qml:29
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ui/main.qml:26
 #, kde-format
