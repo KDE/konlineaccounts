@@ -45,14 +45,16 @@ QVariant ServerListModel::data(const QModelIndex &index, int role) const
 
 QHash<int, QByteArray> ServerListModel::roleNames() const
 {
-    return {
+    auto parentRoles = QAbstractListModel::roleNames();
+    parentRoles.insert(QHash<int, QByteArray>{
         {UrlRole, "url"},
         {HostRole, "host"},
         {PortRole, "port"},
         {ProtocolRole, "protocol"},
         {AuthenticationTypeRole, "authenticationType"},
         {SocketTypeRole, "socketType"},
-    };
+    });
+    return parentRoles;
 }
 
 void ServerListModel::setServers(const QList<KAccountAutoconfigServer> &servers)
