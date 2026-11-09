@@ -16,7 +16,7 @@ class ServerListModel : public QAbstractListModel
     Q_PROPERTY(bool empty READ isEmpty NOTIFY emptyChanged)
 
 public:
-    ServerListModel(QObject *parent);
+    explicit ServerListModel(QObject *parent = nullptr);
 
     enum ServerDisplayRoles {
         UrlRole = Qt::UserRole + 1,
