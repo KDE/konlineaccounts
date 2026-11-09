@@ -87,6 +87,12 @@ void AutoconfigSetup::setUrlSelectedForProtocol(const KAccountAutoconfigServer::
     m_selectedUrlPerProtocol.insert(protocol, url);
 }
 
+void AutoconfigSetup::setState(const State &state)
+{
+    m_state = state;
+    Q_EMIT stateChanged();
+}
+
 void AutoconfigSetup::handleReply(const QList<KAccountAutoconfigServer> &servers)
 {
     qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Found servers:" << servers;
@@ -95,8 +101,7 @@ void AutoconfigSetup::handleReply(const QList<KAccountAutoconfigServer> &servers
 
     populateSelectedUrlMap();
 
-    m_state = ServerSelection;
-    Q_EMIT stateChanged();
+    setState(ServerSelection);
 }
 
 void AutoconfigSetup::populateServersByProtocol()

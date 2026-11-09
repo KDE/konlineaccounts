@@ -86,6 +86,8 @@ private:
      */
     KAccountAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol);
 
+    void setState(const State &state);
+
     State m_state = EmailForm;
     AccountBuilder *m_builder;
 
