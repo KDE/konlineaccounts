@@ -35,12 +35,9 @@ SetupItem {
 
         footer: RowLayout {
             Layout.fillWidth: true
-            Item {
-                // spacer
-                Layout.fillWidth: true
-            }
             Controls.Button {
                 id: addButton
+                Layout.alignment: Qt.AlignRight
                 visible: autoconfig.state === AutoconfigSetup.EmailForm
                 enabled: autoconfig.state === AutoconfigSetup.EmailForm && !autoconfigJobRunningIndicator.running
                 text: _tr.i18n("Add")
@@ -57,6 +54,7 @@ SetupItem {
             }
             Controls.Button {
                 id: saveButton
+                Layout.alignment: Qt.AlignRight
                 visible: autoconfig.state === AutoconfigSetup.ServerSelection
                 enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !saveJobRunningIndicator.running
                 text: _tr.i18nc("@action:button", "Save")
