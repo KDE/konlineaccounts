@@ -26,6 +26,12 @@ QVariant ServerListModel::data(const QModelIndex &index, int role) const
 
     const auto &item = m_items.at(index.row());
     switch (role) {
+    case Qt::DisplayRole:
+        return QStringLiteral("KAccountAutoconfigServer{url: %1, protocol: %2, authenticationType: %3, socketType: %4}")
+            .arg(item.url().toDisplayString())
+            .arg(item.protocol())
+            .arg(item.authenticationType())
+            .arg(item.socketType());
     case UrlRole:
         return item.url();
     case HostRole:
