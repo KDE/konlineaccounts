@@ -36,7 +36,9 @@ QVariant LoginTestListModel::data(const QModelIndex &index, int role) const
     case SocketTypeRole:
         return server.socketType();
     case LoginResultRole:
-        return loginResult;
+        return loginResult.first;
+    case LoginResultErrorStringRole:
+        return loginResult.second;
     default:
         return {};
     }
@@ -52,10 +54,11 @@ QHash<int, QByteArray> LoginTestListModel::roleNames() const
         {AuthenticationTypeRole, "authenticationType"},
         {SocketTypeRole, "socketType"},
         {LoginResultRole, "loginResult"},
+        {LoginResultErrorStringRole, "loginResultErrorString"},
     };
 }
 
-void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, bool>> &result)
+void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> &result)
 {
     beginResetModel();
     m_items = result;
@@ -63,7 +66,7 @@ void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfig
     Q_EMIT countChanged();
 }
 
-QList<QPair<KAccountAutoconfigServer, bool>> LoginTestListModel::getItems() const
+QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> LoginTestListModel::getItems() const
 {
     return m_items;
 }

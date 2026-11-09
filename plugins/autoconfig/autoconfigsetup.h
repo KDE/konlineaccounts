@@ -94,7 +94,7 @@ private:
      * Used because we can't pass an entire KAccountAutoconfigServer to our QML view so we can't know which entry was selected
      */
     KAccountAutoconfigServer findServerFromUrlAndProtocol(const QUrl &url, KAccountAutoconfigServer::Protocol protocol);
-    QPair<KAccountAutoconfigServer, bool> getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol);
+    QPair<KAccountAutoconfigServer, QPair<bool, QString>> getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol);
 
     State m_state = EmailForm;
     AccountBuilder *m_builder;

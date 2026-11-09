@@ -24,6 +24,7 @@ public:
         AuthenticationTypeRole,
         SocketTypeRole,
         LoginResultRole,
+        LoginResultErrorStringRole,
     };
 
     [[nodiscard]] int rowCount(const QModelIndex &parent) const override;
@@ -32,13 +33,13 @@ public:
 
     [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
-    void setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, bool>> &result);
+    void setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> &result);
 
-    [[nodiscard]] QList<QPair<KAccountAutoconfigServer, bool>> getItems() const;
+    [[nodiscard]] QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> getItems() const;
 
 Q_SIGNALS:
     void countChanged();
 
 private:
-    QList<QPair<KAccountAutoconfigServer, bool>> m_items;
+    QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> m_items;
 };

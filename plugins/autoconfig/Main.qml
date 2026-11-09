@@ -245,14 +245,12 @@ SetupItem {
                         required property string authenticationType
                         required property string socketType
                         required property bool loginResult
+                        required property string loginResultErrorString
 
                         header: RowLayout {
                             Kirigami.Heading {
                                 Layout.fillWidth: true
                                 text: Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol)
-                            }
-                            Kirigami.Icon {
-                                source: loginResult ? "emblem-success" : "emblem-error"
                             }
                         }
 
@@ -276,6 +274,12 @@ SetupItem {
                                     Text {
                                         text: _tr.i18n(`Socket: <b>${Qt.enumValueToString(KAccountAutoconfigServer.SocketType, socketType)}</b>`)
                                     }
+                                }
+                                Kirigami.InlineMessage {
+                                    Layout.fillWidth: true
+                                    type: Kirigami.MessageType.Error
+                                    visible: !loginResult
+                                    text: _tr.i18n(loginResultErrorString)
                                 }
                             }
                         }

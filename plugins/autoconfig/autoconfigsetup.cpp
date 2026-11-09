@@ -175,7 +175,7 @@ template<typename F>
 void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback)
 {
     const auto [server, loginResult] = getLoginResultForProtocol(protocol);
-    if (!loginResult) {
+    if (!loginResult.first) {
         return;
     }
     auto serverConfig = m_builder->config().group(protocolToString(protocol));
@@ -264,12 +264,12 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
-QPair<KAccountAutoconfigServer, bool> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
+QPair<KAccountAutoconfigServer, QPair<bool, QString>> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
 {
     auto result = m_loginTestResult->getItems() | std::views::filter([protocol](const auto &kv) {
                       return kv.first.protocol() == protocol;
                   });
-    QList<QPair<KAccountAutoconfigServer, bool>> servers;
+    QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> servers;
     std::ranges::copy(result, std::back_inserter(servers));
     Q_ASSERT(servers.count() == 1);
     return servers.first();
