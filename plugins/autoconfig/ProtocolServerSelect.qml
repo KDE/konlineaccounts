@@ -49,6 +49,12 @@ Kirigami.AbstractCard {
     contentItem: Item {
         implicitHeight: root.expanded ? contentColumn.implicitHeight : 0
 
+        Behavior on implicitHeight {
+            NumberAnimation {
+                duration: Kirigami.Units.longDuration
+            }
+        }
+
         ColumnLayout {
             id: contentColumn
             visible: root.expanded
