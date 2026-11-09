@@ -13,12 +13,15 @@ ServerListModel::ServerListModel(QObject *parent)
 
 int ServerListModel::rowCount(const QModelIndex &parent) const
 {
+    if (parent.isValid()) {
+        return 0;
+    }
     return m_items.size();
 }
 
 QVariant ServerListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || index.row() >= m_items.size())
+    if (!index.isValid() || index.parent().isValid() || index.column() != 0 || index.row() < 0 || index.row() >= m_items.size())
         return {};
 
     const auto &item = m_items.at(index.row());
