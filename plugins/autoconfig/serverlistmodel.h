@@ -13,7 +13,7 @@ class ServerListModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool empty READ isEmpty NOTIFY countChanged)
+    Q_PROPERTY(bool empty READ isEmpty NOTIFY emptyChanged)
 
 public:
     ServerListModel(QObject *parent);
@@ -38,7 +38,7 @@ public:
     KAccountAutoconfigServer &first();
 
 Q_SIGNALS:
-    void countChanged();
+    void emptyChanged();
 
 private:
     QList<KAccountAutoconfigServer> m_items;
