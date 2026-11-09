@@ -1,6 +1,9 @@
 # SPDX-FileCopyrightText: 2026 Kenny Lorin <kenny.lorin@enioka.com>
 # SPDX-License-Identifier: BSD-2-Clause
 
+set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
+find_package(KF6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
+
 find_package(KF6 REQUIRED COMPONENTS Kirigami)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"konlineaccounts_autoconfig\")
