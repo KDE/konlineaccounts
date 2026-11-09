@@ -35,7 +35,6 @@ public:
 
     void setServers(const QList<KAccountAutoconfigServer> &servers);
     [[nodiscard]] bool isEmpty() const;
-    KAccountAutoconfigServer &first();
 
 Q_SIGNALS:
     void emptyChanged();

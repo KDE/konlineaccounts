@@ -119,26 +119,21 @@ void AutoconfigSetup::populateSelectedUrlMap()
     m_enabledProtocols.clear();
     m_selectedUrlPerProtocol.clear();
 
-    if (!m_imapServers->isEmpty()) {
-        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::IMAP);
-        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::IMAP, m_imapServers->first().url());
-    }
-    if (!m_pop3Servers->isEmpty()) {
-        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::POP3);
-        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::POP3, m_pop3Servers->first().url());
-    }
-    if (!m_smtpServers->isEmpty()) {
-        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::SMTP);
-        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::SMTP, m_smtpServers->first().url());
-    }
-    if (!m_calDavServers->isEmpty()) {
-        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::CalDAV);
-        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::CalDAV, m_calDavServers->first().url());
-    }
-    if (!m_cardDavServers->isEmpty()) {
-        m_enabledProtocols.insert(KAccountAutoconfigServer::Protocol::CardDAV);
-        m_selectedUrlPerProtocol.insert(KAccountAutoconfigServer::Protocol::CardDAV, m_cardDavServers->first().url());
-    }
+    const auto enableFirstInProtocol = [this](const KAccountAutoconfigServer::Protocol &protocol) {
+        const auto servers = getServersWithProtocol(protocol);
+        if (servers.isEmpty()) {
+            return;
+        }
+
+        m_enabledProtocols.insert(protocol);
+        m_selectedUrlPerProtocol.insert(protocol, servers.first().url());
+    };
+
+    enableFirstInProtocol(KAccountAutoconfigServer::Protocol::IMAP);
+    enableFirstInProtocol(KAccountAutoconfigServer::Protocol::POP3);
+    enableFirstInProtocol(KAccountAutoconfigServer::Protocol::SMTP);
+    enableFirstInProtocol(KAccountAutoconfigServer::Protocol::CalDAV);
+    enableFirstInProtocol(KAccountAutoconfigServer::Protocol::CardDAV);
 }
 
 template<typename F>

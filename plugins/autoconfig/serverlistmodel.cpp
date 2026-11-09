@@ -67,8 +67,3 @@ bool ServerListModel::isEmpty() const
 {
     return m_items.isEmpty();
 }
-
-KAccountAutoconfigServer &ServerListModel::first()
-{
-    return m_items.first();
-}
