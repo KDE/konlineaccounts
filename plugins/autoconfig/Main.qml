@@ -110,61 +110,6 @@ SetupItem {
             ColumnLayout {
                 width: parent.width
 
-                component ProtocolServerSelect: Kirigami.AbstractCard {
-                    id: card
-
-                    required property var serverList
-                    required property int protocol
-
-                    visible: !serverList.empty
-
-                    property bool expanded: true
-
-                    header: Kirigami.Heading {
-                        Layout.fillWidth: true
-                        Controls.CheckBox {
-                            text: _tr.i18n(Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol) + " servers")
-                            checked: true
-                            onCheckedChanged: {
-                                card.expanded = checked;
-                                autoconfig.setProtocolEnabled(protocol, checked)
-                            }
-                        }
-                    }
-
-                    contentItem: Item {
-                        implicitHeight: card.expanded ? contentColumn.implicitHeight : 0
-
-                        ColumnLayout {
-                            id: contentColumn
-                            visible: card.expanded
-
-                            Controls.ButtonGroup {
-                                id: group
-                            }
-
-                            ListView {
-                                model: card.serverList
-                                implicitHeight: contentHeight
-                                delegate: Controls.RadioButton {
-                                    required property url url
-                                    required property string host
-                                    required property int port
-                                    required property string authenticationType
-                                    required property int index
-                                    text: _tr.i18n(`${host}:${port} - auth by ${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}`)
-                                    checked: index === 0
-                                    Controls.ButtonGroup.group: group
-                                    leftPadding: indicator.width
-                                    onClicked: {
-                                        autoconfig.setUrlSelectedForProtocol(protocol, url)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
                 Kirigami.Heading {
                     Layout.fillWidth: true
                     text: _tr.i18n("For email: ") + autoconfig.email
@@ -173,22 +118,52 @@ SetupItem {
                 ProtocolServerSelect {
                     serverList: autoconfig.imapServers
                     protocol: KAccountAutoconfigServer.IMAP
+                    onProtocolEnableChanged: (protocol, enabled) => {
+                        autoconfig.setProtocolEnabled(protocol, enabled)
+                    }
+                    onUrlSelectedForProtocol: (protocol, selectedUrl) => {
+                        autoconfig.setUrlSelectedForProtocol(protocol, selectedUrl)
+                    }
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.pop3Servers
                     protocol: KAccountAutoconfigServer.POP3
+                    onProtocolEnableChanged: (protocol, enabled) => {
+                        autoconfig.setProtocolEnabled(protocol, enabled)
+                    }
+                    onUrlSelectedForProtocol: (protocol, selectedUrl) => {
+                        autoconfig.setUrlSelectedForProtocol(protocol, selectedUrl)
+                    }
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.smtpServers
                     protocol: KAccountAutoconfigServer.SMTP
+                    onProtocolEnableChanged: (protocol, enabled) => {
+                        autoconfig.setProtocolEnabled(protocol, enabled)
+                    }
+                    onUrlSelectedForProtocol: (protocol, selectedUrl) => {
+                        autoconfig.setUrlSelectedForProtocol(protocol, selectedUrl)
+                    }
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.calDavServers
                     protocol: KAccountAutoconfigServer.CalDAV
+                    onProtocolEnableChanged: (protocol, enabled) => {
+                        autoconfig.setProtocolEnabled(protocol, enabled)
+                    }
+                    onUrlSelectedForProtocol: (protocol, selectedUrl) => {
+                        autoconfig.setUrlSelectedForProtocol(protocol, selectedUrl)
+                    }
                 }
                 ProtocolServerSelect {
                     serverList: autoconfig.cardDavServers
                     protocol: KAccountAutoconfigServer.CardDAV
+                    onProtocolEnableChanged: (protocol, enabled) => {
+                        autoconfig.setProtocolEnabled(protocol, enabled)
+                    }
+                    onUrlSelectedForProtocol: (protocol, selectedUrl) => {
+                        autoconfig.setUrlSelectedForProtocol(protocol, selectedUrl)
+                    }
                 }
 
                 Controls.BusyIndicator {
