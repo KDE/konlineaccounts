@@ -33,17 +33,6 @@ SetupItem {
     Kirigami.ScrollablePage {
         anchors.fill: parent
 
-        Shortcut {
-            sequences: ["Return", "Enter"]
-            enabled: autoconfig.state === AutoconfigSetup.EmailForm
-            onActivated: addButton.add()
-        }
-        Shortcut {
-            sequences: ["Return", "Enter"]
-            enabled: autoconfig.state === AutoconfigSetup.ServerSelection
-            onActivated: saveButton.save()
-        }
-
         footer: RowLayout {
             Layout.fillWidth: true
             Item {
@@ -98,6 +87,7 @@ SetupItem {
                     Component.onCompleted: {
                         Qt.callLater(() => forceActiveFocus())
                     }
+                    onAccepted: password.forceActiveFocus()
                 }
 
                 Controls.TextField {
@@ -105,6 +95,11 @@ SetupItem {
                     placeholderText: _tr.i18n("some_password")
                     echoMode: TextInput.Password
                     Kirigami.FormData.label: _tr.i18n("Password:")
+                    onAccepted: {
+                        if (addButton.enabled) {
+                            addButton.add()
+                        }
+                    }
                 }
 
                 Controls.BusyIndicator {
