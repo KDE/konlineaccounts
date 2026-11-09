@@ -202,7 +202,7 @@ void AutoconfigSetup::setBuilder(AccountBuilder *builder)
     Q_EMIT builderChanged();
 }
 
-const QString &AutoconfigSetup::email() const
+QString AutoconfigSetup::email() const
 {
     return m_email;
 }
@@ -234,27 +234,27 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
-const ServerListModel *AutoconfigSetup::imapServers() const
+ServerListModel *AutoconfigSetup::imapServers() const
 {
     return m_imapServers;
 }
 
-const ServerListModel *AutoconfigSetup::pop3Servers() const
+ServerListModel *AutoconfigSetup::pop3Servers() const
 {
     return m_pop3Servers;
 }
 
-const ServerListModel *AutoconfigSetup::smtpServers() const
+ServerListModel *AutoconfigSetup::smtpServers() const
 {
     return m_smtpServers;
 }
 
-const ServerListModel *AutoconfigSetup::calDavServers() const
+ServerListModel *AutoconfigSetup::calDavServers() const
 {
     return m_calDavServers;
 }
 
-const ServerListModel *AutoconfigSetup::cardDavServers() const
+ServerListModel *AutoconfigSetup::cardDavServers() const
 {
     return m_cardDavServers;
 }

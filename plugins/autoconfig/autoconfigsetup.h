@@ -20,12 +20,12 @@ class AutoconfigSetup : public QObject
 
     Q_PROPERTY(State state READ state NOTIFY stateChanged)
     Q_PROPERTY(AccountBuilder *builder READ builder WRITE setBuilder NOTIFY builderChanged)
-    Q_PROPERTY(const QString email READ email NOTIFY emailChanged)
-    Q_PROPERTY(const ServerListModel *imapServers READ imapServers NOTIFY imapServersChanged)
-    Q_PROPERTY(const ServerListModel *pop3Servers READ pop3Servers NOTIFY pop3ServersChanged)
-    Q_PROPERTY(const ServerListModel *smtpServers READ smtpServers NOTIFY smtpServersChanged)
-    Q_PROPERTY(const ServerListModel *calDavServers READ calDavServers NOTIFY calDavServersChanged)
-    Q_PROPERTY(const ServerListModel *cardDavServers READ cardDavServers NOTIFY cardDavServersChanged)
+    Q_PROPERTY(QString email READ email NOTIFY emailChanged)
+    Q_PROPERTY(ServerListModel *imapServers READ imapServers CONSTANT)
+    Q_PROPERTY(ServerListModel *pop3Servers READ pop3Servers CONSTANT)
+    Q_PROPERTY(ServerListModel *smtpServers READ smtpServers CONSTANT)
+    Q_PROPERTY(ServerListModel *calDavServers READ calDavServers CONSTANT)
+    Q_PROPERTY(ServerListModel *cardDavServers READ cardDavServers CONSTANT)
 
 public:
     /**
@@ -48,15 +48,15 @@ public:
     [[nodiscard]] AccountBuilder *builder() const;
     void setBuilder(AccountBuilder *builder);
 
-    [[nodiscard]] const QString &email() const;
+    [[nodiscard]] QString email() const;
 
     [[nodiscard]] State state() const;
 
-    [[nodiscard]] const ServerListModel *imapServers() const;
-    [[nodiscard]] const ServerListModel *pop3Servers() const;
-    [[nodiscard]] const ServerListModel *smtpServers() const;
-    [[nodiscard]] const ServerListModel *calDavServers() const;
-    [[nodiscard]] const ServerListModel *cardDavServers() const;
+    [[nodiscard]] ServerListModel *imapServers() const;
+    [[nodiscard]] ServerListModel *pop3Servers() const;
+    [[nodiscard]] ServerListModel *smtpServers() const;
+    [[nodiscard]] ServerListModel *calDavServers() const;
+    [[nodiscard]] ServerListModel *cardDavServers() const;
 
 Q_SIGNALS:
     void stateChanged();
