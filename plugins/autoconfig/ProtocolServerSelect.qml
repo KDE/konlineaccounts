@@ -32,32 +32,37 @@ Kirigami.AbstractCard {
 
     visible: !serverList.empty
 
-    property bool expanded: true
+    clip: true
 
     header: Kirigami.Heading {
         Layout.fillWidth: true
         Controls.CheckBox {
+            id: checkbox
             text: _tr.i18n(Qt.enumValueToString(KAccountAutoconfigServer.Protocol, protocol) + " servers")
             checked: true
             onCheckedChanged: {
-                root.expanded = checked ? Qt.Checked : Qt.Unchecked;
                 root.protocolEnableChanged(protocol, checked)
             }
         }
     }
 
     contentItem: Item {
-        implicitHeight: root.expanded ? contentColumn.implicitHeight : 0
+        implicitHeight: checkbox.checked ? contentColumn.height : 0
 
         Behavior on implicitHeight {
+            id: heightAnimation
             NumberAnimation {
-                duration: Kirigami.Units.longDuration
+                duration: Kirigami.Units.shortDuration
+                easing.type: Easing.InOutQuad
             }
         }
 
         ColumnLayout {
             id: contentColumn
-            visible: root.expanded
+
+            // Workaround the first radio button still showing
+            // up cut off when the card is collapsed
+            Item { height: 1 }
 
             Controls.ButtonGroup {
                 id: group
