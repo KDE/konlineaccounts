@@ -18,6 +18,7 @@ class SetupItem : public QQuickItem
     Q_PROPERTY(AccountBuilder *builder READ builder WRITE setBuilder NOTIFY builderChanged)
 
 public:
+    SetupItem(QQuickItem *parent = nullptr);
     AccountBuilder *builder() const;
     void setBuilder(AccountBuilder *builder);
     Q_SIGNAL void builderChanged();
