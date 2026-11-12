@@ -64,12 +64,6 @@ Q_SIGNALS:
     void builderChanged();
     void emailChanged();
 
-    void imapServersChanged();
-    void pop3ServersChanged();
-    void smtpServersChanged();
-    void calDavServersChanged();
-    void cardDavServersChanged();
-
 private:
     void handleReply(const QList<KAccountAutoconfigServer> &servers);
     void populateServersByProtocol();

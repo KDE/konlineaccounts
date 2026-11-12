@@ -106,17 +106,11 @@ void AutoconfigSetup::handleReply(const QList<KAccountAutoconfigServer> &servers
 
 void AutoconfigSetup::populateServersByProtocol()
 {
-    // TODO: better notifications than one each time
     m_imapServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::IMAP));
-    Q_EMIT imapServersChanged();
     m_pop3Servers->setServers(getServersWithProtocol(KAccountAutoconfigServer::POP3));
-    Q_EMIT pop3ServersChanged();
     m_smtpServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::SMTP));
-    Q_EMIT smtpServersChanged();
     m_calDavServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::CalDAV));
-    Q_EMIT calDavServersChanged();
     m_cardDavServers->setServers(getServersWithProtocol(KAccountAutoconfigServer::CardDAV));
-    Q_EMIT cardDavServersChanged();
 }
 
 void AutoconfigSetup::populateSelectedUrlMap()
