@@ -46,11 +46,10 @@ SetupItem {
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
                 Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Search for servers that can be configured with the given email address")
-                function add() {
+                onClicked: {
                     autoconfigJobRunningIndicator.running = true;
                     autoconfig.registerAutoconfig(email.text, password.text);
                 }
-                onClicked: addButton.add()
             }
             Controls.Button {
                 id: saveButton
@@ -63,11 +62,10 @@ SetupItem {
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
                 Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
-                function save() {
+                onClicked: {
                     saveJobRunningIndicator.running = true;
                     autoconfig.dumpServersToConfig();
                 }
-                onClicked: saveButton.save()
             }
         }
 
@@ -93,11 +91,7 @@ SetupItem {
                     placeholderText: _tr.i18n("some_password")
                     echoMode: TextInput.Password
                     Kirigami.FormData.label: _tr.i18n("Password:")
-                    onAccepted: {
-                        if (addButton.enabled) {
-                            addButton.add()
-                        }
-                    }
+                    onAccepted: addButton.click()
                 }
 
                 Controls.BusyIndicator {
