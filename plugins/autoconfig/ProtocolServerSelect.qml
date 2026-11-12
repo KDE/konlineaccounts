@@ -63,16 +63,17 @@ Kirigami.AbstractCard {
                 id: group
             }
 
-            ListView {
+            Repeater {
+                id: repeater
                 model: root.serverList
-                implicitHeight: contentHeight
-                delegate: Controls.RadioButton {
+
+                Controls.RadioButton {
                     required property url url
                     required property string host
                     required property int port
-                    required property string authenticationType
+                    required property string authenticationTypeVisibleString
                     required property int index
-                    text: _tr.i18n(`${host}:${port} - auth by ${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}`)
+                    text: _tr.i18n(`${host}:${port} - ${authenticationTypeVisibleString} authentication`)
                     checked: index === 0
                     Controls.ButtonGroup.group: group
                     leftPadding: indicator.width

@@ -6,6 +6,42 @@
 
 #include "serverlistmodel.h"
 
+#include "setup_debug.h"
+
+#include <qmetaobject.h>
+
+namespace
+{
+QString authenticationTypeToVisibleString(const KAccountAutoconfigServer::AuthenticationType &authentication)
+{
+    switch (authentication) {
+    case KAccountAutoconfigServer::UnknownAuthentication:
+        return QStringLiteral("Unknown");
+    case KAccountAutoconfigServer::Basic:
+        return QStringLiteral("Basic");
+    case KAccountAutoconfigServer::Digest:
+        return QStringLiteral("Digest");
+    case KAccountAutoconfigServer::OAuth2:
+        return QStringLiteral("OAuth2");
+    case KAccountAutoconfigServer::PasswordCleartext:
+        return QStringLiteral("Cleartext password");
+    case KAccountAutoconfigServer::PasswordEncrypted:
+        return QStringLiteral("Encrypted password");
+    case KAccountAutoconfigServer::NTLM:
+        return QStringLiteral("NTLM");
+    case KAccountAutoconfigServer::GSSAPI:
+        return QStringLiteral("GSSAPI");
+    case KAccountAutoconfigServer::TlsClientCert:
+        return QStringLiteral("TLS client certificate");
+    case KAccountAutoconfigServer::ClientIpAddress:
+        return QStringLiteral("Client IP address");
+    default:
+        qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported authentication type" << authentication;
+        return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::AuthenticationType>().valueToKey(authentication));
+    }
+}
+}
+
 ServerListModel::ServerListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
@@ -42,6 +78,8 @@ QVariant ServerListModel::data(const QModelIndex &index, int role) const
         return item.protocol();
     case AuthenticationTypeRole:
         return item.authenticationType();
+    case AuthenticationTypeVisibleStringRole:
+        return authenticationTypeToVisibleString(item.authenticationType());
     case SocketTypeRole:
         return item.socketType();
     default:
@@ -58,6 +96,7 @@ QHash<int, QByteArray> ServerListModel::roleNames() const
         {PortRole, "port"},
         {ProtocolRole, "protocol"},
         {AuthenticationTypeRole, "authenticationType"},
+        {AuthenticationTypeVisibleStringRole, "authenticationTypeVisibleString"},
         {SocketTypeRole, "socketType"},
     });
     return parentRoles;

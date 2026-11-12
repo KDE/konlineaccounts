@@ -24,6 +24,7 @@ public:
         PortRole,
         ProtocolRole,
         AuthenticationTypeRole,
+        AuthenticationTypeVisibleStringRole,
         SocketTypeRole,
     };
 
