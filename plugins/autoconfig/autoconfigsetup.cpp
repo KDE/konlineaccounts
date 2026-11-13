@@ -59,7 +59,6 @@ void AutoconfigSetup::registerAutoconfig(const QString &email, const QString &pa
     connect(job, &KJob::result, this, [this, job] {
         if (job->error()) {
             qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Job failed" << job->errorString();
-            // Q_EMIT autoconfigJobFailed();
             m_builder->fail(u"Could not find configuration for the given email address"_s);
         } else {
             handleReply(job->servers());
