@@ -54,6 +54,7 @@ IMAPLoginTest *LoginTestJob::mapAutoconfigServerToIMAP(const KAccountAutoconfigS
     imap->setAuthenticationType(server.authenticationType());
 
     connect(imap, &KJob::finished, this, [this, imap, server] {
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "job done" << server << server.protocol() << imap->errorString();
         result.emplace_back(QPair{server, QPair{imap->error() == NoError, imap->errorString()}});
     });
 

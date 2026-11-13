@@ -174,7 +174,11 @@ void AutoconfigSetup::populateSelectedUrlMap()
 template<typename F>
 void AutoconfigSetup::dumpServersWithProtocolToConfig(const KAccountAutoconfigServer::Protocol &protocol, F &&callback)
 {
-    const auto [server, loginResult] = getLoginResultForProtocol(protocol);
+    const auto foundResult = getLoginResultForProtocol(protocol);
+    if (!foundResult.has_value()) {
+        return;
+    }
+    const auto [server, loginResult] = foundResult.value();
     if (!loginResult.first) {
         return;
     }
@@ -264,14 +268,16 @@ KAccountAutoconfigServer AutoconfigSetup::findServerFromUrlAndProtocol(const QUr
     return servers.first();
 }
 
-QPair<KAccountAutoconfigServer, QPair<bool, QString>> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
+std::optional<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> AutoconfigSetup::getLoginResultForProtocol(KAccountAutoconfigServer::Protocol protocol)
 {
     auto result = m_loginTestResult->getItems() | std::views::filter([protocol](const auto &kv) {
                       return kv.first.protocol() == protocol;
                   });
     QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> servers;
     std::ranges::copy(result, std::back_inserter(servers));
-    Q_ASSERT(servers.count() == 1);
+    if (servers.count() != 1) {
+        return std::nullopt;
+    }
     return servers.first();
 }
 
