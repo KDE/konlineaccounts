@@ -9,7 +9,7 @@ find_package(ECM 6.19.0 REQUIRED)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" ON)
+option(USE_AUTOCONFIG_PLUGIN "Build and install the autoconfig plugin" OFF)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
