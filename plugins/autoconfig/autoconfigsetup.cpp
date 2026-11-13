@@ -149,7 +149,7 @@ void AutoconfigSetup::dumpServersToConfig()
 {
     qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Dumping selected servers to config" << m_selectedUrlPerProtocol << "to" << m_builder->config().name();
 
-    const auto dumpMailServer = [this](const KAccountAutoconfigServer &server, KConfigGroup serverConfig) {
+    const auto dumpMailServer = [this](const KAccountAutoconfigServer &server, KConfigGroup &serverConfig) {
         serverConfig.writeEntry(u"hostname"_s, server.url().host());
         serverConfig.writeEntry(u"port"_s, server.url().port());
         serverConfig.writeEntry(u"socket_type"_s, socketTypeToString(server.socketType()));
@@ -157,7 +157,7 @@ void AutoconfigSetup::dumpServersToConfig()
         serverConfig.writeEntry(u"username"_s, m_email);
     };
 
-    const auto dumpDavServer = [this](const KAccountAutoconfigServer &server, KConfigGroup serverConfig) {
+    const auto dumpDavServer = [this](const KAccountAutoconfigServer &server, KConfigGroup &serverConfig) {
         serverConfig.writeEntry(u"url"_s, server.url());
         serverConfig.writeEntry(u"username"_s, m_email);
     };
