@@ -6,7 +6,7 @@
 
 #include "autoconfig.h"
 
-#include "autoconfiginterface.h"
+#include "adaptors/imap.h"
 
 #include <KPluginFactory>
 
@@ -17,7 +17,7 @@ using namespace Qt::StringLiterals;
 AutoconfigAccount::AutoconfigAccount(QObject *parent, const KPluginMetaData &md, const QVariantList &args)
     : Account(parent, md, args)
 {
-    new AutoconfigInterface(this, config().group(u"Autoconfig"_s));
+    new IMAPAdaptor(this, config().group(u"IMAP"_s));
 }
 
 #include "autoconfig.moc"
