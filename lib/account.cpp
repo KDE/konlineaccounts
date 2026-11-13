@@ -13,6 +13,8 @@
 
 #include "accessmanager.h"
 
+#include <iostream>
+
 using namespace Qt::Literals;
 
 Account::Account(QObject *parent, const KPluginMetaData &md, const QVariantList &args)

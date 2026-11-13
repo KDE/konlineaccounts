@@ -25,6 +25,7 @@ IMAPAdaptor::IMAPAdaptor(Account *account, const KConfigGroup &config)
 
 #define CHECK_ACCESS                                                                                                                                           \
     if (!m_account->currentCallerHasAccess()) {                                                                                                                \
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG) << u"Caller is not authorized to read this property"_s;                                                      \
         m_account->sendErrorReply(QDBusError::AccessDenied, u"Caller is not authorized to read this property"_s);                                              \
         return {};                                                                                                                                             \
     }
