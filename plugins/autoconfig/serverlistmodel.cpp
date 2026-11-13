@@ -105,15 +105,6 @@ QHash<int, QByteArray> ServerListModel::roleNames() const
 void ServerListModel::setServers(const QList<KAccountAutoconfigServer> &servers)
 {
     beginResetModel();
-    const auto emptyBefore = isEmpty();
     m_items = servers;
     endResetModel();
-    if (emptyBefore != isEmpty()) {
-        Q_EMIT emptyChanged();
-    }
-}
-
-bool ServerListModel::isEmpty() const
-{
-    return m_items.isEmpty();
 }

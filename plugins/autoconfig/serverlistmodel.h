@@ -13,8 +13,6 @@ class ServerListModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool empty READ isEmpty NOTIFY emptyChanged)
-
 public:
     explicit ServerListModel(QObject *parent = nullptr);
 
@@ -35,10 +33,6 @@ public:
     [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
     void setServers(const QList<KAccountAutoconfigServer> &servers);
-    [[nodiscard]] bool isEmpty() const;
-
-Q_SIGNALS:
-    void emptyChanged();
 
 private:
     QList<KAccountAutoconfigServer> m_items;

@@ -30,7 +30,7 @@ Kirigami.AbstractCard {
     signal protocolEnableChanged(int protocol, bool enabled)
     signal urlSelectedForProtocol(int protocol, url selectedUrl)
 
-    visible: !serverList.empty
+    visible: repeater.count > 0
 
     clip: true
 
