@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <QMetaObject>
 #include <qqmlintegration.h>
 
 struct KAccountAutoconfigServerForeign {

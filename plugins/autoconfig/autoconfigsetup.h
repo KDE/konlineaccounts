@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include "accountbuilder.h"
-
-#include "serverlistmodel.h"
+#include "kaccountautoconfigserver.h"
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
 
+class ServerListModel;
+class AccountBuilder;
 class AutoconfigSetup : public QObject
 {
     Q_OBJECT

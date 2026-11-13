@@ -6,6 +6,9 @@
 
 #include "autoconfigsetup.h"
 
+#include "accountbuilder.h"
+#include "serverlistmodel.h"
+
 #include <QDBusReply>
 
 #include <KAccountAutoconfigJob>
@@ -251,3 +254,5 @@ ServerListModel *AutoconfigSetup::cardDavServers() const
 {
     return m_cardDavServers;
 }
+
+#include "moc_autoconfigsetup.cpp"
