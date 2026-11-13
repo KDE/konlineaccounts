@@ -77,8 +77,6 @@ QVariant ServerListModel::data(const QModelIndex &index, int role) const
     case ProtocolRole:
         return item.protocol();
     case AuthenticationTypeRole:
-        return item.authenticationType();
-    case AuthenticationTypeVisibleStringRole:
         return authenticationTypeToVisibleString(item.authenticationType());
     case SocketTypeRole:
         return item.socketType();
@@ -96,7 +94,6 @@ QHash<int, QByteArray> ServerListModel::roleNames() const
         {PortRole, "port"},
         {ProtocolRole, "protocol"},
         {AuthenticationTypeRole, "authenticationType"},
-        {AuthenticationTypeVisibleStringRole, "authenticationTypeVisibleString"},
         {SocketTypeRole, "socketType"},
     });
     return parentRoles;

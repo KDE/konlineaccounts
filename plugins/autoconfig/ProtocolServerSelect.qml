@@ -76,9 +76,9 @@ Kirigami.AbstractCard {
                     required property url url
                     required property string host
                     required property int port
-                    required property string authenticationTypeVisibleString
+                    required property string authenticationType
                     required property int index
-                    text: _tr.i18n(`${host}:${port} - ${authenticationTypeVisibleString} authentication`)
+                    text: _tr.i18n(`${host}:${port} - ${authenticationType} authentication`)
                     checked: index === 0
                     Controls.ButtonGroup.group: group
                     leftPadding: indicator.width
