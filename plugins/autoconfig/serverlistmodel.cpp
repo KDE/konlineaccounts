@@ -36,7 +36,7 @@ QString authenticationTypeToVisibleString(const KAccountAutoconfigServer::Authen
     case KAccountAutoconfigServer::ClientIpAddress:
         return QStringLiteral("Client IP address");
     default:
-        qCDebug(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported authentication type" << authentication;
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unsupported authentication type" << authentication;
         return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::AuthenticationType>().valueToKey(authentication));
     }
 }
