@@ -6,6 +6,7 @@
 
 #include "autoconfig.h"
 
+#include "adaptors/caldav.h"
 #include "adaptors/carddav.h"
 
 #include <KPluginFactory>
@@ -18,6 +19,7 @@ AutoconfigAccount::AutoconfigAccount(QObject *parent, const KPluginMetaData &md,
     : Account(parent, md, args)
 {
     new CardDAVAdaptor(this, config().group(u"CardDAV"_s));
+    new CalDAVAdaptor(this, config().group(u"CalDAV"_s));
 }
 
 #include "autoconfig.moc"

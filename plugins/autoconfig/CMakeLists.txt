@@ -11,6 +11,8 @@ set(ADAPTORS_SRCS
         adaptors/helpers.h
         adaptors/carddav.cpp
         adaptors/carddav.h
+        adaptors/caldav.cpp
+        adaptors/caldav.h
 )
 
 target_sources(autoconfig PRIVATE autoconfig.cpp ${ADAPTORS_SRCS})
