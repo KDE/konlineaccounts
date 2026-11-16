@@ -9,6 +9,8 @@ kcoreaddons_add_plugin(autoconfig INSTALL_NAMESPACE "konlineaccounts/providers")
 
 set(ADAPTORS_SRCS
         adaptors/helpers.h
+        adaptors/imap.cpp
+        adaptors/imap.h
 )
 
 target_sources(autoconfig PRIVATE autoconfig.cpp ${ADAPTORS_SRCS})
