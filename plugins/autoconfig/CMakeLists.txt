@@ -7,9 +7,25 @@ add_definitions(-DTRANSLATION_DOMAIN=\"konlineaccounts_autoconfig\")
 
 kcoreaddons_add_plugin(autoconfig INSTALL_NAMESPACE "konlineaccounts/providers")
 
-target_sources(autoconfig PRIVATE autoconfig.cpp autoconfiginterface.cpp)
+set(ADAPTORS_SRCS
+        adaptors/helpers.h
+)
 
-target_link_libraries(autoconfig PRIVATE accounts KPim6::AccountAutoconfig)
+target_sources(autoconfig PRIVATE autoconfig.cpp ${ADAPTORS_SRCS})
+
+target_link_libraries(autoconfig PRIVATE
+        KF6::AccountAutoconfig
+        accounts
+)
+
+set(AUTOCONFIG_SETUP_SRCS
+        autoconfigsetup.cpp
+        serverlistmodel.cpp
+        serverlistmodel.h
+        logintestlistmodel.cpp
+        logintestlistmodel.h
+        kaccountautoconfigserverforeign.h
+)
 
 set(LOGIN_TESTS_SRCS
         logintestjob.cpp
