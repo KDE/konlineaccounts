@@ -60,7 +60,8 @@ QVariant LoginTestListModel::data(const QModelIndex &index, int role) const
 
 QHash<int, QByteArray> LoginTestListModel::roleNames() const
 {
-    return {
+    auto parentRoles = QAbstractListModel::roleNames();
+    parentRoles.insert(QHash<int, QByteArray>{
         {UrlRole, "url"},
         {HostRole, "host"},
         {PortRole, "port"},
@@ -69,7 +70,8 @@ QHash<int, QByteArray> LoginTestListModel::roleNames() const
         {SocketTypeRole, "socketType"},
         {LoginResultRole, "loginResult"},
         {LoginResultErrorStringRole, "loginResultErrorString"},
-    };
+    });
+    return parentRoles;
 }
 
 void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> &result)
