@@ -229,7 +229,7 @@ SetupItem {
                                 RowLayout {
                                     Text {
                                         Layout.fillWidth: true
-                                        text: _tr.i18n(`Authentication: <b>${Qt.enumValueToString(KAccountAutoconfigServer.AuthenticationType, authenticationType)}</b>`)
+                                        text: _tr.i18n(`Authentication: <b>${authenticationType}</b>`)
                                     }
                                     Text {
                                         text: _tr.i18n(`Socket: <b>${Qt.enumValueToString(KAccountAutoconfigServer.SocketType, socketType)}</b>`)
