@@ -14,7 +14,7 @@ class LoginTestJob : public KCompositeJob
     Q_OBJECT
 
 public:
-    explicit LoginTestJob(QObject *parent);
+    explicit LoginTestJob(QObject *parent = nullptr);
     ~LoginTestJob() override;
 
     void start() override;
