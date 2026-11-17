@@ -25,7 +25,7 @@ int LoginTestListModel::rowCount(const QModelIndex &parent) const
 
 QVariant LoginTestListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || index.row() >= m_items.size())
+    if (!index.isValid() || index.parent().isValid() || index.column() != 0 || index.row() < 0 || index.row() >= m_items.size())
         return {};
 
     const auto [server, loginResult] = m_items.at(index.row());
