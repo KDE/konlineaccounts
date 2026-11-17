@@ -68,15 +68,19 @@ SetupItem {
                 }
             }
             Controls.Button {
+                Layout.alignment: Qt.AlignRight
                 id: saveButton
                 visible: pimautoconfig.state === PIMAutoconfigSetup.LoginResult
-                enabled: pimautoconfig.state === PIMAutoconfigSetup.LoginResult && !saveRunningIndicator.running
+                enabled: pimautoconfig.state === PIMAutoconfigSetup.LoginResult && !saveRunningIndicator.running && pimautoconfig.loginTestResult.nonEmptyAndAtLeastOneSuccess
                 text: _tr.i18nc("@action:button", "Save")
                 icon.name: "document-save"
                 hoverEnabled: true
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
-                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Saves the selected server configuration to a configuration file")
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", enabled
+                    ? "Saves the selected server configuration to a configuration file"
+                    : "At least one server needs a successful login in order to save the configuration"
+                )
                 onClicked: {
                     saveRunningIndicator.running = true;
                     pimautoconfig.dumpServersToConfig();

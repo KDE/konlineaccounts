@@ -6,6 +6,8 @@
 
 #include "logintestlistmodel.h"
 
+#include <algorithm>
+
 LoginTestListModel::LoginTestListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
@@ -69,4 +71,13 @@ void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfig
 QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> LoginTestListModel::getItems() const
 {
     return m_items;
+}
+
+bool LoginTestListModel::nonEmptyAndAtLeastOneSuccess() const
+{
+    return std::ranges::any_of(m_items, [](const auto &item) {
+        const auto [server, result] = item;
+        const auto [loginSuccess, errorString] = result;
+        return loginSuccess;
+    });
 }

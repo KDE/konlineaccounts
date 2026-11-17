@@ -13,6 +13,8 @@ class LoginTestListModel : public QAbstractListModel
 {
     Q_OBJECT
 
+    Q_PROPERTY(bool nonEmptyAndAtLeastOneSuccess READ nonEmptyAndAtLeastOneSuccess CONSTANT)
+
 public:
     explicit LoginTestListModel(QObject *parent);
 
@@ -36,6 +38,8 @@ public:
     void setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> &result);
 
     [[nodiscard]] QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> getItems() const;
+
+    [[nodiscard]] bool nonEmptyAndAtLeastOneSuccess() const;
 
 Q_SIGNALS:
     void countChanged();
