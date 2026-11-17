@@ -17,6 +17,9 @@ LoginTestListModel::LoginTestListModel(QObject *parent)
 
 int LoginTestListModel::rowCount(const QModelIndex &parent) const
 {
+    if (parent.isValid()) {
+        return 0;
+    }
     return m_items.size();
 }
 
