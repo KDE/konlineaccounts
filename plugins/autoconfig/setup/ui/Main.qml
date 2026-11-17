@@ -83,11 +83,10 @@ SetupItem {
                     ? "Saves the selected server configuration to a configuration file"
                     : "At least one server needs a successful login in order to save the configuration"
                 )
-                function save() {
+                onClicked: {
                     saveRunningIndicator.running = true;
                     autoconfig.dumpServersToConfig();
                 }
-                onClicked: saveButton.save()
             }
         }
 
