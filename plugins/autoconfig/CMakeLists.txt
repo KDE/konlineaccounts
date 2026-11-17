@@ -1,28 +1,13 @@
 # SPDX-FileCopyrightText: 2026 Kenny Lorin <kenny.lorin@enioka.com>
 # SPDX-License-Identifier: BSD-2-Clause
 
-set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
-find_package(KF6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
-
-find_package(KF6 REQUIRED COMPONENTS Kirigami)
-
 add_definitions(-DTRANSLATION_DOMAIN=\"konlineaccounts_autoconfig\")
 
 kcoreaddons_add_plugin(autoconfig INSTALL_NAMESPACE "konlineaccounts/providers")
 
 target_sources(autoconfig PRIVATE autoconfig.cpp autoconfiginterface.cpp)
 
-target_link_libraries(autoconfig PRIVATE accounts KF6::AccountAutoconfig)
-
-ecm_add_qml_module(autoconfigsetup
-        URI "org.kde.konlineaccounts.autoconfig"
-        QML_FILES Main.qml ProtocolServerSelect.qml
-        GENERATE_PLUGIN_SOURCE
-        DEPENDENCIES QtCore org.kde.konlineaccounts
-)
-target_sources(autoconfigsetup PRIVATE autoconfigsetup.cpp serverlistmodel.cpp serverlistmodel.h kaccountautoconfigserverforeign.h)
-target_link_libraries(autoconfigsetup PRIVATE KF6::I18n KF6::AccountAutoconfig Qt6Keychain::Qt6Keychain KF6::Kirigami accounts)
-ecm_finalize_qml_module(autoconfigsetup)
+target_link_libraries(autoconfig PRIVATE accounts)
 
 ecm_qt_declare_logging_category(autoconfig
     HEADER debug.h
@@ -32,10 +17,4 @@ ecm_qt_declare_logging_category(autoconfig
     EXPORT KOnlineAccounts
 )
 
-ecm_qt_declare_logging_category(autoconfigsetup
-    HEADER setup_debug.h
-    IDENTIFIER LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP
-    CATEGORY_NAME konlineaccounts.autoconfig.setup
-    DESCRIPTION "KOnlineAccounts Autoconfig Setup"
-    EXPORT KOnlineAccounts
-)
+add_subdirectory(setup)
