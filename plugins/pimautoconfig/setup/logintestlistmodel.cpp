@@ -27,6 +27,13 @@ QVariant LoginTestListModel::data(const QModelIndex &index, int role) const
 
     const auto [server, loginResult] = m_items.at(index.row());
     switch (role) {
+    case Qt::DisplayRole:
+        return QStringLiteral("Login %1 for server {url: %2, protocol: %3, authenticationType: %4, socketType: %5}")
+            .arg(loginResult.first ? "succeeded" : "failed")
+            .arg(server.url().toDisplayString())
+            .arg(server.protocol())
+            .arg(server.authenticationType())
+            .arg(server.socketType());
     case UrlRole:
         return server.url();
     case HostRole:
