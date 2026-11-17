@@ -121,11 +121,6 @@ void AutoconfigSetup::performLoginTests()
     }
 
     connect(login, &KJob::finished, this, [this, login] {
-        // TODO: if some critical error happens, show some proper error to the user
-        // if (login->error() != KJob::NoError) {
-        //     m_builder->fail(login->errorString());
-        //     return;
-        // }
         qCInfo(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Login test results:" << login->result;
 
         m_loginTestResult->setLoginTestResult(login->result);
