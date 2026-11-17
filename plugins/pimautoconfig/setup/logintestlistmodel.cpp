@@ -6,6 +6,8 @@
 
 #include "logintestlistmodel.h"
 
+#include "helpers.h"
+
 #include <algorithm>
 
 LoginTestListModel::LoginTestListModel(QObject *parent)
@@ -34,7 +36,7 @@ QVariant LoginTestListModel::data(const QModelIndex &index, int role) const
     case ProtocolRole:
         return server.protocol();
     case AuthenticationTypeRole:
-        return server.authenticationType();
+        return Helpers::authenticationTypeToVisibleString(server.authenticationType());
     case SocketTypeRole:
         return server.socketType();
     case LoginResultRole:

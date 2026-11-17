@@ -5,42 +5,11 @@
  */
 
 #include "serverlistmodel.h"
+#include "helpers.h"
 
 #include "setup_debug.h"
 
 #include <qmetaobject.h>
-
-namespace
-{
-QString authenticationTypeToVisibleString(const KAccountAutoconfigServer::AuthenticationType &authentication)
-{
-    switch (authentication) {
-    case KAccountAutoconfigServer::UnknownAuthentication:
-        return QStringLiteral("Unknown");
-    case KAccountAutoconfigServer::Basic:
-        return QStringLiteral("Basic");
-    case KAccountAutoconfigServer::Digest:
-        return QStringLiteral("Digest");
-    case KAccountAutoconfigServer::OAuth2:
-        return QStringLiteral("OAuth2");
-    case KAccountAutoconfigServer::PasswordCleartext:
-        return QStringLiteral("Cleartext password");
-    case KAccountAutoconfigServer::PasswordEncrypted:
-        return QStringLiteral("Encrypted password");
-    case KAccountAutoconfigServer::NTLM:
-        return QStringLiteral("NTLM");
-    case KAccountAutoconfigServer::GSSAPI:
-        return QStringLiteral("GSSAPI");
-    case KAccountAutoconfigServer::TlsClientCert:
-        return QStringLiteral("TLS client certificate");
-    case KAccountAutoconfigServer::ClientIpAddress:
-        return QStringLiteral("Client IP address");
-    default:
-        qCWarning(LOG_KONLINEACCOUNTS_PIMAUTOCONFIG_SETUP) << "Unsupported authentication type" << authentication;
-        return QString::fromUtf8(QMetaEnum::fromType<KAccountAutoconfigServer::AuthenticationType>().valueToKey(authentication));
-    }
-}
-}
 
 ServerListModel::ServerListModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -77,7 +46,7 @@ QVariant ServerListModel::data(const QModelIndex &index, int role) const
     case ProtocolRole:
         return item.protocol();
     case AuthenticationTypeRole:
-        return authenticationTypeToVisibleString(item.authenticationType());
+        return Helpers::authenticationTypeToVisibleString(item.authenticationType());
     case SocketTypeRole:
         return item.socketType();
     default:

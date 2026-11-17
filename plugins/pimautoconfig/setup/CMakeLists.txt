@@ -7,6 +7,8 @@ find_package(KF6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIR
 find_package(KF6 REQUIRED COMPONENTS Kirigami)
 
 set(AUTOCONFIG_SETUP_SRCS
+        helpers.cpp
+        helpers.h
         pimautoconfigsetup.cpp
         serverlistmodel.cpp
         serverlistmodel.h
