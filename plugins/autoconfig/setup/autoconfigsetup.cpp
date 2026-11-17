@@ -82,6 +82,7 @@ void AutoconfigSetup::setProtocolEnabled(const KAccountAutoconfigServer::Protoco
     } else {
         m_enabledProtocols.remove(protocol);
     }
+    Q_EMIT protocolSelectedCountChanged();
 }
 
 void AutoconfigSetup::setUrlSelectedForProtocol(const KAccountAutoconfigServer::Protocol &protocol, const QUrl &url)
@@ -304,6 +305,11 @@ ServerListModel *AutoconfigSetup::cardDavServers() const
 LoginTestListModel *AutoconfigSetup::loginTestResult() const
 {
     return m_loginTestResult;
+}
+
+bool AutoconfigSetup::atLeastOneProtocolEnabled() const
+{
+    return !m_enabledProtocols.isEmpty();
 }
 
 #include "moc_autoconfigsetup.cpp"

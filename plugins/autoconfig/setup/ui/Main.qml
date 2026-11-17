@@ -55,13 +55,15 @@ SetupItem {
                 Layout.alignment: Qt.AlignRight
                 id: loginTestButton
                 visible: autoconfig.state === AutoconfigSetup.ServerSelection
-                // TODO: disable if no option is selected
-                enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !loginTestJobRunningIndicator.running
+                enabled: autoconfig.state === AutoconfigSetup.ServerSelection && !loginTestJobRunningIndicator.running && autoconfig.atLeastOneProtocolEnabled
                 text: _tr.i18nc("@action:button", "Login")
                 hoverEnabled: true
                 Controls.ToolTip.visible: hovered
                 Controls.ToolTip.delay: Kirigami.Units.toolTipDelay
-                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", "Attempt to login on the selected servers")
+                Controls.ToolTip.text: _tr.i18nc("@info:tooltip", enabled
+                    ? "Attempt to login on the selected servers"
+                    : "Select at least one server before tring to log in"
+                )
                 onClicked: {
                     loginTestJobRunningIndicator.running = true;
                     autoconfig.performLoginTests();

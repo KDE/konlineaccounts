@@ -29,6 +29,7 @@ class AutoconfigSetup : public QObject
     Q_PROPERTY(ServerListModel *cardDavServers READ cardDavServers CONSTANT)
 
     Q_PROPERTY(LoginTestListModel *loginTestResult READ loginTestResult CONSTANT)
+    Q_PROPERTY(bool atLeastOneProtocolEnabled READ atLeastOneProtocolEnabled NOTIFY protocolSelectedCountChanged)
 
 public:
     /**
@@ -65,11 +66,14 @@ public:
 
     [[nodiscard]] LoginTestListModel *loginTestResult() const;
 
+    [[nodiscard]] bool atLeastOneProtocolEnabled() const;
+
 Q_SIGNALS:
     void stateChanged();
     void autoconfigJobFailed();
     void builderChanged();
     void emailChanged();
+    void protocolSelectedCountChanged();
 
 private:
     void handleReply(const QList<KAccountAutoconfigServer> &servers);
