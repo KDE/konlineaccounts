@@ -50,7 +50,6 @@ void LoginTestJob::slotResult(KJob *job)
 
 void LoginTestJob::addServer(const KAccountAutoconfigServer &server)
 {
-    // TODO: make this not fail if a subjob fails
     switch (server.protocol()) {
     // TODO: add other protocols
     default:
