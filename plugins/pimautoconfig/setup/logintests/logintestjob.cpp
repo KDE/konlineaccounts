@@ -20,6 +20,11 @@ LoginTestJob::~LoginTestJob() = default;
 
 void LoginTestJob::start()
 {
+    if (!hasSubjobs()) {
+        emitResult();
+        return;
+    }
+
     for (const auto job : subjobs()) {
         job->start();
     }
