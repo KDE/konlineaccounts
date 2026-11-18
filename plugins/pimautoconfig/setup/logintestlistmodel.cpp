@@ -76,8 +76,13 @@ QHash<int, QByteArray> LoginTestListModel::roleNames() const
 
 void LoginTestListModel::setLoginTestResult(const QList<QPair<KAccountAutoconfigServer, QPair<bool, QString>>> &result)
 {
+    auto sortedResult = result;
+    std::ranges::sort(sortedResult, [](const auto &a, const auto &b) {
+        return a.first.protocol() < b.first.protocol();
+    });
+
     beginResetModel();
-    m_items = result;
+    m_items = sortedResult;
     endResetModel();
     Q_EMIT countChanged();
 }
