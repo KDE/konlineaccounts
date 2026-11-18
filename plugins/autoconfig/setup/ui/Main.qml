@@ -199,6 +199,8 @@ SetupItem {
 
                     delegate: Kirigami.AbstractCard
                     {
+                        Layout.fillWidth: true
+
                         required property string host
                         required property int port
                         required property string protocol
