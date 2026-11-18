@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include <KAccountAutoconfigServer>
 #include "imaplogintest.h"
 #include "smtplogintestjob.h"
 

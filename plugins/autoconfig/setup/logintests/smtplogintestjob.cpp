@@ -10,71 +10,62 @@
 #include "setup_debug.h"
 
 #include <KAccountAutoconfigServer>
+#include <KSMTP/LoginJob>
+#include <KSMTP/Session>
 
-SMTPLoginTestJob::SMTPLoginTestJob(QObject *parent)
-    : LoginTestJobBase(parent)
+namespace
+{
+std::optional<KSmtp::Session::EncryptionMode> socketTypeToEncryptionMode(const KAccountAutoconfigServer::SocketType &socket)
+{
+    switch (socket) {
+    case KAccountAutoconfigServer::Plain:
+        return KSmtp::Session::Unencrypted;
+    case KAccountAutoconfigServer::SSL:
+        return KSmtp::Session::TLS;
+    case KAccountAutoconfigServer::STARTTLS:
+        return KSmtp::Session::STARTTLS;
+    case KAccountAutoconfigServer::UnknownSocketType:
+    default:
+        return {};
+    }
+}
+
+std::optional<KSmtp::LoginJob::AuthMode> authenticationTypeToAuthMode(const KAccountAutoconfigServer::AuthenticationType &authentication)
+{
+    switch (authentication) {
+    case KAccountAutoconfigServer::PasswordCleartext:
+        return KSmtp::LoginJob::Plain;
+    case KAccountAutoconfigServer::PasswordEncrypted:
+        return KSmtp::LoginJob::CramMD5;
+    case KAccountAutoconfigServer::Digest:
+    case KAccountAutoconfigServer::Basic:
+    case KAccountAutoconfigServer::UnknownAuthentication:
+    default:
+        return {};
+    }
+}
+}
+
+SMTPLoginTestJob::SMTPLoginTestJob(const KAccountAutoconfigServer &server, QObject *parent)
+    : LoginTestJobBase(server, parent)
 {
 }
 
 SMTPLoginTestJob::~SMTPLoginTestJob() = default;
 
-void SMTPLoginTestJob::setHostname(const QString &hostname)
-{
-    m_hostname = hostname;
-}
-
-void SMTPLoginTestJob::setPort(const int port)
-{
-    m_port = port;
-}
-
-void SMTPLoginTestJob::setSocketType(const KAccountAutoconfigServer::SocketType &socket)
-{
-    switch (socket) {
-    case KAccountAutoconfigServer::Plain:
-        m_encryption = KSmtp::Session::Unencrypted;
-        break;
-    case KAccountAutoconfigServer::SSL:
-        m_encryption = KSmtp::Session::TLS;
-        break;
-    case KAccountAutoconfigServer::STARTTLS:
-        m_encryption = KSmtp::Session::STARTTLS;
-        break;
-    case KAccountAutoconfigServer::UnknownSocketType:
-    default:
-        break;
-    }
-}
-
-void SMTPLoginTestJob::setAuthenticationType(const KAccountAutoconfigServer::AuthenticationType &authentication)
-{
-    switch (authentication) {
-    case KAccountAutoconfigServer::PasswordCleartext:
-        m_authentication = KSmtp::LoginJob::Plain;
-        break;
-    case KAccountAutoconfigServer::PasswordEncrypted:
-        m_authentication = KSmtp::LoginJob::CramMD5;
-        break;
-    case KAccountAutoconfigServer::Digest:
-    case KAccountAutoconfigServer::Basic:
-    case KAccountAutoconfigServer::UnknownAuthentication:
-    default:
-        break;
-    }
-}
-
 void SMTPLoginTestJob::login()
 {
-    const auto session = new KSmtp::Session(m_hostname, m_port, this);
-    if (m_encryption) {
-        session->setEncryptionMode(*m_encryption);
+    const auto session = new KSmtp::Session(m_server.url().host(), m_server.url().port(), this);
+    if (const auto encryption = socketTypeToEncryptionMode(m_server.socketType()); encryption.has_value()) {
+        session->setEncryptionMode(encryption.value());
     }
 
     const auto loginJob = new KSmtp::LoginJob(session);
     loginJob->setUserName(m_username);
     loginJob->setPassword(m_password);
-    if (m_authentication) {
-        loginJob->setPreferedAuthMode(*m_authentication);
+
+    if (const auto authMode = authenticationTypeToAuthMode(m_server.authenticationType()); authMode.has_value()) {
+        loginJob->setPreferedAuthMode(authMode.value());
     }
 
     connect(loginJob, &KJob::finished, this, [this, loginJob] {

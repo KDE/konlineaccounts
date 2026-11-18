@@ -13,78 +13,58 @@
 
 #include <debug.h>
 
-IMAPLoginTest::IMAPLoginTest(QObject *parent)
-    : LoginTestJobBase(parent)
-    , m_authentication({})
-    , m_encryption({})
+namespace
+{
+std::optional<KIMAP::LoginJob::EncryptionMode> socketTypeToEncryptionMode(const KAccountAutoconfigServer::SocketType &socket)
+{
+    switch (socket) {
+    case KAccountAutoconfigServer::Plain:
+        return KIMAP::LoginJob::Unencrypted;
+    case KAccountAutoconfigServer::SSL:
+        return KIMAP::LoginJob::SSLorTLS;
+    case KAccountAutoconfigServer::STARTTLS:
+        return KIMAP::LoginJob::STARTTLS;
+    case KAccountAutoconfigServer::UnknownSocketType:
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Socket type unknown, letting the job decide which one to use";
+        return {}; // TODO: whether to error out for unknown?
+    default:
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Socket type" << socket << "not handled";
+        return {};
+    }
+}
+
+std::optional<KIMAP::LoginJob::AuthenticationMode> authenticationTypeToAuthenticationMode(const KAccountAutoconfigServer::AuthenticationType &authentication)
+{
+    switch (authentication) {
+    case KAccountAutoconfigServer::PasswordCleartext:
+        return KIMAP::LoginJob::AuthenticationMode::Plain;
+    default:
+        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unhandled authentication type" << authentication;
+        return {};
+    }
+}
+
+}
+
+IMAPLoginTest::IMAPLoginTest(const KAccountAutoconfigServer &server, QObject *parent)
+    : LoginTestJobBase(server, parent)
 {
 }
 
 IMAPLoginTest::~IMAPLoginTest() = default;
 
-void IMAPLoginTest::setHostname(const QString &hostname)
-{
-    m_hostname = hostname;
-}
-
-void IMAPLoginTest::setPort(const int port)
-{
-    m_port = port;
-}
-
-void IMAPLoginTest::setSocketType(const KAccountAutoconfigServer::SocketType &socket)
-{
-    switch (socket) {
-    case KAccountAutoconfigServer::UnknownSocketType:
-        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Socket type unknown, letting the job decide which one to use";
-        m_encryption = {}; // TODO: whether to error out for unknown?
-        break;
-    case KAccountAutoconfigServer::Plain:
-        m_encryption = KIMAP::LoginJob::Unencrypted;
-        break;
-    case KAccountAutoconfigServer::SSL:
-        m_encryption = KIMAP::LoginJob::SSLorTLS;
-        break;
-    case KAccountAutoconfigServer::STARTTLS:
-        m_encryption = KIMAP::LoginJob::STARTTLS;
-        break;
-    default:
-        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Socket type" << socket << "not handled";
-        break;
-    }
-}
-
-void IMAPLoginTest::setAuthenticationType(const KAccountAutoconfigServer::AuthenticationType &authentication)
-{
-    requestedAuthenticationType = authentication;
-
-    switch (requestedAuthenticationType) {
-    case KAccountAutoconfigServer::PasswordCleartext:
-        m_authentication = KIMAP::LoginJob::AuthenticationMode::Plain;
-        break;
-    default:
-        qCWarning(LOG_KONLINEACCOUNTS_AUTOCONFIG_SETUP) << "Unhandled authentication type" << authentication;
-        break;
-    }
-}
-
 void IMAPLoginTest::login()
 {
-    const auto session = new KIMAP::Session(m_hostname, m_port, this);
+    const auto session = new KIMAP::Session(m_server.url().host(), m_server.url().port(), this);
     const auto login = new KIMAP::LoginJob(session);
     login->setUserName(m_username);
     login->setPassword(m_password);
-    if (m_encryption.has_value()) {
-        login->setEncryptionMode(m_encryption.value());
+
+    if (const auto encryption = socketTypeToEncryptionMode(m_server.socketType())) {
+        login->setEncryptionMode(encryption.value());
     }
-    if (m_authentication.has_value()) {
-        login->setAuthenticationMode(m_authentication.value());
-        /*
-         * TODO:
-         *  - query server capabilities
-         *  - keep the ones that match `requestedAuthenticationType`
-         *  - try them one by one
-         */
+    if (const auto authentication = authenticationTypeToAuthenticationMode(m_server.authenticationType())) {
+        login->setAuthenticationMode(authentication.value());
     }
     login->start();
 

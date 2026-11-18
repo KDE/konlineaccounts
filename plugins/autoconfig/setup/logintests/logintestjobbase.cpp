@@ -6,8 +6,9 @@
 
 #include "logintestjobbase.h"
 
-LoginTestJobBase::LoginTestJobBase(QObject *parent)
+LoginTestJobBase::LoginTestJobBase(const KAccountAutoconfigServer &server, QObject *parent)
     : KJob(parent)
+    , m_server(server)
 {
 }
 
@@ -26,4 +27,9 @@ void LoginTestJobBase::setUsername(const QString &username)
 void LoginTestJobBase::setPassword(const QString &password)
 {
     m_password = password;
+}
+
+KAccountAutoconfigServer LoginTestJobBase::server() const
+{
+    return m_server;
 }

@@ -42,6 +42,10 @@ void LoginTestJob::setPassword(const QString &password)
 
 void LoginTestJob::slotResult(KJob *job)
 {
+    if (const auto loginTestJob = dynamic_cast<LoginTestJobBase *>(job)) {
+        result.emplace_back(QPair{loginTestJob->server(), QPair{loginTestJob->error() == NoError, loginTestJob->errorString()}});
+    }
+
     removeSubjob(job);
     if (!hasSubjobs()) {
         emitResult();
@@ -50,36 +54,20 @@ void LoginTestJob::slotResult(KJob *job)
 
 IMAPLoginTest *LoginTestJob::mapAutoconfigServerToIMAP(const KAccountAutoconfigServer &server)
 {
-    auto const imap = new IMAPLoginTest(this);
-    imap->setHostname(server.url().host());
-    imap->setPort(server.url().port());
+    auto const imap = new IMAPLoginTest(server, this);
     imap->setUsername(m_email);
     imap->setPassword(m_password);
-    imap->setSocketType(server.socketType());
-    imap->setAuthenticationType(server.authenticationType());
-
-    connect(imap, &KJob::finished, this, [this, imap, server] {
-        result.emplace_back(QPair{server, QPair{imap->error() == NoError, imap->errorString()}});
-    });
 
     return imap;
 }
 
 SMTPLoginTestJob *LoginTestJob::mapAutoconfigServerToSMTP(const KAccountAutoconfigServer &server)
 {
-    const auto smtpJob = new SMTPLoginTestJob(this);
-    smtpJob->setHostname(server.url().host());
-    smtpJob->setPort(server.url().port());
-    smtpJob->setUsername(m_email);
-    smtpJob->setPassword(m_password);
-    smtpJob->setSocketType(server.socketType());
-    smtpJob->setAuthenticationType(server.authenticationType());
+    const auto smtp = new SMTPLoginTestJob(server, this);
+    smtp->setUsername(m_email);
+    smtp->setPassword(m_password);
 
-    connect(smtpJob, &KJob::finished, this, [this, smtpJob, server] {
-        result.emplace_back(QPair{server, QPair{smtpJob->error() == NoError, smtpJob->errorString()}});
-    });
-
-    return smtpJob;
+    return smtp;
 }
 
 void LoginTestJob::addServer(const KAccountAutoconfigServer &server)
