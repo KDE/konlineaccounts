@@ -239,7 +239,7 @@ SetupItem {
                                     Layout.fillWidth: true
                                     type: Kirigami.MessageType.Error
                                     visible: !loginResult
-                                    text: _tr.i18n(loginResultErrorString)
+                                    text: visible ? _tr.i18n(loginResultErrorString) : ""
                                 }
                             }
                         }
