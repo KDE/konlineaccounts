@@ -42,7 +42,7 @@ void LoginTestJob::setPassword(const QString &password)
 
 void LoginTestJob::slotResult(KJob *job)
 {
-    KCompositeJob::slotResult(job);
+    removeSubjob(job);
     if (!hasSubjobs()) {
         emitResult();
     }
