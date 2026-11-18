@@ -4,6 +4,9 @@
 set(KACCOUNTAUTOCONFIG_LIB_VERSION "1.0.0")
 find_package(KF6AccountAutoconfig ${KACCOUTAUTOCONFIG_LIB_VERSION} CONFIG REQUIRED)
 
+set(KIMAP_LIB_VERSION "6.8.40")
+find_package(KPim6IMAP ${KIMAP_LIB_VERSION} CONFIG REQUIRED)
+
 find_package(KF6 REQUIRED COMPONENTS Kirigami)
 
 set(AUTOCONFIG_SETUP_SRCS
@@ -22,6 +25,8 @@ set(LOGIN_TESTS_SRCS
         logintests/logintestjob.h
         logintests/logintestjobbase.cpp
         logintests/logintestjobbase.h
+        logintests/imaplogintest.cpp
+        logintests/imaplogintest.h
 )
 
 ecm_add_qml_module(pimautoconfigsetup
@@ -35,6 +40,7 @@ target_link_libraries(pimautoconfigsetup
         PRIVATE
         KF6::I18n
         KF6::AccountAutoconfig
+        KPim6::IMAP
         Qt6Keychain::Qt6Keychain
         KF6::Kirigami
         accounts
