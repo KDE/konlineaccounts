@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: konlineaccounts\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:49+0000\n"
-"PO-Revision-Date: 2026-10-17 20:49+0900\n"
+"PO-Revision-Date: 2026-11-13 19:35+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 26.04.3\n"
+"X-Generator: Lokalize 26.08.3\n"
 
 #: ui/Account.qml:31
 #, kde-format
@@ -25,7 +25,7 @@ msgstr "削除"
 #, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
-msgstr "以下のアプリケーションは %1 を使用する権限があります。"
+msgstr "以下のアプリケーションには %1 を使用する権限が付与されています。"
 
 #: ui/Account.qml:63
 #, kde-format
