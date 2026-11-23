@@ -191,7 +191,7 @@ SetupItem {
 
                 Kirigami.Heading {
                     Layout.fillWidth: true
-                    text: _tr.i18n("Summary for email: ") + autoconfig.email
+                    text: _tr.i18n("Summary for email: ") + pimautoconfig.email
                 }
 
                 Repeater {
