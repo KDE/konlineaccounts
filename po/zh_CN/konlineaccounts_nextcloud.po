@@ -24,8 +24,7 @@ msgid "Server:"
 msgstr "服务器："
 
 #: Main.qml:61
-#, fuzzy, kde-format
-#| msgid "Add"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add"
 msgstr "添加"

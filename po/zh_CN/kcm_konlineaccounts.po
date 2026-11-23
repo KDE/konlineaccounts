@@ -23,29 +23,25 @@ msgid "Remove"
 msgstr "移除"
 
 #: ui/Account.qml:41
-#, fuzzy, kde-format
-#| msgid "These applications are authorized to use %1:"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "These applications are authorized to use %1:"
 msgstr "这些应用程序被授权使用 %1："
 
 #: ui/Account.qml:63
-#, fuzzy, kde-format
-#| msgid "No applications are authorized to use %1"
+#, kde-format
 msgctxt "%1 is the name of an online account"
 msgid "No applications are authorized to use %1"
 msgstr "没有应用程序被授权使用 %1"
 
 #: ui/AddAccountDialog.qml:23
-#, fuzzy, kde-format
-#| msgid "Create Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Account"
 msgstr "创建账户"
 
 #: ui/App.qml:28
-#, fuzzy, kde-format
-#| msgid "Give access to relevant apps:"
+#, kde-format
 msgctxt "as in 'allow relevant apps to access your account'"
 msgid "Give access to relevant apps:"
 msgstr "授予相关应用访问权限："
@@ -56,15 +52,13 @@ msgid "No relevant apps found"
 msgstr "没有找到相关的应用"
 
 #: ui/App.qml:74
-#, fuzzy, kde-format
-#| msgid "Finish"
+#, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "完成"
 
 #: ui/Error.qml:25
-#, fuzzy, kde-format
-#| msgid "Setup failed: %1"
+#, kde-format
 msgctxt "%1 is an error message"
 msgid "Setup failed: %1"
 msgstr "设置失败：%1"
@@ -73,7 +67,7 @@ msgstr "设置失败：%1"
 #, kde-format
 msgctxt "@action:button"
 msgid "OK"
-msgstr ""
+msgstr "确认"
 
 #: ui/main.qml:26
 #, kde-format
@@ -99,6 +93,3 @@ msgstr "在线账户服务未运行"
 #, kde-format
 msgid "No accounts configured"
 msgstr "未配置任何账户"
-
-#~ msgid "Ok"
-#~ msgstr "确定"
