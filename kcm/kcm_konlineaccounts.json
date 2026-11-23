@@ -27,6 +27,7 @@
         "Description[sr]": "Подешавање налога на вези, као што су Nextcloud, Гугл, Mastodon",
         "Description[tr]": "Nextcloud, Google, Mastodon gibi internet hesaplarınızı yapılandırın",
         "Description[uk]": "Налаштування ваших облікових записів у Nextcloud, Google, Mastodon",
+        "Description[zh_CN]": "配置您的在线帐户，如 Nextcloud、Google、Mastodon 等。",
         "Description[zh_TW]": "設定您的線上帳號，例如 Nextcloud、Google、Mastodon",
         "FormFactors": [
             "desktop",
@@ -93,6 +94,7 @@
     "X-KDE-Keywords[sr]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,gmail,google calendar,мрежа,Гугл,Оунклауд,усклађивање,на вези,налози,синхронизација,Јутјуб,Гугл‑драјв,Гугл‑календар",
     "X-KDE-Keywords[tr]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,gmail,google calendar,eşzamanla,eşitle,çevrim içi,çevrim dışı,ağ,hesap,google takvim",
     "X-KDE-Keywords[uk]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,hangouts,gmail,google calendar,мережа,гугл,аунклауд,синхронізація,синхронізувати,інтернет,обліковий запис,записи,оупендесктоп,некстклауд,ютюб,диск,хенгаутс,жмейл,календар гугл",
+    "X-KDE-Keywords[zh_CN]": "network,google,owncloud,sync,online,accounts,synchronization,opendesktop,nextcloud,youtube,drive,gmail,google calendar,wangluo,tongbu,zaixianfuwu,zhanghao,wangluoqudongqi,wangpan,rili,youjian,网络,同步,在线服务,账号,网络驱动器,网盘,日历,邮件",
     "X-KDE-Keywords[zh_TW]": "網路,網絡,線上服務,微軟,google,同步,帳號,帳戶,雲端硬碟,google 行事曆",
     "X-KDE-System-Settings-Parent-Category": "network",
     "X-KDE-Weight": 20
